@@ -34,8 +34,11 @@ const Stack = createNativeStackNavigator();
 function TabNavigator() {
   return (
     <Tab.Navigator
-      tabBar={(props) => <BottomNav {...props} />}
-      screenOptions={{ headerShown: false }}
+      {...{
+        tabBar: (props: any) => <BottomNav {...props} />,
+        screenOptions: { headerShown: false },
+        sceneContainerStyle: { flex: 1, overflow: 'hidden' }
+      } as any}
     >
       <Tab.Screen name="Home" component={DashboardScreen} />
       <Tab.Screen name="Assets" component={AssetsPortfolioScreen} />
@@ -50,7 +53,10 @@ export function AppNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { flex: 1, overflow: 'hidden' }
+        }}
         initialRouteName="Login"
       >
         <Stack.Screen name="Login" component={LoginScreen} />

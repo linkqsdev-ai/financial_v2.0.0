@@ -38,14 +38,19 @@ const styles = StyleSheet.create({
   },
   outerContainer: {
     flex: 1,
+    height: (isWeb ? '100vh' : 'auto') as any,
+    maxHeight: (isWeb ? '100vh' : undefined) as any,
     backgroundColor: isWeb ? '#0d0d14' : 'transparent',
     alignItems: isWeb ? 'center' : 'stretch',
     justifyContent: isWeb ? 'center' : 'flex-start',
+    overflow: 'hidden',
   },
   mobileFrame: {
     flex: 1,
     width: '100%',
     maxWidth: isWeb ? 430 : undefined,
+    height: isWeb ? '100%' : 'auto',
+    maxHeight: isWeb ? '100%' : undefined,
     overflow: 'hidden',
     // Subtle shadow on web to give a phone-frame feel
     ...(isWeb ? {
