@@ -1,0 +1,313 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Finboom - New Recurring Bill</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&amp;family=JetBrains+Mono:wght@500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "primary-container": "#002366",
+                    "outline": "#757682",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f8f9fa",
+                    "on-primary-fixed-variant": "#2a4386",
+                    "outline-variant": "#c5c6d2",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#221b0b",
+                    "on-primary-fixed": "#00174a",
+                    "on-background": "#191c1d",
+                    "surface-dim": "#d9dadb",
+                    "on-secondary-container": "#6c614e",
+                    "secondary": "#685d4a",
+                    "surface-variant": "#e1e3e4",
+                    "secondary-fixed": "#f0e0c8",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed": "#261900",
+                    "on-secondary-fixed-variant": "#4f4533",
+                    "on-surface-variant": "#444650",
+                    "surface-container-highest": "#e1e3e4",
+                    "tertiary-fixed-dim": "#e9c176",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "primary-fixed": "#dbe1ff",
+                    "on-tertiary-container": "#ad8a46",
+                    "secondary-container": "#eddec5",
+                    "on-secondary": "#ffffff",
+                    "surface-container": "#edeeef",
+                    "primary": "#00113a",
+                    "tertiary": "#1d1200",
+                    "inverse-on-surface": "#f0f1f2",
+                    "background": "#f8f9fa",
+                    "surface-container-high": "#e7e8e9",
+                    "tertiary-container": "#362500",
+                    "on-primary-container": "#758dd5",
+                    "surface-tint": "#435b9f",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffdea5",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2e3132",
+                    "on-tertiary-fixed-variant": "#5d4201",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "secondary-fixed-dim": "#d3c5ad",
+                    "on-surface": "#191c1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "1rem",
+                    "margin-main": "1.25rem",
+                    "gutter": "1rem",
+                    "stack-sm": "0.5rem",
+                    "stack-lg": "1.5rem"
+            },
+            "fontFamily": {
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "data-display": ["JetBrains Mono"],
+                    "data-label": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa;
+            color: #191c1d;
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .premium-gradient {
+            background: linear-gradient(135deg, #e9c176 0%, #ad8a46 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px rgba(0, 35, 102, 0.04);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .custom-toggle:checked + .toggle-slider {
+            background-color: #002366;
+        }
+
+        .custom-toggle:checked + .toggle-slider:before {
+            transform: translateX(1.25rem);
+        }
+
+        .segmented-picker {
+            background: #edeeef;
+            padding: 4px;
+            border-radius: 9999px;
+            display: flex;
+        }
+
+        .segmented-picker input[type="radio"]:checked + label {
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            color: #00113a;
+        }
+
+        .segmented-picker label {
+            flex: 1;
+            text-align: center;
+            padding: 6px 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface flex flex-col min-h-screen max-w-md mx-auto relative shadow-2xl overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full z-50 bg-surface/80 backdrop-blur-md flex justify-between items-center px-margin-main h-16 shadow-sm">
+<button class="flex items-center active:scale-95 transition-transform text-primary" onclick="history.back()">
+<span class="material-symbols-outlined text-[28px]">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-[20px] font-bold text-primary tracking-tight">New Recurring Bill</h1>
+<button class="flex items-center active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined text-[24px]">more_vert</span>
+</button>
+</header>
+<main class="flex-grow px-margin-main py-stack-md pb-32 overflow-y-auto">
+<!-- Section 1: Expense Details -->
+<section class="mb-stack-lg">
+<h2 class="font-data-label text-data-label text-outline uppercase tracking-widest mb-2 px-2">Expense Details</h2>
+<div class="glass-card rounded-xl p-stack-md space-y-stack-md"><div class="flex justify-center mb-4"><div class="relative w-32 h-32 rounded-xl overflow-hidden shadow-sm border border-outline-variant/30"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-5EYWI7pn2Kc4XeGVw3Jjj5rE8bRjxQGKTluL3gxlhfkdDt9Lc5k9FYfPY1huKKjqEugCcOHo0arL5uHEgbRp_7Tia5qk2dMF48pWnDE6kDmbp5F_c5pG9mbCznOOw_5T9jP0qd01KwI9PmBlhwuDhytw4qbw8kuRVx_ytphPI68TtgdfxDaRuWSZbu_XsO-pmulxsrQYGkvRczInkL_-qrvsCTCc7x6fTUH7jZQJ7sWG-V3h2CLZ8leJDvHjVSYgckvHwzdAj1_J" alt="Market Volatility Protection" class="w-full h-full object-cover"></div></div>
+<div class="relative">
+<label class="font-data-label text-data-label text-outline block mb-1" for="expense-name">Expense Name</label>
+<input class="w-full bg-transparent border-b border-outline-variant focus:border-primary-container focus:ring-0 px-0 py-2 font-body-lg text-on-background placeholder:text-outline/50 transition-colors" id="expense-name" placeholder="e.g. Netflix, Rent" type="text">
+</div>
+<div>
+<label class="font-data-label text-data-label text-outline block mb-3">Category</label>
+<div class="grid grid-cols-4 gap-4">
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<span class="font-data-label text-[10px] text-outline">Media</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">home</span>
+</div>
+<span class="font-data-label text-[10px] text-outline">Housing</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<span class="font-data-label text-[10px] text-outline">Food</span>
+</button>
+<button class="flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary-container group-hover:text-on-primary transition-all border-2 border-primary-container">
+<span class="material-symbols-outlined">grid_view</span>
+</div>
+<span class="font-data-label text-[10px] text-primary font-bold">Other</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Financial Details -->
+<section class="mb-stack-lg">
+<h2 class="font-data-label text-data-label text-outline uppercase tracking-widest mb-2 px-2">Financial Details</h2>
+<div class="glass-card rounded-xl p-stack-md flex flex-col items-center py-stack-lg">
+<span class="font-data-label text-data-label text-outline mb-1">Amount</span>
+<div class="flex items-baseline gap-1">
+<span class="font-headline-lg text-primary-container opacity-50">$</span>
+<input class="bg-transparent border-none text-center font-data-display text-[42px] text-primary-container focus:ring-0 p-0 w-48 placeholder:text-outline-variant" placeholder="0.00" step="0.01" type="number">
+</div>
+<div class="mt-4 flex gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-data-label">USD</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high text-outline font-data-label flex items-center gap-1">
+                        From: Checking <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Schedule -->
+<section class="mb-stack-lg">
+<h2 class="font-data-label text-data-label text-outline uppercase tracking-widest mb-2 px-2">Frequency</h2>
+<div class="glass-card rounded-xl p-stack-md">
+<div class="segmented-picker font-data-label text-outline">
+<input class="hidden" id="daily" name="frequency" type="radio">
+<label for="daily" class="">Daily</label>
+<input class="hidden" id="weekly" name="frequency" type="radio">
+<label for="weekly" class="">Weekly</label>
+<input checked="" class="hidden" id="monthly" name="frequency" type="radio">
+<label for="monthly" class="">Monthly</label>
+<input class="hidden" id="yearly" name="frequency" type="radio">
+<label for="yearly" class="">Yearly</label>
+</div>
+</div>
+</section>
+<!-- Section 4: Date & Notifications -->
+<section class="mb-stack-lg">
+<h2 class="font-data-label text-data-label text-outline uppercase tracking-widest mb-2 px-2">Timeline</h2>
+<div class="glass-card rounded-xl divide-y divide-outline-variant/20">
+<div class="p-stack-md flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="font-body-lg text-on-background">Start Date</span>
+</div>
+<input class="bg-transparent border-none font-body-lg text-primary text-right focus:ring-0 p-0" type="date" value="2023-10-27">
+</div>
+<div class="p-stack-md flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<span class="font-body-lg text-on-background">Remind me</span>
+</div>
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only custom-toggle" type="checkbox">
+<div class="toggle-slider w-11 h-6 bg-outline-variant rounded-full transition-colors duration-200 ease-in-out relative before:content-[''] before:absolute before:left-0.5 before:top-0.5 before:bg-white before:w-5 before:h-5 before:rounded-full before:transition-transform before:duration-200"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Decorator -->
+<div class="mt-4 flex justify-center">
+<div class="w-1 h-1 bg-primary-fixed-dim rounded-full mx-1"></div>
+<div class="w-1 h-1 bg-primary-fixed-dim rounded-full mx-1"></div>
+<div class="w-1 h-1 bg-primary-fixed-dim rounded-full mx-1"></div>
+</div>
+</main>
+<!-- Fixed Bottom Actions -->
+<div class="fixed bottom-0 w-full max-w-md bg-surface/95 backdrop-blur-xl px-margin-main py-stack-md space-y-stack-sm flex flex-col z-50">
+<button class="premium-gradient text-primary font-headline-md py-4 rounded-xl shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            Create Recurring Bill
+            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full text-center py-3 font-body-md text-outline hover:text-primary transition-colors">
+            Cancel
+        </button>
+</div>
+<!-- Background Atmospheric Glow -->
+<div class="fixed top-[20%] -right-20 w-64 h-64 bg-primary-container/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+<div class="fixed bottom-[10%] -left-20 w-64 h-64 bg-secondary-container/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('.segmented-picker label').forEach(label => {
+            label.addEventListener('click', () => {
+                const vibration = window.navigator.vibrate;
+                if (vibration) vibration(5);
+            });
+        });
+
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.closest('.glass-card')?.classList.add('ring-2', 'ring-primary-container/10');
+            });
+            input.addEventListener('blur', () => {
+                input.closest('.glass-card')?.classList.remove('ring-2', 'ring-primary-container/10');
+            });
+        });
+    </script>
+
+
+</body></html>

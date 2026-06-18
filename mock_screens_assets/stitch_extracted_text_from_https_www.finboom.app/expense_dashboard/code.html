@@ -1,0 +1,312 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>WealthFlow Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=Sora:wght@600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#362500",
+                        "on-secondary-fixed-variant": "#4f4533",
+                        "surface-variant": "#e1e3e4",
+                        "on-surface-variant": "#444650",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#002366",
+                        "tertiary": "#1d1200",
+                        "surface-dim": "#d9dadb",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary": "#685d4a",
+                        "secondary-fixed": "#f0e0c8",
+                        "tertiary-fixed": "#ffdea5",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-secondary-container": "#6c614e",
+                        "on-primary-container": "#758dd5",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#2a4386",
+                        "on-tertiary-container": "#ad8a46",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container-high": "#e7e8e9",
+                        "primary": "#00113a",
+                        "outline-variant": "#c5c6d2",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "background": "#f8f9fa",
+                        "secondary-container": "#eddec5",
+                        "primary-fixed": "#dbe1ff",
+                        "on-secondary-fixed": "#221b0b",
+                        "surface": "#f8f9fa",
+                        "inverse-on-surface": "#f0f1f2",
+                        "inverse-surface": "#2e3132",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9fa",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#435b9f",
+                        "secondary-fixed-dim": "#d3c5ad",
+                        "outline": "#757682",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-surface": "#191c1d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#00174a",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-fixed": "#261900",
+                        "on-background": "#191c1d",
+                        "gold-accent": "#D4AF37",
+                        "gold-premium": "#E6BE8A"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "margin-main": "1.25rem",
+                        "gutter": "1rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "data-label": ["JetBrains Mono"],
+                        "headline-lg": ["Manrope"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "data-display": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "sora": ["Sora"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e1e3e4 100%);
+            min-height: 100vh;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-background pb-24">
+<!-- Top Navigation Shell -->
+<header class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 flex justify-between items-center px-margin-main h-16 w-full shadow-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/10">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young entrepreneur in a minimalist studio setting. The lighting is soft and even, highlighting the clean and modern aesthetic of the brand. The color palette is composed of natural skin tones against a light neutral background, creating a sense of trust and approachability consistent with a high-end financial application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_LrnZymuh3gyiOByhx4NVJseGDn4alM2ExhtXiN71paZAlyuOnjOrRns_PJl7jWO8C2paj9Th4aedXU0gLZwNQB9fxfTrcdzF_YNSK4DSHvPgwvSRihvFoSLU8A2oZ9FzmyVd7OdMyhDOAeb_jWimj11r79MGChd1qw47_SoSzh4BigWc2xUanLGudWTa9_MS55WcLr_NR6DAUVkOa0EUkWTOq3nr8GV-C442V96tf-o5gCK9q7bkQzQWtUQDAXmc-0FGkuzRxjO5">
+</div>
+<h1 class="font-sora text-[18px] text-primary tracking-tight">Good Morning, Alex</h1>
+</div>
+<div class="flex gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary-container/50 transition-colors active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</header>
+<main class="px-margin-main mt-6 max-w-2xl mx-auto space-y-6">
+<!-- Hero Card -->
+<div class="animate-slide-up animate-delay-1 bg-[#0F172A] rounded-[2rem] p-8 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-white text-9xl">account_balance_wallet</span>
+</div>
+<div class="relative z-10">
+<p class="font-data-label text-data-label text-primary-fixed/60 uppercase tracking-widest mb-1">Total Balance</p>
+<h2 class="font-headline-lg text-headline-lg text-white mb-8">$12,450.00</h2>
+<div class="flex items-center gap-0 border-t border-white/10 pt-6">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[#059669] text-sm" style="font-variation-settings: 'FILL' 1;">arrow_upward</span>
+<span class="font-data-label text-data-label text-white/50 uppercase">Income</span>
+</div>
+<p class="font-data-display text-data-display text-white">$8,420.50</p>
+</div>
+<div class="w-px h-10 bg-white/10 mx-4"></div>
+<div class="flex-1 text-right">
+<div class="flex items-center justify-end gap-2 mb-1">
+<span class="font-data-label text-data-label text-white/50 uppercase">Expense</span>
+<span class="material-symbols-outlined text-[#DC2626] text-sm" style="font-variation-settings: 'FILL' 1;">arrow_downward</span>
+</div>
+<p class="font-data-display text-data-display text-white">$2,145.20</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Expense Breakdown Glass Card -->
+<div class="animate-slide-up animate-delay-2 bg-white/40 backdrop-blur-xl border border-white/20 rounded-[2rem] p-6 shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-primary">Breakdown</h3>
+<span class="material-symbols-outlined text-outline">pie_chart</span>
+</div>
+<div class="relative w-full h-48 mx-auto mb-8 flex items-center justify-center overflow-hidden rounded-2xl">
+  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJGWcX_jlDlLGF7h1-dYwbc7IqQe86iecF_dKk4Y8V2ePf3Pdd-u3_9iSBdL9-Mesad3OW1UG1HGNYZOmIr_WThej_q0MR9mkKSll9eC_VqDXcbDBGBD9mp2i5q9GUv6Zk0ux5p43pvnGtoxcJNBR1jqZS2tTU8BOsP2qcrbpmmvMXMypJG2C5H-ga0jrTyP8wT6Xt0LcofaVL3TU_rXBoBysG9e5KxzUqsxmYy1Y1S2Y1fSXVmuZrtdlm59M3NPyl-VGm6iJtwuuu" alt="Cash Flow Analysis" class="w-full h-full object-cover opacity-90">
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-center bg-primary/20 backdrop-blur-[2px]">
+    <p class="font-data-label text-data-label text-white uppercase tracking-widest">August</p>
+    <p class="font-headline-md text-headline-md text-white">$2,145</p>
+  </div>
+</div>
+<div class="flex overflow-x-auto gap-4 pb-2 no-scrollbar">
+<div class="flex-shrink-0 bg-white/60 px-4 py-3 rounded-2xl flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<div>
+<p class="font-body-md text-primary font-bold">Food</p>
+<p class="font-data-label text-data-label text-outline">$840.00</p>
+</div>
+</div>
+<div class="flex-shrink-0 bg-white/60 px-4 py-3 rounded-2xl flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-gold-premium"></div>
+<div>
+<p class="font-body-md text-primary font-bold">Transport</p>
+<p class="font-data-label text-data-label text-outline">$420.00</p>
+</div>
+</div>
+<div class="flex-shrink-0 bg-white/60 px-4 py-3 rounded-2xl flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div>
+<p class="font-body-md text-primary font-bold">Rent</p>
+<p class="font-data-label text-data-label text-outline">$1,200.00</p>
+</div>
+</div>
+<div class="flex-shrink-0 bg-white/60 px-4 py-3 rounded-2xl flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-gold-accent"></div>
+<div>
+<p class="font-body-md text-primary font-bold">Shopping</p>
+<p class="font-data-label text-data-label text-outline">$315.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Section -->
+<section class="animate-slide-up animate-delay-3">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-headline-md text-primary">Recent Activity</h3>
+<button class="font-body-md text-primary-fixed-dim font-bold hover:underline">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Row 1 -->
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-center justify-between group active:scale-[0.98] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">shopping_bag</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-bold">Apple Store</p>
+<p class="font-body-md text-outline">Shopping • Today</p>
+</div>
+</div>
+<p class="font-data-display text-data-display text-primary">-$1,299.00</p>
+</div>
+<!-- Row 2 -->
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-center justify-between group active:scale-[0.98] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-[#059669]/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-[#059669]">payments</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-bold">Salary Credit</p>
+<p class="font-body-md text-outline">Income • Yesterday</p>
+</div>
+</div>
+<p class="font-data-display text-data-display text-[#059669]">+$4,500.00</p>
+</div>
+<!-- Row 3 -->
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-center justify-between group active:scale-[0.98] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">restaurant</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-bold">Nobu Sushi</p>
+<p class="font-body-md text-outline">Food • 2 days ago</p>
+</div>
+</div>
+<p class="font-data-display text-data-display text-primary">-$240.50</p>
+</div>
+<!-- Row 4 -->
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-center justify-between group active:scale-[0.98] transition-all">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">directions_car</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-bold">Uber Trip</p>
+<p class="font-body-md text-outline">Transport • 3 days ago</p>
+</div>
+</div>
+<p class="font-data-display text-data-display text-primary">-$32.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 w-16 h-16 bg-gold-premium rounded-full shadow-lg shadow-gold-accent/40 flex items-center justify-center text-primary active:scale-90 transition-all z-40">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full rounded-t-xl z-50 bg-surface/90 backdrop-blur-lg flex justify-around items-center h-20 pb-safe px-gutter shadow-[0_-2px_10px_rgba(0,17,58,0.04)]">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 active:scale-90 transition-all duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Wealth</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 active:scale-90 transition-all duration-150 hover:text-primary">
+<span class="material-symbols-outlined">local_fire_department</span>
+<span class="font-body-md text-body-md">FIRE</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 active:scale-90 transition-all duration-150 hover:text-primary">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md text-body-md">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 active:scale-90 transition-all duration-150 hover:text-primary">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction for activity rows
+        document.querySelectorAll('.active\\:scale-\\[0\\.98\\]').forEach(row => {
+            row.addEventListener('click', () => {
+                row.style.background = 'var(--surface-container-high)';
+                setTimeout(() => {
+                    row.style.background = '';
+                }, 200);
+            });
+        });
+    </script>
+
+
+</body></html>

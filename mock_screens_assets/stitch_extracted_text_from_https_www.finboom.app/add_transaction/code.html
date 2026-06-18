@@ -1,0 +1,290 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Add Transaction | Finboom Premium</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .font-sora { font-family: 'Sora', sans-serif; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dynamic-bg {
+            background: radial-gradient(circle at top right, #fdfbf7 0%, #f8f9fa 50%, #eef1f5 100%);
+            min-height: 100vh;
+        }
+
+        .premium-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 17, 58, 0.08);
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#221b0b",
+                        "tertiary-fixed": "#ffdea5",
+                        "surface-dim": "#d9dadb",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-surface": "#2e3132",
+                        "secondary-container": "#eddec5",
+                        "on-surface": "#191c1d",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary-container": "#6c614e",
+                        "on-primary-fixed-variant": "#2a4386",
+                        "surface-variant": "#e1e3e4",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#435b9f",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-tertiary-container": "#ad8a46",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "primary": "#00113a",
+                        "secondary": "#685d4a",
+                        "outline": "#757682",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "secondary-fixed": "#f0e0c8",
+                        "on-primary-container": "#758dd5",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#362500",
+                        "secondary-fixed-dim": "#d3c5ad",
+                        "on-background": "#191c1d",
+                        "tertiary": "#1d1200",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-fixed": "#261900",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#00174a",
+                        "background": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#4f4533",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-surface-variant": "#444650",
+                        "primary-container": "#002366",
+                        "outline-variant": "#c5c6d2",
+                        "surface": "#f8f9fa",
+                        "champagne": "#D4AF37"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-main": "1.25rem",
+                        "stack-lg": "1.5rem",
+                        "gutter": "1rem",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-md": ["Manrope"],
+                        "data-label": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="dynamic-bg text-on-surface antialiased no-scrollbar overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-background w-full top-0 sticky flex items-center justify-between px-margin-main h-16 w-full z-50">
+<button class="hover:bg-surface-container-low transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Add Transaction</h1>
+<button class="hover:bg-surface-container-low transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary">more_vert</span>
+</button>
+</header>
+<main class="px-margin-main pb-24 pt-4 flex flex-col gap-6 max-w-2xl mx-auto">
+<!-- Transaction Type Toggle -->
+<div class="bg-surface-container-high p-1 rounded-2xl flex relative h-12">
+<div class="absolute h-10 top-1 left-1 rounded-xl transition-all duration-300 w-[calc(50%-4px)] bg-white border border-error shadow-sm" id="toggle-bg" style="transform: translateX(0);"></div>
+<button class="relative z-10 flex-1 flex items-center justify-center font-headline-md text-body-lg font-bold transition-colors text-error" id="btn-expense" onclick="toggleTransaction('expense')">
+                Expense
+            </button>
+<button class="relative z-10 flex-1 flex items-center justify-center font-headline-md text-body-lg font-bold transition-colors text-on-surface-variant" id="btn-income" onclick="toggleTransaction('income')">
+                Income
+            </button>
+</div>
+<!-- Amount Glass Card -->
+<div class="relative">
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-2 premium-shadow">
+<p class="font-data-label text-data-label text-on-surface-variant uppercase tracking-wider" id="amount-label">You Spend</p>
+<div class="flex items-center gap-2">
+<span class="font-sora text-[32px] font-bold text-primary">$</span>
+<input autofocus="" class="font-sora text-[32px] font-bold text-primary bg-transparent border-none w-full p-0 focus:ring-0 placeholder:text-surface-variant" placeholder="0.00" type="number">
+</div>
+</div>
+<!-- Swap Icon -->
+<button class="absolute -bottom-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-lg border-4 border-background active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-white text-xl">swap_vert</span>
+</button>
+</div>
+<!-- Details Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-margin-main flex flex-col gap-5 premium-shadow mt-2"><div class="flex items-center gap-4 p-4 bg-surface-container-low rounded-xl border border-outline-variant mb-2"><div class="w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">https://lh3.googleusercontent.com/aida-public/AB6AXuB1u5hEXC4KZtXMajUlSTNmUFI6YOmk8EZ_36REpOozG4obIjXyIbtAibEFvoLUSdMyE3szQjSVAbj9s7dNP_UPYMI1hi56-XIbYvMlEgEWQXO1_Dor2aHRkhXviAQ3vTwreimFC2cvo7Sa3zSN8LosQc7QF-85g3GHT8x9Vnt-QPg4A838aip8cssnC4qNkxiOcWMQJueGmzhILB9p0m1OZ13BjClBt3Ksg-TzGT16tUP2BqwRCE4HpOQatHq5-0XvkuDNOyYpRYEB</div><div class="flex flex-col"><span class="font-headline-md text-body-md font-bold text-primary">Tax Optimization</span><p class="font-body-md text-on-surface-variant">Strategic tracking helps maximize your deductions.</p></div></div>
+<!-- Category -->
+<div class="flex flex-col gap-1.5">
+<label class="font-data-label text-data-label text-on-surface-variant px-1">CATEGORY</label>
+<div class="relative group">
+<select class="w-full appearance-none bg-surface-container-low border-none rounded-xl h-14 px-4 font-body-lg text-on-surface focus:ring-2 focus:ring-primary transition-all">
+<option>Lifestyle &amp; Entertainment</option>
+<option>Housing &amp; Utilities</option>
+<option>Food &amp; Dining</option>
+<option>Investments</option>
+<option>Transport</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Subcategory -->
+<div class="flex flex-col gap-1.5">
+<label class="font-data-label text-data-label text-on-surface-variant px-1">SUBCATEGORY</label>
+<div class="relative group">
+<select class="w-full appearance-none bg-surface-container-low border-none rounded-xl h-14 px-4 font-body-lg text-on-surface focus:ring-2 focus:ring-primary transition-all">
+<option>Streaming Services</option>
+<option>Movie Theaters</option>
+<option>Clubbing</option>
+<option>Gaming</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Account Bucket -->
+<div class="flex flex-col gap-1.5">
+<label class="font-data-label text-data-label text-on-surface-variant px-1">ACCOUNT BUCKET</label>
+<div class="relative group">
+<select class="w-full appearance-none bg-surface-container-low border-none rounded-xl h-14 px-4 font-body-lg text-on-surface focus:ring-2 focus:ring-primary transition-all">
+<option>Main Savings (Chase)</option>
+<option>Emergency Fund (Amex)</option>
+<option>Investment Vault</option>
+<option>Daily Expenses</option>
+</select>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
+<div class="w-2 h-2 rounded-full bg-champagne"></div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Notes -->
+<div class="flex flex-col gap-1.5">
+<label class="font-data-label text-data-label text-on-surface-variant px-1">NOTES</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-xl p-4 font-body-md text-on-surface focus:ring-2 focus:ring-primary transition-all resize-none" placeholder="What was this for?" rows="3"></textarea>
+</div>
+</div>
+<!-- Attachments Section -->
+<div class="flex flex-col gap-3">
+<h3 class="font-data-label text-data-label text-on-surface-variant uppercase px-1">Attachments</h3>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center gap-2 h-24 rounded-2xl border-2 border-dashed border-outline-variant bg-surface-container-low/50 hover:bg-surface-container-low hover:border-primary transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">photo_camera</span>
+<span class="font-body-md font-medium text-on-surface-variant group-hover:text-primary transition-colors">Photo</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 h-24 rounded-2xl border-2 border-dashed border-outline-variant bg-surface-container-low/50 hover:bg-surface-container-low hover:border-primary transition-all group">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">videocam</span>
+<span class="font-body-md font-medium text-on-surface-variant group-hover:text-primary transition-colors">Video</span>
+</button>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4 mt-4">
+<button class="bg-[#0F172A] w-full h-16 rounded-2xl flex items-center justify-between px-6 premium-shadow hover:bg-black active:scale-[0.98] transition-all">
+<div class="flex items-center gap-3">
+<div class="bg-white/10 w-8 h-8 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="font-headline-md text-body-lg font-bold text-white" id="save-btn-text">Save Expense</span>
+</div>
+<div class="flex -space-x-2">
+<span class="material-symbols-outlined text-white/40">chevron_right</span>
+<span class="material-symbols-outlined text-white">chevron_right</span>
+</div>
+</button>
+<button class="w-full text-center py-2">
+<span class="font-body-md font-semibold text-on-surface-variant hover:text-primary transition-colors cursor-pointer">Cancel</span>
+</button>
+</div>
+</main>
+<!-- Bottom Navigation (Implicit Suppression on Transactional screen but visible based on shared component logic if viewed as a top-level dash) -->
+<!-- We suppress here as requested for a task-focused "Add Transaction" screen -->
+<script>
+        function toggleTransaction(type) {
+            const bg = document.getElementById('toggle-bg');
+            const btnExpense = document.getElementById('btn-expense');
+            const btnIncome = document.getElementById('btn-income');
+            const label = document.getElementById('amount-label');
+            const saveBtnText = document.getElementById('save-btn-text');
+
+            if (type === 'income') {
+                bg.style.transform = 'translateX(100%)';
+                bg.classList.remove('border-error');
+                bg.classList.add('border-green-600');
+                
+                btnIncome.classList.add('text-green-600');
+                btnIncome.classList.remove('text-on-surface-variant');
+                btnExpense.classList.remove('text-error');
+                btnExpense.classList.add('text-on-surface-variant');
+                
+                label.innerText = 'YOU RECEIVE';
+                saveBtnText.innerText = 'Save Income';
+            } else {
+                bg.style.transform = 'translateX(0)';
+                bg.classList.remove('border-green-600');
+                bg.classList.add('border-error');
+                
+                btnExpense.classList.add('text-error');
+                btnExpense.classList.remove('text-on-surface-variant');
+                btnIncome.classList.remove('text-green-600');
+                btnIncome.classList.add('text-on-surface-variant');
+                
+                label.innerText = 'YOU SPEND';
+                saveBtnText.innerText = 'Save Expense';
+            }
+        }
+    </script>
+
+
+</body></html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Finboom | Premium Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#261900",
+                        "surface-container": "#edeeef",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed": "#00174a",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#444650",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#4f4533",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface": "#f8f9fa",
+                        "outline-variant": "#c5c6d2",
+                        "primary-container": "#002366",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "primary": "#00113a",
+                        "on-primary-container": "#758dd5",
+                        "secondary-fixed": "#f0e0c8",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "secondary": "#685d4a",
+                        "outline": "#757682",
+                        "tertiary-container": "#362500",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-primary": "#b3c5ff",
+                        "tertiary": "#1d1200",
+                        "on-background": "#191c1d",
+                        "secondary-fixed-dim": "#d3c5ad",
+                        "surface-container-high": "#e7e8e9",
+                        "on-surface": "#191c1d",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary-fixed-variant": "#2a4386",
+                        "on-secondary-container": "#6c614e",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#ad8a46",
+                        "surface-tint": "#435b9f",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "tertiary-fixed": "#ffdea5",
+                        "surface-dim": "#d9dadb",
+                        "on-secondary-fixed": "#221b0b",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-surface": "#2e3132",
+                        "secondary-container": "#eddec5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "1.5rem",
+                        "gutter": "1rem",
+                        "margin-main": "1.25rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "data-label": ["JetBrains Mono"],
+                        "data-display": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #00113a; /* Primary Royal Navy */
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .royal-gradient {
+            background: radial-gradient(circle at top left, #00174a 0%, #00113a 100%);
+        }
+        .champagne-glow:focus-within {
+            box-shadow: 0 0 15px rgba(233, 193, 118, 0.3);
+            border-color: #e9c176;
+        }
+        .ios-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="royal-gradient min-h-screen flex flex-col items-center justify-center p-margin-main overflow-x-hidden">
+<!-- Atmospheric Background Elements -->
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary-container/20 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-tertiary-container/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="w-full max-w-md flex flex-col items-center z-10">
+<!-- Brand Logo Section -->
+<div class="mb-stack-lg animate-in fade-in slide-in-from-bottom-4 duration-700">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-tr from-tertiary-fixed-dim to-secondary-fixed opacity-30 blur rounded-xl group-hover:opacity-50 transition duration-1000"></div>
+<img alt="Finboom Logo" class="relative w-24 h-24 rounded-xl shadow-2xl ios-transition transform hover:scale-105" data-alt="A premium 1024x1024 app icon for Finboom featuring a luxurious deep royal navy radial gradient background. Centered is a minimalist, high-impact symbol of an abstract F merged with a sharp, upward-trending golden growth arrow. The icon showcases a modern skeuomorphic-minimalism style with physical weight and soft specular highlights in champagne gold metallic texture, conveying wealth and financial growth." src="https://lh3.googleusercontent.com/aida/AP1WRLvlLXABDaAVueD97jL_gOWWymJde33VpKSg-Ot00_j64IeXcoJcpkjXRj71rrHTpP7QCQgdC_aSHXMeyEojmHSWNnz7l9XVTVH_RbHqkIZPwCXNqPptPbvSLAzYtXX_O5Z1P3Jy14Ydjhq7SqQgKDzWK_ZDKby6BEsRaWqY9FTKh0WY0gvwGeyUOWBak7P-fC4w5dcfHFbkRC-jvX1W3xiZsNPGToUdFnSW1lBlSBq7s6SCgnmM-3Um-VaL">
+</div>
+</div>
+<!-- Headline Cluster -->
+<div class="text-center mb-10 space-y-2 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+<h1 class="font-headline-lg text-headline-lg text-white tracking-tight">Welcome Back</h1>
+<p class="font-body-lg text-body-lg text-primary-fixed/70">Enter your credentials to manage your wealth</p>
+</div>
+<!-- Form Section -->
+<form class="w-full space-y-stack-md animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200" onsubmit="return false;">
+<!-- Email Input -->
+<div class="relative group">
+<label class="block font-data-label text-data-label text-tertiary-fixed-dim/80 mb-1 ml-2 uppercase tracking-widest">Email Address</label>
+<div class="glass-panel champagne-glow rounded-xl flex items-center px-4 h-14 ios-transition">
+<span class="material-symbols-outlined text-primary-fixed/60 mr-3">mail</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-white font-body-md placeholder:text-primary-fixed/30" placeholder="name@premium.com" type="email">
+</div>
+</div>
+<!-- Password Input -->
+<div class="relative group">
+<div class="flex justify-between items-end mb-1 px-2">
+<label class="font-data-label text-data-label text-tertiary-fixed-dim/80 uppercase tracking-widest">Password</label>
+<a class="font-body-md text-[13px] text-tertiary-fixed-dim hover:text-white ios-transition" href="#">Forgot Password?</a>
+</div>
+<div class="glass-panel champagne-glow rounded-xl flex items-center px-4 h-14 ios-transition">
+<span class="material-symbols-outlined text-primary-fixed/60 mr-3">lock</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-white font-body-md placeholder:text-primary-fixed/30" placeholder="••••••••" type="password">
+<button class="material-symbols-outlined text-primary-fixed/40 hover:text-white transition-colors" type="button">visibility</button>
+</div>
+</div>
+<!-- Sign In Button -->
+<button class="w-full h-14 bg-tertiary-fixed-dim hover:bg-tertiary-fixed text-on-tertiary-fixed font-headline-md text-headline-md rounded-xl shadow-lg shadow-tertiary-container/40 active:scale-[0.98] ios-transition mt-8 flex items-center justify-center space-x-2"><div class="w-6 h-6 rounded-full overflow-hidden">https://lh3.googleusercontent.com/aida/AP1WRLvbMiSrQtYTKHAwssZ9vIIUGANBSgMxyTIyxnpF5tYC43k9512DxuET6pU1hLW9nYG6F8acbS_UVXP5LzBKTX98Md0MRDWSKfkC6bwCMU1T2RqUVSV-FpttdVDKy6qyYemrdiJLbz9bno2LvOuEP0xJ4NYEcD4NfqEPnAhS1H9VILLXe3-urXNPdXqGRK5aamM2208K1cCHJeaJu39u0onV8xOqOXciTt-3OkzC-sT3gpMyiTSbBIV3AmDK</div><span class="">Sign In</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span></button>
+</form>
+<!-- Footer Actions -->
+<div class="mt-12 text-center animate-in fade-in slide-in-from-bottom-10 duration-700 delay-300">
+<p class="font-body-md text-primary-fixed/60">
+                Don't have an account? 
+                <a class="text-tertiary-fixed-dim font-semibold hover:underline decoration-tertiary-fixed-dim/30 underline-offset-4 ios-transition" href="#">Sign Up</a>
+</p>
+</div>
+<!-- Biometric Hint -->
+<div class="mt-16 flex flex-col items-center opacity-40 animate-pulse">
+<span class="material-symbols-outlined text-white text-[40px] mb-2" style="font-variation-settings: 'wght' 200;">fingerprint</span>
+<span class="font-data-label text-data-label text-white uppercase tracking-tighter">Biometric Secure Access</span>
+</div>
+</div>
+<!-- UI Interaction Script -->
+<script>
+        // Simple input focus effects
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('scale-[1.01]');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Toggle Password Visibility
+        const visibilityBtn = document.querySelector('button[type="button"]');
+        visibilityBtn.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                this.textContent = 'visibility_off';
+            } else {
+                input.type = 'password';
+                this.textContent = 'visibility';
+            }
+        });
+    </script>
+
+
+</body></html>

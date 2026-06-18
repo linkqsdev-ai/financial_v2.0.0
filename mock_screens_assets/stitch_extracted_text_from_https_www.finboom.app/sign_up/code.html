@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Finboom - Join the FIRE Movement</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#261900",
+                        "surface-container": "#edeeef",
+                        "background": "#f8f9fa",
+                        "on-primary-fixed": "#00174a",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#444650",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#4f4533",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface": "#f8f9fa",
+                        "outline-variant": "#c5c6d2",
+                        "primary-container": "#002366",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "primary": "#00113a",
+                        "on-primary-container": "#758dd5",
+                        "secondary-fixed": "#f0e0c8",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "secondary": "#685d4a",
+                        "outline": "#757682",
+                        "tertiary-container": "#362500",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dbe1ff",
+                        "inverse-primary": "#b3c5ff",
+                        "tertiary": "#1d1200",
+                        "on-background": "#191c1d",
+                        "secondary-fixed-dim": "#d3c5ad",
+                        "surface-container-high": "#e7e8e9",
+                        "on-surface": "#191c1d",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary-fixed-variant": "#2a4386",
+                        "on-secondary-container": "#6c614e",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#ad8a46",
+                        "surface-tint": "#435b9f",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "tertiary-fixed": "#ffdea5",
+                        "surface-dim": "#d9dadb",
+                        "on-secondary-fixed": "#221b0b",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-bright": "#f8f9fa",
+                        "surface-container-low": "#f3f4f5",
+                        "inverse-surface": "#2e3132",
+                        "secondary-container": "#eddec5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "1.5rem",
+                        "gutter": "1rem",
+                        "margin-main": "1.25rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Manrope"],
+                        "data-label": ["JetBrains Mono"],
+                        "data-display": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "data-label": ["11px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "data-display": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8f9fa;
+            color: #191c1d;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .premium-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 17, 58, 0.08);
+        }
+        .ios-input-focus:focus-within {
+            border-bottom-color: #00113a;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #ffdea5 0%, #e9c176 100%);
+        }
+    </style>
+</head>
+<body class="font-body-md antialiased overflow-x-hidden">
+<!-- Screen Wrapper -->
+<main class="min-h-screen flex flex-col max-w-md mx-auto bg-surface relative">
+<!-- Top Status Bar Simulation (iOS Style) -->
+<div class="h-12 w-full flex justify-between items-center px-6 pt-4">
+<span class="font-bold text-sm">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-base" style="font-size: 18px;">signal_cellular_4_bar</span>
+<span class="material-symbols-outlined text-base" style="font-size: 18px;">wifi</span>
+<span class="material-symbols-outlined text-base" style="font-size: 18px;">battery_full</span>
+</div>
+</div>
+<!-- Back Button & Logo -->
+<div class="px-margin-main pt-stack-lg flex justify-between items-center">
+<button aria-label="Go back" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors active:scale-90">
+<span class="material-symbols-outlined text-primary">arrow_back_ios_new</span>
+</button>
+<div class="text-primary font-headline-md font-extrabold tracking-tight">Finboom</div>
+<div class="w-10"></div> <!-- Spacer -->
+</div>
+<!-- Hero Content -->
+<header class="px-margin-main pt-10 pb-6">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-2">Create Account</h1>
+<p class="font-body-lg text-on-surface-variant max-w-[280px]">
+                Join <span class="text-primary font-semibold">10,000+ users</span> tracking their path to FIRE.
+            </p>
+</header>
+<!-- Form Section -->
+<section class="flex-grow px-margin-main pt-4 flex flex-col">
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Full Name -->
+<div class="relative ios-input-focus group transition-all">
+<label class="font-data-label text-data-label text-outline uppercase tracking-wider mb-1 block" for="full_name">Full Name</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 font-body-lg text-on-surface placeholder:text-outline-variant/60 transition-all" id="full_name" placeholder="Alexander Hamilton" type="text">
+</div>
+<!-- Email Address -->
+<div class="relative ios-input-focus group transition-all">
+<label class="font-data-label text-data-label text-outline uppercase tracking-wider mb-1 block" for="email">Email Address</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 focus:ring-0 font-body-lg text-on-surface placeholder:text-outline-variant/60 transition-all" id="email" placeholder="alex@privatewealth.com" type="email">
+</div>
+<!-- Password -->
+<div class="relative ios-input-focus group transition-all">
+<label class="font-data-label text-data-label text-outline uppercase tracking-wider mb-1 block" for="password">Password</label>
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 pr-10 pl-0 focus:ring-0 font-body-lg text-on-surface placeholder:text-outline-variant/60 transition-all" id="password" placeholder="••••••••••••" type="password">
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-outline-variant" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Terms -->
+<div class="pt-2">
+<p class="text-[12px] leading-relaxed text-on-surface-variant font-body-md">
+                        By signing up, you agree to our <a class="text-primary font-semibold underline underline-offset-2" href="#">Terms of Service</a> and <a class="text-primary font-semibold underline underline-offset-2" href="#">Privacy Policy</a>.
+                    </p>
+</div>
+<!-- Action Button -->
+<div class="pt-4">
+<button class="w-full h-14 rounded-xl gold-gradient text-primary font-headline-md shadow-lg active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+<span class="">Continue</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-10">
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+<span class="font-data-label text-outline uppercase">Or join with</span>
+<div class="h-[1px] flex-grow bg-outline-variant/30"></div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4">
+<button class="h-14 border border-outline-variant/50 rounded-xl flex items-center justify-center gap-3 bg-white premium-shadow active:bg-surface-container transition-colors">
+<svg fill="none" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="font-body-lg text-primary font-semibold">Google</span>
+</button>
+<button class="h-14 border border-outline-variant/50 rounded-xl flex items-center justify-center gap-3 bg-white premium-shadow active:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">apps</span>
+<span class="font-body-lg text-primary font-semibold">Apple</span>
+</button>
+</div>
+<!-- Footer Link -->
+<div class="mt-auto py-10 text-center">
+<p class="font-body-md text-on-surface-variant">
+                    Already have an account? 
+                    <a class="text-primary font-bold" href="#">Sign In</a>
+</p>
+</div>
+</section>
+<!-- Decorative Progress Indicator (Visual Atmosphere) -->
+<div class="absolute -right-20 top-40 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl -z-10"></div>
+<div class="absolute -left-20 bottom-20 w-80 h-80 bg-primary-container/10 rounded-full blur-3xl -z-10"></div>
+<!-- FIRE Success Mini-Card (Visual Atmosphere) -->
+<div class="px-margin-main pb-8">
+<div class="bg-white/80 backdrop-blur-md rounded-2xl p-4 border-l-4 border-tertiary-fixed-dim premium-shadow flex items-center justify-between"><div class="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 mr-3">https://lh3.googleusercontent.com/aida/AP1WRLuFDyvbtRP3lH39lWmz0IDdKOjstraoX-dYmdtSYMEoA-suozdKMZYBU21_YPbO9zjxq5pR975ifQLbNeA5M_3BatCra_Mhl5B1ycnpBItt_onpVv9u_xOPkaMQ93W357zKI2AZYVo3JxtqRCW-bHRVqrowHzmJLbqgtNrng2Tlf9ICzcEuB9NzFmJs7gg0Xaxhzh7QR6BUQMPK9JBwArmG0kcuYEyv7vRCp_wUSnViqgwJSBoSddPkbId_</div>
+<div>
+<p class="font-data-label text-outline uppercase tracking-widest text-[10px]">Current Milestone</p>
+<p class="font-headline-md text-primary text-lg">Debt Free Journey</p>
+</div>
+<div class="text-right">
+<p class="font-data-display text-primary">82%</p>
+<div class="w-16 h-1.5 bg-outline-variant/20 rounded-full mt-1 overflow-hidden">
+<div class="h-full bg-tertiary-fixed-dim rounded-full" style="width: 82%"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Feedback Overlay (Hidden by default) -->
+<div class="fixed inset-0 bg-primary/95 z-[100] flex flex-col items-center justify-center text-white opacity-0 pointer-events-none transition-opacity duration-500" id="successOverlay">
+<div class="w-20 h-20 rounded-full bg-tertiary-fixed-dim flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-weight: 800;">check</span>
+</div>
+<h2 class="font-headline-lg text-white mb-2">Welcome Aboard</h2>
+<p class="font-body-lg text-primary-fixed/80">Securing your financial future...</p>
+</div>
+<script>
+        // Micro-interactions
+        const form = document.querySelector('form');
+        const overlay = document.getElementById('successOverlay');
+        const submitBtn = form.querySelector('button');
+
+        submitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Subtle feedback
+            submitBtn.innerHTML = `
+                <svg class="animate-spin h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            `;
+            
+            setTimeout(() => {
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                overlay.classList.add('opacity-100');
+            }, 1000);
+        });
+
+        // Add soft haptic feel to inputs
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('translate-x-1');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('translate-x-1');
+            });
+        });
+    </script>
+
+
+</body></html>

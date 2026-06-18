@@ -1,0 +1,256 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>New Category | FIRE Navigator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#435b9f",
+                        "surface": "#f8f9fa",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface-variant": "#444650",
+                        "on-surface": "#191c1d",
+                        "outline": "#757682",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "on-primary-fixed": "#00174a",
+                        "surface-variant": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#758dd5",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#f0e0c8",
+                        "outline-variant": "#c5c6d2",
+                        "on-secondary-container": "#6c614e",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary-container": "#ad8a46",
+                        "surface-container-high": "#e7e8e9",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed-variant": "#4f4533",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d9dadb",
+                        "secondary": "#685d4a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "primary-container": "#002366",
+                        "on-secondary-fixed": "#221b0b",
+                        "on-primary-fixed-variant": "#2a4386",
+                        "tertiary-fixed": "#ffdea5",
+                        "tertiary": "#1d1200",
+                        "secondary-container": "#eddec5",
+                        "on-background": "#191c1d",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "inverse-primary": "#b3c5ff",
+                        "inverse-surface": "#2e3132",
+                        "tertiary-container": "#362500",
+                        "primary": "#00113a",
+                        "secondary-fixed-dim": "#d3c5ad",
+                        "on-tertiary-fixed": "#261900",
+                        "surface-container-highest": "#e1e3e4",
+                        "on-primary": "#ffffff",
+                        "champagne-gold": "#D4AF37",
+                        "gold-leaf": "#AF8F2C"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "1rem",
+                        "margin-main": "1.25rem",
+                        "stack-lg": "1.5rem",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-lg": ["Manrope"],
+                        "data-label": ["JetBrains Mono"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            box-shadow: 0 0 0 2px #D4AF37;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen">
+<!-- Top Navigation (Shell suppressed for focused task) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md px-margin-main h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button aria-label="Close" class="p-2 -ml-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">New Category</h1>
+</div>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<main class="pt-20 pb-32 px-margin-main max-w-2xl mx-auto space-y-stack-lg">
+<!-- Icon Selection -->
+<section class="space-y-stack-sm">
+<h2 class="font-data-label text-data-label uppercase tracking-wider text-outline">Icon Selection</h2>
+<div class="flex gap-4 overflow-x-auto py-2 hide-scrollbar">
+<!-- Active Icon -->
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container-highest flex items-center justify-center active-icon transition-all border border-champagne-gold/30">
+<span class="material-symbols-outlined text-on-tertiary-container" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</button>
+<!-- Other Icons -->
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">monitoring</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">payments</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">event_upcoming</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">real_estate_agent</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">directions_car</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">flight_takeoff</span>
+</button>
+<button class="flex-shrink-0 w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-outline">savings</span>
+</button>
+</div>
+</section>
+<!-- Category Name Input -->
+<section class="space-y-stack-sm">
+<label class="font-data-label text-data-label uppercase tracking-wider text-outline" for="category_name">Category Name</label>
+<input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg px-4 py-3 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all font-body-lg text-body-lg placeholder:text-outline-variant/60" id="category_name" placeholder="e.g., Luxury Travel" type="text">
+</section>
+<!-- Color Theme Selection -->
+<section class="space-y-stack-sm">
+<h2 class="font-data-label text-data-label uppercase tracking-wider text-outline">Color Theme</h2>
+<div class="flex flex-wrap gap-4 py-2">
+<button class="w-8 h-8 rounded-full bg-[#00113a] ring-2 ring-offset-2 ring-primary"></button>
+<button class="w-8 h-8 rounded-full bg-champagne-gold hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#685d4a] hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#ba1a1a] hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#435b9f] hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#1d1200] hover:scale-110 transition-transform"></button>
+<button class="w-8 h-8 rounded-full bg-[#2e3132] hover:scale-110 transition-transform"></button>
+</div>
+</section>
+<!-- Subcategories -->
+<section class="space-y-stack-sm">
+<h2 class="font-data-label text-data-label uppercase tracking-wider text-outline">Visual Context</h2>
+<div class="aspect-video rounded-2xl overflow-hidden relative group border border-outline-variant/20 shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCANnKFqLgPBCqhlsNKNHxav2S4iRnNagyfuq78RvuqemvPtbgtVID68b3s7plu-MQmUEoMdgE7rjH83cglxHGmOCDKr5RrIN58pLXWkJocwx2GNJVxIC1pkomXjdOFfQnoDiV0HUE0XYmtN7C21oK-WGz6da38sme_rzrmpemnvrcyxol1o52W-ktoUnSpWGB55Eu04z8d1I_9qBIOObb0pAtP7jzlCLSPTI7xTn6FpZjwtf2QfTTgmQOQ5SKlAIy_3Pbd671M753t" alt="Child Education Goal Illustration">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+</section><section class="space-y-stack-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-data-label text-data-label uppercase tracking-wider text-outline">Subcategories</h2>
+<button class="flex items-center gap-1 text-primary text-body-md font-semibold">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add New
+                </button>
+</div>
+<div class="space-y-2">
+<!-- Subcategory Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-sm">
+<span class="font-body-md text-on-surface">International Flights</span>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Subcategory Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-sm">
+<span class="font-body-md text-on-surface">Boutique Hotels</span>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<!-- Subcategory Item -->
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest border border-outline-variant/20 rounded-xl shadow-sm">
+<span class="font-body-md text-on-surface">Fine Dining</span>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Visual Anchor (Bento Style Illustration) -->
+<div class="grid grid-cols-2 gap-4 mt-8">
+<div class="aspect-square rounded-2xl overflow-hidden relative group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A macro close-up of premium gold coins and architectural blueprints on a dark navy surface. The lighting is dramatic and moody, reflecting a corporate modern aesthetic with sharp focus and deep tonal shadows. The overall vibe suggests precision financial planning and high-net-worth wealth management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASBLPHjNUDT0DwisVqfkuRkS2eR5D-hOWFnltYya3O75nLj32VmesenPrmJ39TOeaXFYHQAkrElKtumnJoVacoeCfWzEbuRhmHksd29c_yPJUcQDp7f7fr8sueoo2DreITtWQDzNg8dF63St0ma059AdLcXrrldwa4Y0uygt-2p5rVNJrANsu3jh7F9Alq_sCSdI2ueNMwXalyWf2l-90tygSv9vRsDyx4WJJY0bbvDmMM-imM7K54ZI8lXNsbySee9JSPnnRcNEx5">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+</div>
+<div class="aspect-square rounded-2xl overflow-hidden relative group">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="An abstract visualization of financial growth curves in shimmering gold silk textures against a deep royal navy background. The image has a high-key, elegant finish with soft bokeh highlights. The composition is minimalist and modern, symbolizing the fluidity and momentum of financial independence goals." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW_9KnhIJzBf3_LQfTHpvV_JtYFJ1cXX93v9WBp2w6jUOLfrX4Kxpns4cU2IVIWz3HrQ8mmQ7h1rxz03KO3CG7Bd6xlBfoJeFFsGwEwAWL6x3-dUfRBniZRvGpSjkF-Ktzzkp9d1VwiilprjSNzRiUQXJDwVL13lOrqcK37NdnfAesnuKHkzZtFHoogQ-dV37PRRWGRJqDEwS7vR0IOt9MSQH4xt083KDeV4BkCwSe5iJDvHRxtw6a0TUwZEy6FqJeRdR9gY36VfTa">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+</div>
+</div>
+</main>
+<!-- Footer Action -->
+<footer class="fixed bottom-0 w-full p-margin-main bg-surface/90 backdrop-blur-xl z-50">
+<div class="max-w-2xl mx-auto">
+<button class="w-full h-14 bg-primary text-champagne-gold rounded-xl font-headline-md flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-all border border-champagne-gold/20">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                Create Category
+            </button>
+<div class="h-safe"></div>
+</div>
+</footer>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Mock toggle for icons
+                if(btn.parentElement.classList.contains('overflow-x-auto')) {
+                    document.querySelectorAll('.active-icon').forEach(el => el.classList.remove('active-icon', 'border-champagne-gold/30'));
+                    btn.classList.add('active-icon', 'border-champagne-gold/30');
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

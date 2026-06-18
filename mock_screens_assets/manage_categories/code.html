@@ -1,0 +1,360 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Manage Categories - WealthFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&amp;family=Hanken+Grotesk:wght@400;500&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f8f9fa",
+                      "on-secondary-fixed-variant": "#4f4533",
+                      "on-secondary-fixed": "#221b0b",
+                      "on-primary-fixed-variant": "#2a4386",
+                      "surface-dim": "#d9dadb",
+                      "surface-bright": "#f8f9fa",
+                      "surface-container-highest": "#e1e3e4",
+                      "surface-container-high": "#e7e8e9",
+                      "primary": "#00113a",
+                      "tertiary": "#1d1200",
+                      "on-primary-fixed": "#00174a",
+                      "inverse-surface": "#2e3132",
+                      "secondary-container": "#eddec5",
+                      "on-tertiary-fixed-variant": "#5d4201",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffdea5",
+                      "on-background": "#191c1d",
+                      "secondary": "#685d4a",
+                      "background": "#f8f9fa",
+                      "primary-container": "#002366",
+                      "primary-fixed-dim": "#b3c5ff",
+                      "surface-tint": "#435b9f",
+                      "on-error-container": "#93000a",
+                      "secondary-fixed": "#f0e0c8",
+                      "on-tertiary-fixed": "#261900",
+                      "primary-fixed": "#dbe1ff",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#b3c5ff",
+                      "surface-variant": "#e1e3e4",
+                      "tertiary-container": "#362500",
+                      "on-surface": "#191c1d",
+                      "tertiary-fixed-dim": "#e9c176",
+                      "surface-container": "#edeeef",
+                      "error-container": "#ffdad6",
+                      "outline-variant": "#c5c6d2",
+                      "secondary-fixed-dim": "#d3c5ad",
+                      "on-tertiary-container": "#ad8a46",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#444650",
+                      "on-primary-container": "#758dd5",
+                      "error": "#ba1a1a",
+                      "on-secondary-container": "#6c614e",
+                      "surface-container-low": "#f3f4f5",
+                      "on-secondary": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "outline": "#757682",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-main": "1.25rem",
+                      "stack-sm": "0.5rem",
+                      "stack-md": "1rem",
+                      "stack-lg": "1.5rem",
+                      "gutter": "1rem"
+              },
+              "fontFamily": {
+                      "data-label": ["JetBrains Mono"],
+                      "body-md": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Manrope"],
+                      "data-display": ["JetBrains Mono"],
+                      "headline-lg": ["Manrope"]
+              },
+              "fontSize": {
+                      "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.2s ease;
+            opacity: 0;
+        }
+        .accordion-open .accordion-content {
+            max-height: 500px;
+            opacity: 1;
+        }
+        .accordion-open .rotate-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top App Bar -->
+<header class="bg-surface/80 backdrop-blur-md text-primary w-full sticky top-0 z-50 shadow-sm flex justify-between items-center px-margin-main h-16 w-full">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 transition-transform duration-200 h-10 w-10 flex items-center justify-center rounded-full hover:bg-secondary-container/50">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold">Categories</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-secondary-container/50 transition-colors active:scale-95">notifications</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a wealthy male executive in his 40s, wearing a tailored navy suit. The lighting is high-end studio quality with soft shadows, reflecting a corporate modern aesthetic. The background is a minimalist, blurred high-rise office interior with neutral tones of gray and white, conveying an atmosphere of success and authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe4xthrsdpBoTbLgDaX7l3nfx_UTEe3hXsc-IBC5fHo59a7_0rwXl0N5PUp-XuphZfIUcJAm9n-OK2vXI1qFxq0_z5tgYTFcIKbff7fZnGlxfxq4Ocwylbl-rYzr2f4dcChguTqhhtV5pth7Qqe9pJ-oImG8bnmzspXCMMQX_FrBhXWDG3nEpr-YBLOiSwH_gvOZnOQ4qKNRAEBNokXaJ322stbZUEJNGSbbGSolzgSO6-8Fy0Hkfu97aZcDm6jGZpz2xeN2-ESAG9">
+</div>
+</div>
+</header>
+<main class="px-margin-main pt-stack-lg pb-32 max-w-2xl mx-auto space-y-stack-md">
+<!-- Category Section: Food & Dining -->
+<div class="accordion-item glass-card rounded-xl transition-all duration-300">
+<div class="flex items-center justify-between p-stack-md cursor-pointer group" onclick="toggleAccordion(this.parentElement)">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-lg bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-semibold text-primary">Food &amp; Dining</h3>
+<p class="text-data-label font-data-label text-outline uppercase tracking-wider">8 Subcategories</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-outline hover:text-primary transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">delete</span>
+</button>
+<span class="material-symbols-outlined rotate-icon transition-transform duration-300 text-outline ml-2">expand_more</span>
+</div>
+</div>
+<div class="accordion-content border-t border-surface-container-highest mx-stack-md relative">
+<div class="py-stack-md space-y-2"><div class="absolute inset-0 pointer-events-none opacity-5 overflow-hidden flex items-center justify-center"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhugud7p4mQR4bD7HRhkd5jgSZ7JsKzpN2bWX6pVASVzsAwNepGMoE9PVUUJ1oYDsJl-PK9ku3ZOshIRXR_7_XLpfztFtKKaHSCrmbDCBnaWRVvr4KwH_hXSTDmD1P0DZ25m2MtV7ku1FrQROqHoyAEPfQGxiPwYV7WTAvNuIUG3vDFENSrQnk1L5n7aQYtZQayL2AcX-eOdS1LpH5MkC0s7BxppRRWZviwFeHBqtm5JA6toY9rKBhdKMF3THDoIPNpi1n2wpsuaLe" class="w-full h-full object-cover" alt="Legacy Planning Background"></div>
+<!-- Subcategory List -->
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Groceries</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Restaurants</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Coffee Shops</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<!-- Quick Add Input -->
+<div class="mt-4 pt-2 border-t border-dashed border-outline-variant">
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md font-body-md placeholder:text-outline-variant py-2" placeholder="Add subcategory..." type="text">
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-lg text-data-label font-bold active:scale-95 transition-transform">ADD</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category Section: Transport -->
+<div class="accordion-item glass-card rounded-xl transition-all duration-300">
+<div class="flex items-center justify-between p-stack-md cursor-pointer group" onclick="toggleAccordion(this.parentElement)">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-lg bg-primary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-semibold text-primary">Transport</h3>
+<p class="text-data-label font-data-label text-outline uppercase tracking-wider">3 Subcategories</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-outline hover:text-primary transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">delete</span>
+</button>
+<span class="material-symbols-outlined rotate-icon transition-transform duration-300 text-outline ml-2">expand_more</span>
+</div>
+</div>
+<div class="accordion-content border-t border-surface-container-highest mx-stack-md">
+<div class="py-stack-md space-y-2">
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Fuel &amp; Gas</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Public Transport</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="mt-4 pt-2 border-t border-dashed border-outline-variant">
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md font-body-md placeholder:text-outline-variant py-2" placeholder="Add subcategory..." type="text">
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-lg text-data-label font-bold active:scale-95 transition-transform">ADD</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category Section: Shopping -->
+<div class="accordion-item glass-card rounded-xl transition-all duration-300">
+<div class="flex items-center justify-between p-stack-md cursor-pointer group" onclick="toggleAccordion(this.parentElement)">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-semibold text-primary">Shopping</h3>
+<p class="text-data-label font-data-label text-outline uppercase tracking-wider">5 Subcategories</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-outline hover:text-primary transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">delete</span>
+</button>
+<span class="material-symbols-outlined rotate-icon transition-transform duration-300 text-outline ml-2">expand_more</span>
+</div>
+</div>
+<div class="accordion-content border-t border-surface-container-highest mx-stack-md">
+<div class="py-stack-md space-y-2">
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Electronics</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Clothing</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="mt-4 pt-2 border-t border-dashed border-outline-variant">
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md font-body-md placeholder:text-outline-variant py-2" placeholder="Add subcategory..." type="text">
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-lg text-data-label font-bold active:scale-95 transition-transform">ADD</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category Section: Housing (Champagne Accent) -->
+<div class="accordion-item glass-card rounded-xl transition-all duration-300 border-l-4 border-tertiary-fixed-dim">
+<div class="flex items-center justify-between p-stack-md cursor-pointer group" onclick="toggleAccordion(this.parentElement)">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 rounded-lg bg-tertiary-fixed-dim text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined">home</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-semibold text-primary">Housing</h3>
+<p class="text-data-label font-data-label text-outline uppercase tracking-wider">2 Subcategories</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-outline hover:text-primary transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors active:scale-90" onclick="event.stopPropagation()">
+<span class="material-symbols-outlined">delete</span>
+</button>
+<span class="material-symbols-outlined rotate-icon transition-transform duration-300 text-outline ml-2">expand_more</span>
+</div>
+</div>
+<div class="accordion-content border-t border-surface-container-highest mx-stack-md">
+<div class="py-stack-md space-y-2">
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Mortgage / Rent</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="text-body-md text-on-surface-variant">Maintenance</span>
+<button class="opacity-0 group-hover:opacity-100 material-symbols-outlined text-outline-variant hover:text-error transition-all">close</button>
+</div>
+<div class="mt-4 pt-2 border-t border-dashed border-outline-variant">
+<div class="flex items-center gap-2">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-md font-body-md placeholder:text-outline-variant py-2" placeholder="Add subcategory..." type="text">
+<button class="px-4 py-1.5 bg-primary text-on-primary rounded-lg text-data-label font-bold active:scale-95 transition-transform">ADD</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Area -->
+<div class="fixed bottom-24 left-0 right-0 px-margin-main flex justify-center z-40 pointer-events-none">
+<button class="pointer-events-auto bg-tertiary-fixed-dim text-primary px-8 py-4 rounded-full shadow-lg flex items-center gap-2 font-headline-md text-body-lg font-bold active:scale-95 transition-all hover:bg-tertiary-fixed hover:shadow-xl group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">add_circle</span>
+            Create New Category
+        </button>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-surface/90 backdrop-blur-lg text-primary fixed bottom-0 w-full rounded-t-xl z-50 bg-surface-container shadow-[0_-2px_10px_rgba(0,17,58,0.04)] flex justify-around items-center w-full h-20 pb-safe px-gutter">
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-body-md text-body-md">Wealth</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">local_fire_department</span>
+<span class="font-body-md text-body-md">FIRE</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1.5 hover:text-primary transition-all active:scale-90">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md text-body-md">History</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1.5 transition-all active:scale-90">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</button>
+</nav>
+<script>
+        function toggleAccordion(element) {
+            const allItems = document.querySelectorAll('.accordion-item');
+            const isOpen = element.classList.contains('accordion-open');
+            
+            // Close others
+            allItems.forEach(item => {
+                item.classList.remove('accordion-open');
+                item.style.backgroundColor = '';
+            });
+
+            // Toggle current
+            if (!isOpen) {
+                element.classList.add('accordion-open');
+                element.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            }
+        }
+
+        // Initialize first one open for demo
+        document.addEventListener('DOMContentLoaded', () => {
+            const first = document.querySelector('.accordion-item');
+            if(first) toggleAccordion(first);
+        });
+    </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Review Imported Assets | Finboom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#673c1e",
+                    "glass-bg": "rgba(255, 255, 255, 0.7)",
+                    "surface-bright": "#fcf8fb",
+                    "on-tertiary-fixed": "#311300",
+                    "surface-container-high": "#eae7ea",
+                    "surface-gray": "#F2F2F7",
+                    "on-background": "#1b1b1d",
+                    "on-tertiary-container": "#b37c59",
+                    "champagne-gold": "#D4AF37",
+                    "inverse-on-surface": "#f3f0f2",
+                    "surface-tint": "#4c5e86",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1b1b1d",
+                    "on-secondary-container": "#745c00",
+                    "outline-variant": "#c5c6cf",
+                    "secondary-fixed": "#ffe088",
+                    "primary-container": "#0a1f44",
+                    "surface-variant": "#e4e2e4",
+                    "tertiary-fixed-dim": "#f8b992",
+                    "surface-container-highest": "#e4e2e4",
+                    "primary-fixed": "#d9e2ff",
+                    "on-surface-variant": "#44464e",
+                    "on-primary-container": "#7687b2",
+                    "on-primary-fixed": "#041a3f",
+                    "inverse-primary": "#b4c6f4",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#303032",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#391700",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#75777f",
+                    "on-secondary-fixed": "#241a00",
+                    "surface-dim": "#dcd9dc",
+                    "primary-fixed-dim": "#b4c6f4",
+                    "secondary": "#735c00",
+                    "secondary-container": "#fed65b",
+                    "secondary-fixed-dim": "#e9c349",
+                    "background": "#fcf8fb",
+                    "surface": "#fcf8fb",
+                    "system-red": "#FF3B30",
+                    "tertiary": "#150500",
+                    "on-primary-fixed-variant": "#34466d",
+                    "royal-navy": "#0A1F44",
+                    "primary": "#00081e",
+                    "surface-container": "#f0edef",
+                    "surface-container-low": "#f6f3f5",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#574500",
+                    "border-gray": "#C6C6C8",
+                    "error": "#ba1a1a",
+                    "system-green": "#34C759",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffdbc7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-gap": "24px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "32px",
+                    "gutter": "16px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "numeric-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["17px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "numeric-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F2F2F7;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .safe-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .asset-card-shadow {
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.05);
+        }
+        .checkmark-animate {
+            animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-gray text-on-surface">
+<!-- Top App Bar (Shared Component) -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/70 shadow-sm">
+<div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-screen-xl mx-auto">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-royal-navy">close</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-royal-navy">Review Import</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional and clean studio headshot of a young executive with a friendly expression. The lighting is bright and high-key, emphasizing a light-mode aesthetic. The background is a soft, neutral grey to maintain focus on the subject. The overall style is modern and polished, suitable for a high-end financial application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDePt02gxbdZA_25wEhTsvr1fOYDSJcGIO5D2VDqRviWIjMiv4WOqDqZ0EFc1ewcnM9M-GgOc5UbcFiPtoYDGagd9gF4TM08WD9f8chicunuEvQlrCzq3N4io3yjq0FSrXFdYqh4er4yFwlWe6FC3gf0sog5_fhI4N2q8RwkZxA3xxf030Cb_LY_5HyTQmxfqsB6f6T-9TYxNBm60ewTtjMCIU4GeDZNJJldIFEBs7ygmkqBjvrR3KpXnPSQXcjFEPlhDKbQ65Q0Pg7">
+</div>
+</div>
+</header>
+<main class="pt-24 pb-40 px-margin-mobile max-w-md mx-auto">
+<!-- Success Header Section -->
+<div class="text-center mb-10">
+<div class="mx-auto w-40 h-40 mb-6 checkmark-animate rounded-[32px] overflow-hidden shadow-xl"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADfAjjUGV-wmnzvcynqJe0oHTuyszBZz82hq0QgzM143mjGoqA2eCgvBxa5kPsP4LmK4sDgJOl07b4UvBD2A6n0qGxGnRNwI-TPvrcHPfGqNu9Ua5UiFVuYP_uWjvvisnEW8WR0dQDg6LR0iUutKVutcaHOU_KROPwdmjwa4xqaAyJ-4uL53i-DPyj8zyfWZ6JivCp3GAc7dsVZO4ealnTms6KHg0CEY2aUEA8d-j2C2nj1FzZ7ZS0tQNy21hV4gk7e3uAcF6C4cCP" alt="Financial Audit Verification" class="w-full h-full object-cover"></div>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-royal-navy tracking-tight mb-2">Assets Ready</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">We've parsed 12 assets from your Zerodha statement. Review the details below.</p>
+</div>
+<!-- Summary Chip -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar mb-8">
+<div class="flex-none bg-royal-navy text-white px-4 py-2 rounded-full font-label-caps text-label-caps">All Assets (12)</div>
+<div class="flex-none bg-white text-on-surface-variant px-4 py-2 rounded-full font-label-caps text-label-caps border border-outline-variant">Stocks (8)</div>
+<div class="flex-none bg-white text-on-surface-variant px-4 py-2 rounded-full font-label-caps text-label-caps border border-outline-variant">Mutual Funds (4)</div>
+</div>
+<!-- Asset List Container (Bento-like individual cards) -->
+<div class="space-y-4">
+<!-- Asset Item 1 -->
+<div class="bg-white rounded-[24px] p-6 asset-card-shadow flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-royal-navy">trending_up</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[17px] text-royal-navy leading-tight">RELIANCE</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Reliance Industries</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-[17px] text-royal-navy">₹42,560.00</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">15 Units</p>
+</div>
+</div>
+<!-- Asset Item 2 -->
+<div class="bg-white rounded-[24px] p-6 asset-card-shadow flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-royal-navy">account_balance</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[17px] text-royal-navy leading-tight">HDFCBANK</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">HDFC Bank Ltd</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-[17px] text-royal-navy">₹28,410.50</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">20 Units</p>
+</div>
+</div>
+<!-- Asset Item 3 (Mutual Fund) -->
+<div class="bg-white rounded-[24px] p-6 asset-card-shadow relative overflow-hidden">
+<div class="absolute top-0 right-0">
+<div class="bg-champagne-gold/10 text-royal-navy px-3 py-1 rounded-bl-xl font-label-caps text-[10px] tracking-wider uppercase">Mutual Fund</div>
+</div>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-royal-navy">analytics</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[17px] text-royal-navy leading-tight">MIRAE_ASSET</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Large Cap Fund</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-[17px] text-royal-navy">₹1,12,045.00</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">842.12 Units</p>
+</div>
+</div>
+</div>
+<!-- Asset Item 4 -->
+<div class="bg-white rounded-[24px] p-6 asset-card-shadow flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-royal-navy">bolt</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[17px] text-royal-navy leading-tight">TCS</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Tata Consultancy Services</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-[17px] text-royal-navy">₹64,200.00</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">18 Units</p>
+</div>
+</div>
+<!-- Asset Item 5 -->
+<div class="bg-white rounded-[24px] p-6 asset-card-shadow flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-royal-navy">layers</span>
+</div>
+<div>
+<h3 class="font-headline-md text-[17px] text-royal-navy leading-tight">INFY</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Infosys Ltd</p>
+</div>
+</div>
+<div class="text-right">
+<div class="font-headline-md text-[17px] text-royal-navy">₹32,150.25</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">22 Units</p>
+</div>
+</div>
+</div>
+<!-- Total Value Summary Card -->
+<div class="mt-8 bg-royal-navy rounded-[32px] p-8 text-white relative overflow-hidden shadow-2xl">
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-label-caps text-label-caps text-white/60">TOTAL IMPORT VALUE</span>
+<h4 class="font-numeric-xl text-numeric-xl tracking-tight">₹2,79,365.75</h4>
+</div>
+<div class="bg-champagne-gold text-royal-navy px-3 py-1 rounded-full font-label-caps text-[10px]">VERIFIED</div>
+</div>
+<p class="font-body-sm text-body-sm text-white/70">Zerodha statement processed on Oct 24, 2023</p>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 w-full glass-panel bg-white/80 z-50 border-t border-white/20">
+<div class="max-w-md mx-auto px-margin-mobile pt-4 pb-8 safe-bottom">
+<button class="w-full h-14 bg-royal-navy text-white rounded-2xl flex items-center justify-center gap-2 active:scale-[0.98] transition-all shadow-xl font-headline-md text-[17px]" id="confirm-btn">
+                Confirm &amp; Add to Portfolio
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<p class="text-center mt-3 font-label-caps text-[10px] text-on-surface-variant/60 tracking-widest uppercase">Secured by AES-256 Encryption</p>
+</div>
+</div>
+<script>
+        document.getElementById('confirm-btn').addEventListener('click', function() {
+            this.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Syncing with Portfolio...
+            `;
+            this.classList.add('opacity-80');
+            this.disabled = true;
+            
+            setTimeout(() => {
+                window.alert('Success! Your Zerodha assets have been synced to your Finboom portfolio.');
+                location.reload();
+            }, 1500);
+        });
+    </script>
+
+
+
+
+</body></html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Add New Asset | Finboom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .ios-scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#673c1e",
+                        "glass-bg": "rgba(255, 255, 255, 0.7)",
+                        "surface-bright": "#fcf8fb",
+                        "on-tertiary-fixed": "#311300",
+                        "surface-container-high": "#eae7ea",
+                        "surface-gray": "#F2F2F7",
+                        "on-background": "#1b1b1d",
+                        "on-tertiary-container": "#b37c59",
+                        "champagne-gold": "#D4AF37",
+                        "inverse-on-surface": "#f3f0f2",
+                        "surface-tint": "#4c5e86",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1b1b1d",
+                        "on-secondary-container": "#745c00",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed": "#ffe088",
+                        "primary-container": "#0a1f44",
+                        "surface-variant": "#e4e2e4",
+                        "tertiary-fixed-dim": "#f8b992",
+                        "surface-container-highest": "#e4e2e4",
+                        "primary-fixed": "#d9e2ff",
+                        "on-surface-variant": "#44464e",
+                        "on-primary-container": "#7687b2",
+                        "on-primary-fixed": "#041a3f",
+                        "inverse-primary": "#b4c6f4",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#303032",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#391700",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#75777f",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-dim": "#dcd9dc",
+                        "primary-fixed-dim": "#b4c6f4",
+                        "secondary": "#735c00",
+                        "secondary-container": "#fed65b",
+                        "secondary-fixed-dim": "#e9c349",
+                        "background": "#fcf8fb",
+                        "surface": "#fcf8fb",
+                        "system-red": "#FF3B30",
+                        "tertiary": "#150500",
+                        "on-primary-fixed-variant": "#34466d",
+                        "royal-navy": "#0A1F44",
+                        "primary": "#00081e",
+                        "surface-container": "#f0edef",
+                        "surface-container-low": "#f6f3f5",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#574500",
+                        "border-gray": "#C6C6C8",
+                        "error": "#ba1a1a",
+                        "system-green": "#34C759",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbc7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "12px",
+                        "2xl": "24px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-gap": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "numeric-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "numeric-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-gray min-h-screen text-on-surface">
+<!-- Top AppBar (Simplified for Add Asset Screen as per Suppression Rules: No main nav shell) -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/70 shadow-sm">
+<div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-screen-xl mx-auto">
+<button class="active:scale-95 transition-transform" onclick="window.history.back()">
+<span class="material-symbols-outlined text-royal-navy">close</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-royal-navy">Add Asset</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-screen-xl mx-auto">
+<!-- Search Bar -->
+<div class="relative mb-8">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-white rounded-xl border-none shadow-sm focus:ring-2 focus:ring-royal-navy text-body-lg font-body-lg" placeholder="Search brokers or asset types" type="text">
+</div>
+<!-- Fast Import Section -->
+<section class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-headline-md text-royal-navy">Fast Import</h2>
+<span class="font-label-caps text-label-caps text-champagne-gold uppercase">Recommended</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Zerodha -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-transparent hover:border-royal-navy transition-all cursor-pointer group flex items-center gap-5">
+<div class="w-16 h-16 rounded-xl bg-[#F0F3F7] flex items-center justify-center overflow-hidden">
+<img alt="Zerodha" class="w-10 h-10 object-contain" data-alt="The minimalist logo for Zerodha, a modern financial brokerage, presented on a clean, soft grey circular background. The lighting is bright and studio-quality, reflecting a high-end corporate fintech aesthetic. The overall mood is professional, secure, and technologically advanced, fitting into a premium light-mode UI design with a royal navy and champagne gold theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOC7DAtb7-Ula2vWOlDetMPz7HAAB-19TDqIYBakUPmuzo5vxrcEUQm0sslpwcQcMR-L0NH82wNgLo4kWUtxQ5bMArdeE3L0PT7NFkhayrsj1xgnW24rZILL2MEdf1UZxB_ih3xo19uhojVi9VoXWZAMWGJXUlQxpp2UaciMOwihi7V09t7K-IjEZBP5ZJaid7BoiTdwV_q--322SRstIP-fYYyQs71DWuAV4qWXNbVpqQTc0TpNcKbrK6Q1gTE1j6tn7MhSwEsK58">
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-royal-navy">Zerodha</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sync Kite portfolio automatically</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-royal-navy transition-colors">chevron_right</span>
+</div>
+<!-- Groww -->
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-transparent hover:border-royal-navy transition-all cursor-pointer group flex items-center gap-5">
+<div class="w-16 h-16 rounded-xl bg-[#E8F5E9] flex items-center justify-center overflow-hidden">
+<img alt="Groww" class="w-10 h-10 object-contain" data-alt="The vibrant logo for Groww, a fintech platform, featuring its characteristic green tones on a soft, rounded square background. The lighting is high-key and modern, emphasizing clarity and ease of use. The visual style is professional yet accessible, aligned with a premium iOS-inspired financial dashboard using royal navy and subtle champagne accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrTjRwnH3ByjPbV0LBfAfjHvV0uLo_SX8unuxZksh1UywkWgupBU99yE7xMqRRCpRgy4Epi6toF6oLEbc6xdxmsCqzHM9Sy-2L4F4eUTG_-nc_W0U10qBvSYzmiw4ht5VvE32YCc2MQzWM73c_tLGkEnD09XRzjbOLEWQo9DqQh5XfHOYDK9Q1yW8y0rKfMwTVeRALxci8IrWpKgFKLyvUJrQPi0P_HdplHd0k_PbG29SaADZ_Jpm8cSMp4AUQl8EgI7EPqiz3vOe_">
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-royal-navy">Groww</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Import mutual funds and stocks</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-royal-navy transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Manual Entry Section - Bento Grid -->
+<section class="mb-10">
+<h2 class="font-headline-md text-headline-md text-royal-navy mb-4">Manual Entry</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Real Estate -->
+<div class="col-span-2 bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer relative overflow-hidden group"><div class="flex items-center gap-6 relative z-10"><div class="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF2X-inL03UWqg1J2BOpUcnHOENq-Nq67Sxla7FETYp5RGihEproeB8gGW60c-or01J9dKjsa519G5zOn-WouA1LRTloAfw2828NRuL4Fm6i-nj5yGXqh-F6UrTCcnCtRjLKQ1Ih_jl3vGB1YmBH2llBnVLwrMvy5hJH9tH13pTAk0c-GbT6PuAk1Sc5IzeTR1oFgH01b2XH1n535frkjAa0b_RGEvLjCOHa6qCIy01zd-veutgN1vkbZnOs9jRjmL6bmBAwheZQc3" alt="Fixed Deposits" class="w-full h-full object-contain"></div><div><h3 class="font-headline-md text-headline-md text-royal-navy">Real Estate</h3><p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Property, Land, Commercial</p></div></div></div>
+<!-- Gold -->
+<div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between"><div class="w-16 h-16 mb-4"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKSinpyAAyYLRsDgi8EWGKrKUsc9Kpg9c8MuvkoGCnjP3-QtntAr5xgvKvcwNlWuoh5I2QH_hB8UGGhgV_cWKeOhQKNt3gN4JNwNrVa5C02i4gna_rFw9hO21gHAge0S1rPNtrwA6hleVpGO0E0XQSQTM7qhUYTKvhScupmbvGy1Rui-hDx1a0fhmDXheVs0-3Ik2D4qW1wJs6zqydA6PnclzSXUUpiiwbOTn3hJBwvJNyyqdHXpOXko2icu9hgQpY9KsMxaX_kMs0" alt="Insurance Coverage" class="w-full h-full object-contain"></div><div><h3 class="font-headline-md text-headline-md text-royal-navy">Gold</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Physical, Digital</p></div></div>
+<!-- Crypto -->
+<div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between"><div class="w-16 h-16 mb-4"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF2X-inL03UWqg1J2BOpUcnHOENq-Nq67Sxla7FETYp5RGihEproeB8gGW60c-or01J9dKjsa519G5zOn-WouA1LRTloAfw2828NRuL4Fm6i-nj5yGXqh-F6UrTCcnCtRjLKQ1Ih_jl3vGB1YmBH2llBnVLwrMvy5hJH9tH13pTAk0c-GbT6PuAk1Sc5IzeTR1oFgH01b2XH1n535frkjAa0b_RGEvLjCOHa6qCIy01zd-veutgN1vkbZnOs9jRjmL6bmBAwheZQc3" alt="Fixed Deposits" class="w-full h-full object-contain"></div><div><h3 class="font-headline-md text-headline-md text-royal-navy">Crypto</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Wallets, CEX</p></div></div>
+<!-- Cash -->
+<div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between"><div class="w-16 h-16 mb-4"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKSinpyAAyYLRsDgi8EWGKrKUsc9Kpg9c8MuvkoGCnjP3-QtntAr5xgvKvcwNlWuoh5I2QH_hB8UGGhgV_cWKeOhQKNt3gN4JNwNrVa5C02i4gna_rFw9hO21gHAge0S1rPNtrwA6hleVpGO0E0XQSQTM7qhUYTKvhScupmbvGy1Rui-hDx1a0fhmDXheVs0-3Ik2D4qW1wJs6zqydA6PnclzSXUUpiiwbOTn3hJBwvJNyyqdHXpOXko2icu9hgQpY9KsMxaX_kMs0" alt="Insurance Coverage" class="w-full h-full object-contain"></div><div><h3 class="font-headline-md text-headline-md text-royal-navy">Savings</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Bank accounts</p></div></div>
+<!-- Others -->
+<div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between">
+<span class="material-symbols-outlined text-royal-navy text-3xl">pending</span>
+<div>
+<h3 class="font-headline-md text-headline-md text-royal-navy">Alternative</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Art, Watches</p>
+</div>
+</div>
+<!-- EPF/PPF -->
+<div class="col-span-2 bg-royal-navy p-6 rounded-2xl shadow-sm hover:opacity-90 transition-opacity cursor-pointer flex items-center justify-between text-white">
+<div>
+<h3 class="font-headline-md text-headline-md">Retirement Funds</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container">EPF, PPF, NPS sync</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-champagne-gold">verified_user</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Premium Feature Upsell -->
+<section class="bg-gradient-to-br from-royal-navy to-[#1a3a6a] rounded-2xl p-6 relative overflow-hidden">
+<div class="relative z-10 flex flex-col md:flex-row items-center gap-6">
+<div class="flex-1">
+<div class="inline-flex items-center gap-2 bg-champagne-gold/20 text-champagne-gold px-3 py-1 rounded-full mb-4">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-caps text-label-caps">PREMIUM</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-white mb-2">Automated Multi-Broker Sync</h2>
+<p class="font-body-sm text-body-sm text-on-primary-container mb-6 max-w-md">Connect over 40+ Indian brokers and 10+ Global exchanges to track your net worth in real-time with zero manual entry.</p>
+<button class="bg-champagne-gold text-royal-navy font-bold px-8 py-3 rounded-xl active:scale-95 transition-transform">Upgrade Now</button>
+</div>
+<div class="w-full md:w-1/3">
+<div class="aspect-square glass-card rounded-2xl p-4 flex flex-col gap-3">
+<div class="h-4 w-3/4 bg-royal-navy/10 rounded"></div>
+<div class="h-4 w-1/2 bg-royal-navy/10 rounded"></div>
+<div class="h-12 w-full bg-royal-navy/5 rounded-xl mt-2 flex items-center px-3 gap-3">
+<div class="w-6 h-6 rounded-full bg-system-green"></div>
+<div class="h-2 w-20 bg-royal-navy/10 rounded"></div>
+</div>
+<div class="h-12 w-full bg-royal-navy/5 rounded-xl flex items-center px-3 gap-3">
+<div class="w-6 h-6 rounded-full bg-champagne-gold"></div>
+<div class="h-2 w-16 bg-royal-navy/10 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Background Element -->
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-champagne-gold/10 rounded-full blur-3xl"></div>
+</section>
+</main>
+<!-- Bottom Navigation (Filtered to show Assets as active) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl backdrop-blur-2xl border-t border-white/20 bg-glass-bg shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex justify-around items-center h-20 pb-safe w-full">
+<!-- Portfolio -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-royal-navy transition-all duration-200">
+<span class="material-symbols-outlined mb-1">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps">Portfolio</span>
+</button>
+<!-- Assets (ACTIVE) -->
+<button class="flex flex-col items-center justify-center text-royal-navy font-bold active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-label-caps text-label-caps">Assets</span>
+</button>
+<!-- Insights -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-royal-navy transition-all duration-200">
+<span class="material-symbols-outlined mb-1">monitoring</span>
+<span class="font-label-caps text-label-caps">Insights</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:text-royal-navy transition-all duration-200">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.bg-white').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+
+
+
+</body></html>

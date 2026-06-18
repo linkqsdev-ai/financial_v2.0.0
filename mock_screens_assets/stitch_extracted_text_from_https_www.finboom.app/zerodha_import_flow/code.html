@@ -1,0 +1,302 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Import from Zerodha - Finboom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#673c1e",
+                        "glass-bg": "rgba(255, 255, 255, 0.7)",
+                        "surface-bright": "#fcf8fb",
+                        "on-tertiary-fixed": "#311300",
+                        "surface-container-high": "#eae7ea",
+                        "surface-gray": "#F2F2F7",
+                        "on-background": "#1b1b1d",
+                        "on-tertiary-container": "#b37c59",
+                        "champagne-gold": "#D4AF37",
+                        "inverse-on-surface": "#f3f0f2",
+                        "surface-tint": "#4c5e86",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#1b1b1d",
+                        "on-secondary-container": "#745c00",
+                        "outline-variant": "#c5c6cf",
+                        "secondary-fixed": "#ffe088",
+                        "primary-container": "#0a1f44",
+                        "surface-variant": "#e4e2e4",
+                        "tertiary-fixed-dim": "#f8b992",
+                        "surface-container-highest": "#e4e2e4",
+                        "primary-fixed": "#d9e2ff",
+                        "on-surface-variant": "#44464e",
+                        "on-primary-container": "#7687b2",
+                        "on-primary-fixed": "#041a3f",
+                        "inverse-primary": "#b4c6f4",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#303032",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#391700",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#75777f",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-dim": "#dcd9dc",
+                        "primary-fixed-dim": "#b4c6f4",
+                        "secondary": "#735c00",
+                        "secondary-container": "#fed65b",
+                        "secondary-fixed-dim": "#e9c349",
+                        "background": "#fcf8fb",
+                        "surface": "#fcf8fb",
+                        "system-red": "#FF3B30",
+                        "tertiary": "#150500",
+                        "on-primary-fixed-variant": "#34466d",
+                        "royal-navy": "#0A1F44",
+                        "primary": "#00081e",
+                        "surface-container": "#f0edef",
+                        "surface-container-low": "#f6f3f5",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#574500",
+                        "border-gray": "#C6C6C8",
+                        "error": "#ba1a1a",
+                        "system-green": "#34C759",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbc7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-gap": "24px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "numeric-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "numeric-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .squircle {
+            border-radius: 24px;
+        }
+        .step-line::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 40px;
+            bottom: -8px;
+            width: 2px;
+            background: #e4e2e4;
+        }
+        .step-line:last-child::before {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-gray min-h-screen text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-white/70 shadow-sm">
+<div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-screen-xl mx-auto">
+<button aria-label="Go back" class="active:scale-95 transition-transform text-royal-navy">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-royal-navy">Import from Zerodha</h1>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb429qMm0QG7f5qDFLF-yloL6hAULGWF1EodEbbES54uEtij9eWngGznYGxcwtxmSJHjLTZWDBtARlQ-2KhUuNVUcZaaFIVi_Uj-57Y8-xARtSjaDWeM2y7yjtSq_Tj04h3WIbMPPdF0qLpjFVX5IsK_aNRbtBvOc4U-WxQCipmOIMxJWmPtEwJYYnqhagjbtfoVwxD-A2t8xnv3cONjd7Kt6c7so1oXaIUm_WdGp_LD2baI8pNDkgdmQzNM1CqgS6Z80FFpIizHGf">
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-margin-mobile max-w-screen-xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-card-gap">
+<!-- Left Column: Instructions -->
+<div class="md:col-span-7 space-y-8">
+<section>
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-royal-navy mb-4">Transfer your portfolio</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Follow these simple steps to sync your Zerodha holdings with Finboom's elite analytics engine.</p>
+</section>
+<!-- Steps List -->
+<div class="space-y-0">
+<!-- Step 1 -->
+<div class="relative flex gap-6 pb-12 step-line">
+<div class="z-10 w-10 h-10 rounded-full bg-royal-navy text-white flex items-center justify-center flex-shrink-0 shadow-lg">
+<span class="font-label-caps text-label-caps">01</span>
+</div>
+<div class="pt-2">
+<h3 class="font-headline-md text-headline-md text-royal-navy mb-2">Log into Zerodha Console</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Navigate to console.zerodha.com and sign in with your Kite credentials to access your secure backend dashboard.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex gap-6 pb-12 step-line">
+<div class="z-10 w-10 h-10 rounded-full bg-royal-navy text-white flex items-center justify-center flex-shrink-0 shadow-lg">
+<span class="font-label-caps text-label-caps">02</span>
+</div>
+<div class="pt-2">
+<h3 class="font-headline-md text-headline-md text-royal-navy mb-2">Export Holdings as CSV</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Go to the 'Portfolio' tab, select 'Holdings', and click the 'Download' icon to save your data in .csv format.</p>
+<div class="mt-4 p-4 bg-white/50 border border-outline-variant rounded-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-champagne-gold">lightbulb</span>
+<span class="font-body-sm text-body-sm italic">Pro tip: Ensure all filters are cleared to export your entire history.</span>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex gap-6 pb-4">
+<div class="z-10 w-10 h-10 rounded-full bg-royal-navy text-white flex items-center justify-center flex-shrink-0 shadow-lg">
+<span class="font-label-caps text-label-caps">03</span>
+</div>
+<div class="pt-2">
+<h3 class="font-headline-md text-headline-md text-royal-navy mb-2">Upload here</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Drop your file into the secure zone on the right or click to browse your local storage.</p>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 pt-4">
+<a class="font-label-caps text-label-caps text-royal-navy flex items-center gap-1 hover:underline" href="#">
+                        Need Help?
+                        <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Right Column: Upload Zone -->
+<div class="md:col-span-5">
+<div class="bg-white squircle shadow-sm p-8 h-full min-h-[400px] flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-royal-navy transition-colors group cursor-pointer relative overflow-hidden" id="drop-zone">
+<div class="absolute top-4 right-4">
+<div class="bg-champagne-gold/10 text-royal-navy px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-caps text-[10px] tracking-widest uppercase">Elite Security</span>
+</div>
+</div>
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"><img src="https://lh3.googleusercontent.com/aida/AP1WRLtIquvHR88j_HZg3rpPDX3ry4tQ9UBzGyA4WVDNAQPXvWxpEapLvtS3_2sRKyXWquawaWsFloEMODVARqsbuZA-4-A85_XwWGo0X9zJC4-riBFlIP2DWXKZ8YH8tGa_r7IjQUz7FVivXLrDwDO4FD_9bI07L4fpuPyal-tPzJQzjti2NPZ1xdshnNFCzulPTo5nDwgZ4o0QH-BMclh4kBmU2MMeUPMdUu93IPLHWDFw0ZY8tHvslImjpp1r" alt="Import Data Illustration" class="w-full h-full object-cover rounded-full"></div>
+<h4 class="font-headline-md text-headline-md text-royal-navy mb-2 text-center">Upload CSV</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center mb-8 px-4">
+                        Drag and drop your file here, or click to select from your computer.
+                    </p>
+<button class="bg-royal-navy text-white px-8 py-3 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all shadow-md">
+                        Select File
+                    </button>
+<div class="mt-8 flex items-center gap-4 text-outline">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+<span class="font-label-caps text-[10px]">End-to-End Encryption</span>
+</div>
+<div class="w-px h-8 bg-outline-variant"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-[20px]">history</span>
+<span class="font-label-caps text-[10px]">Instant History Sync</span>
+</div>
+</div>
+</div>
+<!-- Visual Accent: Illustration Card -->
+<div class="mt-card-gap bg-primary-container squircle p-6 flex items-center gap-6 overflow-hidden relative">
+<div class="z-10">
+<p class="font-label-caps text-label-caps text-champagne-gold mb-1">DATA INTEGRITY</p>
+<h5 class="font-headline-md text-headline-md text-white mb-2">Automated Insights</h5>
+<p class="font-body-sm text-body-sm text-on-primary-container">Our AI automatically categorizes your Zerodha assets into risk-adjusted clusters.</p>
+</div>
+<div class="absolute right-[-20px] bottom-[-20px] opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[120px] text-white">monitoring</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl backdrop-blur-2xl border-t border-white/20 bg-glass-bg shadow-[0_-4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex justify-around items-center h-20 pb-safe w-full">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps mt-1">Portfolio</span>
+</a>
+<a class="flex flex-col items-center justify-center text-royal-navy font-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<span class="font-label-caps text-label-caps mt-1">Assets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-label-caps text-label-caps mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple Interaction logic
+        const dropZone = document.getElementById('drop-zone');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.classList.add('bg-royal-navy/5');
+                dropZone.classList.add('border-royal-navy');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => {
+                dropZone.classList.remove('bg-royal-navy/5');
+                dropZone.classList.remove('border-royal-navy');
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                alert('File "' + files[0].name + '" received. Starting secure analysis...');
+                // In a real app, this would trigger an upload/processing sequence
+            }
+        }
+    </script>
+
+
+</body></html>

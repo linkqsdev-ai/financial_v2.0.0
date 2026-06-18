@@ -1,0 +1,313 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Finboom | Visual Reports</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#c5c6d2",
+                        "on-background": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#6c614e",
+                        "secondary-fixed": "#f0e0c8",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary": "#685d4a",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "tertiary-fixed-dim": "#e9c176",
+                        "error-container": "#ffdad6",
+                        "surface": "#f8f9fa",
+                        "background": "#f8f9fa",
+                        "tertiary-fixed": "#ffdea5",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-variant": "#e1e3e4",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeef",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "secondary-fixed-dim": "#d3c5ad",
+                        "on-primary-fixed": "#00174a",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#221b0b",
+                        "tertiary": "#1d1200",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#002366",
+                        "on-primary-fixed-variant": "#2a4386",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container-highest": "#e1e3e4",
+                        "tertiary-container": "#362500",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary-container": "#758dd5",
+                        "secondary-container": "#eddec5",
+                        "on-surface": "#191c1d",
+                        "inverse-surface": "#2e3132",
+                        "outline": "#757682",
+                        "on-secondary-fixed-variant": "#4f4533",
+                        "on-tertiary-fixed": "#261900",
+                        "surface-bright": "#f8f9fa",
+                        "primary-fixed": "#dbe1ff",
+                        "primary": "#00113a",
+                        "surface-tint": "#435b9f",
+                        "on-surface-variant": "#444650",
+                        "on-tertiary-container": "#ad8a46"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-main": "1.25rem",
+                        "gutter": "1rem",
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "data-label": ["JetBrains Mono"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-lg": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .chart-donut {
+            transition: stroke-dashoffset 1s ease-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Top Navigation Anchor -->
+<header class="fixed top-0 w-full z-50 transition-all duration-200 bg-surface/80 backdrop-blur-md shadow-sm h-auto flex flex-col">
+<div class="flex items-center justify-between px-margin-main h-16 w-full">
+<div class="flex items-center gap-3">
+<button class="p-2 transition-all duration-200 active:scale-95 hover:bg-surface-variant/50 rounded-full">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Financial Insights</h1>
+</div>
+<div class="flex items-center">
+<img alt="User Profile" class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover shadow-sm cursor-pointer transition-transform active:scale-90" data-alt="A professional, close-up portrait of a high-net-worth individual with a clean-shaven face and short-cropped hair, wearing a crisp navy suit. The lighting is soft and directional, typical of an executive headshot, with a minimalist, out-of-focus high-end corporate background. The color palette is composed of soft whites, greys, and deep blues to match a premium financial interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2b1_pkSQYfgUKCsWs1XSRon2ElZJ38e5dBkazjan-56oGjExpRcxmqcH5Xe_rpFQntWgbJf1MsFpay2lPjVs3liYitoOdgAU490GVz_2KRlDhcoftx36tVEaHHfCiGClcB8TrNaOF1c4qANLwC-6vTj5Th_SUxJ8k9K-6nk3gqS3nXAiL-atXmOhWZgomFRzBP6bY3RJJZxO1qfv3iKPiOCPNkzgSQ2kNHah-uYLxIerMRo6GOJDRPKCmF8sWXq_nkI5vCxbducyj">
+</div>
+</div>
+<!-- Month Picker Section -->
+<div class="px-margin-main pb-4 pt-1 flex justify-center">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-full transition-all duration-200 active:scale-95 hover:bg-surface-container-high group">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">August 2023</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-y-0.5 transition-transform">expand_more</span>
+</button>
+</div>
+</header>
+<main class="pt-32 pb-24 px-margin-main max-w-4xl mx-auto space-y-gutter">
+<!-- Summary Card -->
+<section class="glass-card rounded-xl p-stack-lg shadow-sm flex flex-col md:flex-row justify-between gap-gutter border-l-4 border-primary">
+<div class="flex flex-col gap-1">
+<span class="font-data-label text-data-label text-on-surface-variant uppercase tracking-wider">Total Income</span>
+<span class="font-headline-lg text-headline-lg text-[#2E7D32]">+₹4,500.00</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-data-label text-data-label text-on-surface-variant uppercase tracking-wider">Total Expenses</span>
+<span class="font-headline-lg text-headline-lg text-error">-₹2,145.00</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-data-label text-data-label text-on-surface-variant uppercase tracking-wider">Net Savings</span>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-primary">₹2,355.00</span>
+<span class="font-data-label text-data-label text-on-surface-variant bg-primary-fixed px-2 py-0.5 rounded">52% Rate</span>
+</div>
+</div>
+</section>
+<!-- Charts Section -->
+<section class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-lg">Spending Allocation</h2>
+<div class="flex flex-col items-center justify-center relative py-stack-lg"><div class="w-full max-w-md mx-auto overflow-hidden rounded-xl shadow-sm border border-outline-variant/20">
+  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXgFvOlyA4Ol-vOvrvbGSCDOc0BJ3RsIEiaJ5Su0n3pgD5LQSbv45zMpbAgrbfJgIgwv3c_s7T0TeblUcVuXCm9w16s6BlRkdfdU1Yxy5CKhpAz11E03RXVILjBctgvK0ZmwOcKagJKGzA_LCzjbYQCQmHQSbSOT-l1XmElN4rZ75ySCPjq3EJYB2sMxZGGdB504ritzBPDHN10rzllnKGZsxZ1wjXI6yCW4-5vlgmlp5cBng6Co4t903XVlijht7ePst_W4oDpIsD" alt="Spending Insights Prism Illustration" class="w-full h-auto object-cover">
+</div></div>
+<!-- Legend Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-stack-lg">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#ad8a46]"></div>
+<span class="font-body-md text-body-md text-on-surface-variant">Dining</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="font-body-md text-body-md text-on-surface-variant">Transport</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<span class="font-body-md text-body-md text-on-surface-variant">Shopping</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-[#4a685d]"></div>
+<span class="font-body-md text-body-md text-on-surface-variant">Utilities</span>
+</div>
+</div>
+</section>
+<!-- Category Breakdown List -->
+<section class="bg-surface-container-lowest rounded-xl p-stack-lg shadow-sm">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-stack-lg">Top Categories</h2>
+<div class="space-y-stack-lg">
+<!-- Category 1 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed-dim/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-container">restaurant</span>
+</div>
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Food &amp; Dining</span>
+</div>
+<span class="font-data-display text-data-display text-on-surface">₹858.00</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="h-full bg-[#ad8a46] rounded-full w-[40%] transition-all duration-700"></div>
+</div>
+<div class="flex justify-between">
+<span class="font-data-label text-data-label text-on-surface-variant">40% of expenses</span>
+<span class="font-data-label text-data-label text-on-surface-variant">Progress to budget: 80%</span>
+</div>
+</div>
+<!-- Category 2 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">commute</span>
+</div>
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Transport</span>
+</div>
+<span class="font-data-display text-data-display text-on-surface">₹429.00</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[20%] transition-all duration-700"></div>
+</div>
+<div class="flex justify-between">
+<span class="font-data-label text-data-label text-on-surface-variant">20% of expenses</span>
+</div>
+</div>
+<!-- Category 3 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-error-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-error">shopping_bag</span>
+</div>
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Shopping</span>
+</div>
+<span class="font-data-display text-data-display text-on-surface">₹321.75</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full w-[15%] transition-all duration-700"></div>
+</div>
+<div class="flex justify-between">
+<span class="font-data-label text-data-label text-on-surface-variant">15% of expenses</span>
+</div>
+</div>
+<!-- Category 4 -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed-variant">bolt</span>
+</div>
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Utilities</span>
+</div>
+<span class="font-data-display text-data-display text-on-surface">₹214.50</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="h-full bg-[#4a685d] rounded-full w-[10%] transition-all duration-700"></div>
+</div>
+<div class="flex justify-between">
+<span class="font-data-label text-data-label text-on-surface-variant">10% of expenses</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Anchor -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface/90 backdrop-blur-lg shadow-[0_-2px_8px_rgba(0,0,0,0.04)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-70 transition-transform duration-300 ease-out active:scale-90 hover:opacity-100" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-data-label text-data-label">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 transition-transform duration-300 ease-out active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">insert_chart</span>
+<span class="font-data-label text-data-label">Reports</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-70 transition-transform duration-300 ease-out active:scale-90 hover:opacity-100" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-data-label text-data-label">Budgets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant opacity-70 transition-transform duration-300 ease-out active:scale-90 hover:opacity-100" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-data-label text-data-label">Settings</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the month picker
+        const monthPicker = document.querySelector('.px-margin-main button');
+        monthPicker.addEventListener('click', () => {
+            alert('Opening Month-Year Selection');
+        });
+
+        // Initialize progress bars animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.h-full.rounded-full');
+                    bars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.space-y-stack-lg').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+
+</body></html>

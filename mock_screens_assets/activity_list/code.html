@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Activity - Transactions</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;family=Manrope:wght@600;700;800&amp;family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#e9c176",
+                        "inverse-surface": "#2e3132",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e1e3e4",
+                        "secondary": "#685d4a",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#f0e0c8",
+                        "surface-container-high": "#e7e8e9",
+                        "on-surface": "#191c1d",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "tertiary": "#1d1200",
+                        "on-background": "#191c1d",
+                        "tertiary-container": "#362500",
+                        "on-secondary-fixed-variant": "#4f4533",
+                        "on-tertiary-fixed-variant": "#5d4201",
+                        "on-primary-fixed-variant": "#2a4386",
+                        "on-surface-variant": "#444650",
+                        "on-primary-container": "#758dd5",
+                        "primary-container": "#002366",
+                        "primary-fixed": "#dbe1ff",
+                        "primary": "#00113a",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-bright": "#f8f9fa",
+                        "secondary-fixed-dim": "#d3c5ad",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container": "#edeeef",
+                        "outline": "#757682",
+                        "on-primary-fixed": "#00174a",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f3f4f5",
+                        "on-tertiary-container": "#ad8a46",
+                        "on-secondary-container": "#6c614e",
+                        "background": "#f8f9fa",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "surface-dim": "#d9dadb",
+                        "secondary-container": "#eddec5",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffdea5",
+                        "on-secondary-fixed": "#221b0b",
+                        "outline-variant": "#c5c6d2",
+                        "on-tertiary-fixed": "#261900",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#435b9f",
+                        "income-base": "#10B981",
+                        "expense-base": "#EF4444"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-main": "1.25rem",
+                        "stack-md": "1rem",
+                        "stack-lg": "1.5rem",
+                        "stack-sm": "0.5rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Hanken Grotesk"],
+                        "data-display": ["JetBrains Mono"],
+                        "headline-lg": ["Manrope"],
+                        "data-label": ["JetBrains Mono"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Manrope"],
+                        "sora": ["Sora", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "data-display": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-label": ["11px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+        .ios-shadow {
+            box-shadow: 0 2px 8px rgba(0, 17, 58, 0.04);
+        }
+        .ios-shadow-active {
+            box-shadow: 0 4px 16px rgba(0, 17, 58, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="w-full top-0 sticky bg-surface z-50 transition-colors duration-200">
+<div class="flex items-center justify-between px-margin-main h-16 w-full">
+<div class="flex items-center gap-3">
+<button class="p-2 -ml-2 hover:bg-surface-container-high rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<div>
+<h1 class="font-sora text-headline-md font-bold text-primary">Activity</h1>
+<p class="font-body-md text-on-surface-variant text-[12px]">142 Transactions</p>
+</div>
+</div>
+<div class="flex items-center">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pb-32">
+<!-- Filter Bar -->
+<section class="px-margin-main py-stack-md flex gap-stack-sm overflow-x-auto no-scrollbar">
+<button class="px-5 py-2 rounded-full font-sora text-body-md bg-primary-container text-on-primary-container font-semibold transition-all">All</button>
+<button class="px-5 py-2 rounded-full font-sora text-body-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">Expenses</button>
+<button class="px-5 py-2 rounded-full font-sora text-body-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all">Income</button>
+</section>
+<!-- Transactions List -->
+<section class="px-margin-main space-y-stack-md relative"><div class="absolute inset-0 pointer-events-none opacity-[0.03] flex items-center justify-center overflow-hidden z-0"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuADfAjjUGV-wmnzvcynqJe0oHTuyszBZz82hq0QgzM143mjGoqA2eCgvBxa5kPsP4LmK4sDgJOl07b4UvBD2A6n0qGxGnRNwI-TPvrcHPfGqNu9Ua5UiFVuYP_uWjvvisnEW8WR0dQDg6LR0iUutKVutcaHOU_KROPwdmjwa4xqaAyJ-4uL53i-DPyj8zyfWZ6JivCp3GAc7dsVZO4ealnTms6KHg0CEY2aUEA8d-j2C2nj1FzZ7ZS0tQNy21hV4gk7e3uAcF6C4cCP" alt="Financial Audit Illustration" class="w-full max-w-lg object-contain"></div>
+<!-- Transaction Item: Income -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md ios-shadow border-l-4 border-income-base transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                        Income
+                    </div>
+<div class="font-data-display text-income-base text-body-lg">+$12,500.00</div>
+</div>
+<div class="flex flex-col mb-4">
+<span class="font-sora font-bold text-body-lg text-primary">Monthly Dividend</span>
+<span class="font-body-md text-on-surface-variant">S&amp;P 500 ETF Portfolio</span>
+</div>
+<div class="flex items-center justify-between border-t border-surface-variant pt-3">
+<div class="flex gap-2">
+<div class="flex items-center gap-1 px-2 py-1 bg-surface-container-low rounded-lg text-on-surface-variant text-[12px]">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Oct 24, 2023
+                        </div>
+<div class="flex items-center gap-1 px-2 py-1 bg-primary-fixed/20 text-on-primary-fixed-variant rounded-lg text-[12px]">
+<span class="material-symbols-outlined text-[16px]">notes</span>
+                            Quarterly Payout
+                        </div>
+</div>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Transaction Item: Expense -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md ios-shadow border-l-4 border-expense-base transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+                        Expense
+                    </div>
+<div class="font-data-display text-expense-base text-body-lg">-$2,450.00</div>
+</div>
+<div class="flex flex-col mb-4">
+<span class="font-sora font-bold text-body-lg text-primary">Real Estate Tax</span>
+<span class="font-body-md text-on-surface-variant">Luxury Condo - Unit 4B</span>
+</div>
+<div class="flex items-center justify-between border-t border-surface-variant pt-3">
+<div class="flex gap-2">
+<div class="flex items-center gap-1 px-2 py-1 bg-surface-container-low rounded-lg text-on-surface-variant text-[12px]">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Oct 22, 2023
+                        </div>
+</div>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Transaction Item: Expense (Travel) -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md ios-shadow border-l-4 border-expense-base transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-red-100 text-red-800 text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+                        Expense
+                    </div>
+<div class="font-data-display text-expense-base text-body-lg">-$820.45</div>
+</div>
+<div class="flex flex-col mb-4">
+<span class="font-sora font-bold text-body-lg text-primary">Business Travel</span>
+<span class="font-body-md text-on-surface-variant">Emirates Airlines</span>
+</div>
+<div class="flex items-center justify-between border-t border-surface-variant pt-3">
+<div class="flex gap-2">
+<div class="flex items-center gap-1 px-2 py-1 bg-surface-container-low rounded-lg text-on-surface-variant text-[12px]">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Oct 20, 2023
+                        </div>
+<div class="flex items-center gap-1 px-2 py-1 bg-primary-fixed/20 text-on-primary-fixed-variant rounded-lg text-[12px]">
+<span class="material-symbols-outlined text-[16px]">notes</span>
+                            Q4 Conference
+                        </div>
+</div>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Transaction Item: Income (Consulting) -->
+<div class="bg-surface-container-lowest rounded-xl p-stack-md ios-shadow border-l-4 border-income-base transition-transform active:scale-[0.98]">
+<div class="flex justify-between items-start mb-2">
+<div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-green-100 text-green-800 text-[10px] font-bold uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+                        Income
+                    </div>
+<div class="font-data-display text-income-base text-body-lg">+$5,000.00</div>
+</div>
+<div class="flex flex-col mb-4">
+<span class="font-sora font-bold text-body-lg text-primary">Consulting Fee</span>
+<span class="font-body-md text-on-surface-variant">Private Equity Advisory</span>
+</div>
+<div class="flex items-center justify-between border-t border-surface-variant pt-3">
+<div class="flex gap-2">
+<div class="flex items-center gap-1 px-2 py-1 bg-surface-container-low rounded-lg text-on-surface-variant text-[12px]">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                            Oct 18, 2023
+                        </div>
+</div>
+<button class="text-outline hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Empty State Hidden (for demonstration of requirement) -->
+<div class="hidden flex flex-col items-center justify-center py-20 text-center opacity-50">
+<div class="w-20 h-20 rounded-full border-2 border-dashed border-outline flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-[40px] text-outline">receipt_long</span>
+</div>
+<h3 class="font-sora font-bold text-headline-md text-primary">No transactions yet</h3>
+<p class="font-body-md text-on-surface-variant">Your transactions will appear here</p>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-all z-50">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface shadow-[0_-2px_16px_rgba(0,17,58,0.08)]">
+<div class="flex justify-around items-center h-20 w-full px-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-[12px]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-1 transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md text-[12px]">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">savings</span>
+<span class="font-body-md text-[12px]">Savings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-transform duration-150 active:scale-95" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-md text-[12px]">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interactions for filtering
+        const buttons = document.querySelectorAll('section.overflow-x-auto button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset all
+                buttons.forEach(b => {
+                    b.className = 'px-5 py-2 rounded-full font-sora text-body-md bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high transition-all';
+                });
+                
+                // Set active based on text
+                if (btn.innerText === 'All') {
+                    btn.className = 'px-5 py-2 rounded-full font-sora text-body-md bg-primary-container text-on-primary-container font-semibold transition-all';
+                } else if (btn.innerText === 'Expenses') {
+                    btn.className = 'px-5 py-2 rounded-full font-sora text-body-md bg-expense-base text-white font-semibold shadow-md transition-all';
+                } else if (btn.innerText === 'Income') {
+                    btn.className = 'px-5 py-2 rounded-full font-sora text-body-md bg-income-base text-white font-semibold shadow-md transition-all';
+                }
+            });
+        });
+
+        // Simple Delete Interaction
+        document.querySelectorAll('.text-outline.hover\\:text-error').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.bg-surface-container-lowest');
+                card.style.opacity = '0';
+                card.style.transform = 'translateX(50px)';
+                card.style.transition = 'all 0.4s ease';
+                setTimeout(() => {
+                    card.remove();
+                }, 400);
+            });
+        });
+    </script>
+
+
+</body></html>

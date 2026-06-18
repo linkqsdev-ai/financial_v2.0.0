@@ -1,0 +1,368 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>Finboom - Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#574500",
+                        "on-primary": "#ffffff",
+                        "champagne-gold": "#D4AF37",
+                        "surface-container-low": "#f6f3f5",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#fed65b",
+                        "on-tertiary-container": "#b37c59",
+                        "primary": "#00081e",
+                        "on-background": "#1b1b1d",
+                        "border-gray": "#C6C6C8",
+                        "surface-container-high": "#eae7ea",
+                        "surface-bright": "#fcf8fb",
+                        "tertiary-fixed-dim": "#f8b992",
+                        "outline": "#75777f",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#745c00",
+                        "primary-fixed": "#d9e2ff",
+                        "background": "#fcf8fb",
+                        "secondary": "#735c00",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#391700",
+                        "surface-gray": "#F2F2F7",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#673c1e",
+                        "inverse-primary": "#b4c6f4",
+                        "surface-container-highest": "#e4e2e4",
+                        "outline-variant": "#c5c6cf",
+                        "on-tertiary-fixed": "#311300",
+                        "system-green": "#34C759",
+                        "on-primary-container": "#7687b2",
+                        "surface-tint": "#4c5e86",
+                        "glass-bg": "rgba(255, 255, 255, 0.7)",
+                        "secondary-fixed": "#ffe088",
+                        "system-red": "#FF3B30",
+                        "secondary-fixed-dim": "#e9c349",
+                        "royal-navy": "#0A1F44",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#44464e",
+                        "tertiary-fixed": "#ffdbc7",
+                        "surface-dim": "#dcd9dc",
+                        "surface-variant": "#e4e2e4",
+                        "on-primary-fixed-variant": "#34466d",
+                        "on-surface": "#1b1b1d",
+                        "inverse-on-surface": "#f3f0f2",
+                        "surface": "#fcf8fb",
+                        "inverse-surface": "#303032",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f0edef",
+                        "tertiary": "#150500",
+                        "primary-fixed-dim": "#b4c6f4",
+                        "primary-container": "#0a1f44",
+                        "on-primary-fixed": "#041a3f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "card-gap": "24px",
+                        "margin-desktop": "32px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "numeric-xl": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["17px", {"lineHeight": "22px", "fontWeight": "400"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "numeric-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .inset-list-group {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .inset-list-row {
+            background-color: #FFFFFF;
+            transition: background-color 0.15s ease;
+        }
+        .inset-list-row:active {
+            background-color: #F2F2F7;
+        }
+        .inset-list-row:not(:last-child) {
+            border-bottom: 0.5px solid rgba(0,0,0,0.1);
+        }
+        .donut-hole {
+            fill: white;
+        }
+        @keyframes rotate-chart {
+            from { transform: rotate(-90deg); }
+            to { transform: rotate(270deg); }
+        }
+        .chart-animate {
+            animation: rotate-chart 1s ease-out forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-gray text-on-background font-body-lg min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 ios-blur bg-glass-bg flex justify-between items-center px-margin-mobile h-14 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young adult with a friendly expression, set against a soft-focus office background. The lighting is natural and bright, conveying a sense of trustworthiness and sophistication in line with high-end private banking aesthetics. The image style is clean, modern, and high-resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMzdrnG1f7TuHym7JIIoi5aDUgeg8pLkkC3F6oFZ9fIM_9WyhuvoJUXoV-69yM2r1FE8ncgsjOdq_qw0zpd-Z2lG1MJFKf92z4RzoF1mUpdWm4RAMe8xofntRxiJHrLeGJrhVFLt7JkPnqNdqo0pFfUTtKS6y9AbZ47j3bhHieowBUSrnC8VTMPLfZ2KKLVt6mni6HaTzqUwtcG_-BAucyVKXVt-2aTRls2uWaekdkR0LxtseguoORs8kCIyFbvAKasC0Tmrrv2Ka5">
+</div>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Portfolio</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center hover:opacity-90 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</button>
+</div>
+</header>
+<main class="pt-20 px-margin-mobile max-w-[1200px] mx-auto space-y-6">
+<!-- Summary Card -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 shadow-[0px_4px_12px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col items-center">
+<div class="relative w-48 h-48 mb-6">
+<!-- SVG Donut Chart -->
+<div class="w-full h-full flex items-center justify-center p-2"><div class="w-full h-full rounded-full border-4 border-primary opacity-10"></div></div>
+<!-- Center Content -->
+<div class="absolute inset-0 flex flex-col items-center justify-center bg-white rounded-full shadow-sm" style="transform: scale(0.85);"><div class="absolute inset-0 z-0 opacity-[0.15] flex items-center justify-center overflow-hidden rounded-full"><img src="https://lh3.googleusercontent.com/aida/AP1WRLtXlwz9nLP8nCxY959b3vCV0-tFBrBOZuXs-JAwtOIoP_Nl6yTuYh82oduycKA3CKM0ZTuiC5Gr_8nBd5zLmKYKJMsU-nAsHzBeLeN_3QJpdhN1YFW8A7liHmV4BjM-YtGEmpL-wFE7mFzwXGJQ4NevAIbQvpNYwQLv2XZ9iu_JDkpdzntpCRwWRrGuqp1zla9tnnTabort0qKCosoziV3t1nf3eTvmwwjJvIynjWXUW8BHPvA8AoKlDf2j" class="w-full h-full object-contain" alt="Premium Vault Background"></div>
+  <span class="font-label-caps text-label-caps text-outline uppercase tracking-wider relative z-10">Total Assets</span>
+  <span class="font-headline-md text-[24px] text-primary font-bold relative z-10">₹2.34 Cr</span>
+</div>
+</div>
+<div class="grid grid-cols-2 w-full gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-outline-variant">Equity</span>
+<span class="text-sm font-bold">26%</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#4c5e86]"></span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-outline-variant">MF</span>
+<span class="text-sm font-bold">21%</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-champagne-gold"></span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-outline-variant">Real Estate</span>
+<span class="text-sm font-bold">24%</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#735c00]"></span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-outline-variant">Gold</span>
+<span class="text-sm font-bold">8%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Asset Classes List -->
+<section class="space-y-4">
+<h2 class="font-headline-md text-headline-md text-primary px-2">Asset Classes</h2>
+<div class="inset-list-group shadow-[0px_2px_8px_rgba(0,0,0,0.04)] bg-white">
+<!-- Equity Row -->
+<div class="inset-list-row px-4 py-4 flex items-center justify-between"><div class="w-16 h-16 rounded-lg overflow-hidden mr-4 shrink-0 shadow-sm"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgmJkrdAYGZ8BnDcbYKVRVCYcZTuNrWNHJiI-d1EO6UflqTfj4S2SO-ZjLZbCjQ-t4-yzDVuXf7vPprPFDFJi4SMsrdQqeyc7PfCV1bNuH7osVKyK3G2Sz4uXW3H_UipPGhNxbf64iNU91hCfatQaWleel7fP1D1irRhcSatTt6Bt7aBWsALnmWvHBu7MhqlsXu4hiB9Px_B473VOcCTjRoMI3Bf5bNpl17qUCbndRYChMGkWGYqhEQFASxiHlQJe3j1bulwN48nzV" alt="Equity Portfolio" class="w-full h-full object-cover"></div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-semibold">Equity</p>
+<p class="text-[13px] text-outline">12 stocks</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<div>
+<p class="font-body-lg text-primary font-bold">₹62L</p>
+<p class="text-[13px] text-system-green font-medium">+14.2%</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Mutual Funds Row -->
+<div class="inset-list-row px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-semibold">Mutual Funds</p>
+<p class="text-[13px] text-outline">8 active SIPs</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<div>
+<p class="font-body-lg text-primary font-bold">₹48L</p>
+<p class="text-[13px] text-system-green font-medium">+8.5%</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Real Estate Row -->
+<div class="inset-list-row px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed">
+<span class="material-symbols-outlined">home</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-semibold">Real Estate</p>
+<p class="text-[13px] text-outline">2 properties</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<div>
+<p class="font-body-lg text-primary font-bold">₹55L</p>
+<p class="text-[13px] text-outline font-medium">Estimated</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Gold Row -->
+<div class="inset-list-row px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-semibold">Gold &amp; SGBs</p>
+<p class="text-[13px] text-outline">Digital &amp; Physical</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<div>
+<p class="font-body-lg text-primary font-bold">₹18L</p>
+<p class="text-[13px] text-system-green font-medium">+2.1%</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Fixed Income Row -->
+<div class="inset-list-row px-4 py-4 flex items-center justify-between"><div class="w-16 h-16 rounded-lg overflow-hidden mr-4 shrink-0 shadow-sm"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcTrlpJCCoAuAOjndxMGVzd_laedSCfOpgmAMYCS22xuhIKGVSgYmZGMLruC2J0BqXLUcUM0GoU-w0GP9WCyuAjRYukc6kBLnptgEpi8l56HNK58nRa4xo2UzI8-Io-v7_Zb2ibUzoNUb24OLumTOZLl0b19dy-e0y6mhMFAkQzWtDJ6XymDbU0HC6El6MWW0SuK7BVMr60kGBvp-S9YY6QZTc3DYwjBGSzrSV079om_oTidovu45qYkx98Cab9mL8Jwmpou5r5lOQ" alt="Wealth Transfer" class="w-full h-full object-cover"></div>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">savings</span>
+</div>
+<div>
+<p class="font-body-lg text-primary font-semibold">EPF &amp; PPF</p>
+<p class="text-[13px] text-outline">Retirement Funds</p>
+</div>
+</div>
+<div class="text-right flex items-center gap-2">
+<div>
+<p class="font-body-lg text-primary font-bold">₹32L</p>
+<p class="text-[13px] text-outline font-medium">Locked</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Insights / Pro Section -->
+<section class="bg-royal-navy rounded-[24px] p-6 text-white relative overflow-hidden">
+<div class="relative z-10 space-y-2">
+<div class="flex justify-between items-start">
+<div class="bg-champagne-gold text-royal-navy px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Pro Insight</div>
+</div>
+<h3 class="font-headline-md text-headline-md">Allocation Alert</h3>
+<p class="text-outline-variant text-sm leading-relaxed">Your Equity allocation is 5% above your target. Consider rebalancing into Gold to maintain your risk profile.</p>
+<button class="mt-4 bg-white text-royal-navy px-6 py-2 rounded-full font-bold text-sm hover:bg-opacity-90 active:scale-95 transition-all">Review Strategy</button>
+</div>
+<!-- Decorative Gradient -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-champagne-gold opacity-10 rounded-full blur-3xl"></div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed right-6 bottom-24 bg-primary text-on-primary w-14 h-14 rounded-full shadow-2xl flex items-center justify-center active:scale-90 duration-150 z-40">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-16 px-4 bg-glass-bg ios-blur shadow-sm z-50 pb-safe">
+<a class="flex flex-col items-center justify-center text-outline transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="font-variation-settings: &quot;FILL&quot; 1;">account_balance_wallet</span>
+<span class="font-label-caps text-label-caps">Assets</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="track_changes">track_changes</span>
+<span class="font-label-caps text-label-caps">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline transition-colors hover:text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('.inset-list-row').forEach(row => {
+            row.addEventListener('click', () => {
+                row.style.opacity = '0.7';
+                setTimeout(() => {
+                    row.style.opacity = '1';
+                }, 100);
+            });
+        });
+
+        // Add Asset FAB interaction
+        const fab = document.querySelector('.fixed.right-6.bottom-24');
+        fab.addEventListener('click', () => {
+            console.log('Add Asset modal triggered');
+        });
+    </script>
+
+
+
+
+
+
+</body></html>
