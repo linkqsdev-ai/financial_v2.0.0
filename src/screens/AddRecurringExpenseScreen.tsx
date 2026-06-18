@@ -49,7 +49,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
         </TouchableOpacity>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
         <View style={{ gap: 24 }}>
           
           {/* Section 1: Expense Details */}

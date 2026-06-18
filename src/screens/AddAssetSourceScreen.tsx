@@ -23,7 +23,7 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
 
       {/* Top Header Bar */}
       <View style={{
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50,
+        zIndex: 50,
         backgroundColor: 'rgba(242, 242, 247, 0.85)',
         flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
         paddingHorizontal: 16, height: 64,
@@ -37,7 +37,8 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
       </View>
 
       <ScrollView
-        contentContainerStyle={{ paddingTop: 84, paddingBottom: 32, paddingHorizontal: 16 }}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: 16 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Search Bar */}

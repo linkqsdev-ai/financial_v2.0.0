@@ -18,19 +18,50 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset HTML/Body to prevent browser-level scrolling & margin offsets */
-html, body {
+/* ─── PERMANENT SCROLL FIX ─────────────────────────────────────────────────
+   The root cause of unwanted scrolling on web is that React Native Web
+   renders the app into the DOM without a fixed height anchor. This causes
+   every ScrollView to grow to fit its content instead of being bounded
+   by the viewport, resulting in page-level scrolling with cut-off headers/footers.
+   
+   Fix: anchor the entire DOM tree to the exact viewport height (100dvh)
+   and block overflow at every level so scrolling ONLY happens inside
+   individual ScrollView components.
+─────────────────────────────────────────────────────────────────────────── */
+
+/* Level 1: Browser baseline — lock to device viewport, no scrolling ever */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  /* 100dvh = dynamic viewport height, respects browser UI chrome on mobile DevTools */
+  height: 100dvh;
+  max-height: 100dvh;
   overflow: hidden;
   background-color: #0d0d14;
 }
 
-/* Ensure the React root container and its immediate children are locked to the viewport height on Web */
-#root, #__next, div[data-reactroot], #root > div {
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  background-color: #0d0d14;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Level 2: React/Expo root elements — must all be 100% of their parent */
+#root,
+#__next,
+div[data-reactroot] {
   height: 100% !important;
+  max-height: 100% !important;
   width: 100% !important;
   overflow: hidden !important;
   display: flex !important;
@@ -38,13 +69,40 @@ html, body {
   background-color: #0d0d14;
 }
 
-/* Set base premium typography for document body */
-body {
-  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+/* Level 3: The React Native Web app inner wrapper divs rendered by Expo —
+   These are the immediate children of #root that wrap the RN view tree.
+   We must lock them too, otherwise they grow beyond the viewport. */
+#root > div,
+#root > div > div {
+  height: 100% !important;
+  max-height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-/* In React Native Web, text elements render as div/span with 'font-family: System'.
-   We target these explicitly to apply the premium typography while leaving vector icon fonts (e.g. MaterialIcons) intact. */
+/* Level 4: React Navigation scene containers — these render each screen.
+   Without this, the screen container div grows to wrap content height. */
+[data-testid="navigation-container"],
+[data-testid="stack-view"],
+[data-testid="tab-view"],
+.r-overflow-hidden {
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Level 5: React Native Web renders ScrollView as a div with overflow:scroll/auto.
+   The PARENT of any ScrollView div must have a fixed height for the ScrollView
+   to be bounded. Force all RN View divs that have display:flex and flex:1
+   to have height:100% so the flex chain is not broken. */
+div[style*="flex: 1"],
+div[style*="flex:1"] {
+  max-height: 100%;
+}
+
+/* ─── TYPOGRAPHY ────────────────────────────────────────────────────────── */
 div[style*="font-family: System"],
 div[style*="font-family:System"],
 span[style*="font-family: System"],
@@ -52,3 +110,4 @@ span[style*="font-family:System"],
 input, textarea, button, select, p, a, h1, h2, h3, h4, h5, h6 {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
 }
+

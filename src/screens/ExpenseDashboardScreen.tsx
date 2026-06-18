@@ -49,7 +49,7 @@ export default function ExpenseDashboardScreen({ navigation }: ExpenseDashboardS
         </TouchableOpacity>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 96 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 96 }} showsVerticalScrollIndicator={false}>
         {/* Total Balance Hero Card */}
         <View style={{
           backgroundColor: DARK_SLATE,

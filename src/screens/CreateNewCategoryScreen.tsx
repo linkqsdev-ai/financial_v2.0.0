@@ -86,7 +86,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
         <View style={{ width: 32 }} />
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
         <View style={{ gap: 24 }}>
           
           {/* Icon Selection */}

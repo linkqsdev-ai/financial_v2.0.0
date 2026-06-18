@@ -152,7 +152,7 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
       </View>
 
       {/* Transactions List */}
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 96 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 96 }} showsVerticalScrollIndicator={false}>
         {filteredTransactions.length === 0 ? (
           <View style={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 60, opacity: 0.5, marginTop: 40 }}>
             <View style={{ width: 80, height: 80, borderRadius: 40, borderWidth: 2, borderStyle: 'dashed', borderColor: OUTLINE, alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>

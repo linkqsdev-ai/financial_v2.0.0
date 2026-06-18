@@ -165,7 +165,7 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
         </TouchableOpacity>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingTop: 16, paddingBottom: 120, paddingHorizontal: 16 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingTop: 16, paddingBottom: 120, paddingHorizontal: 16 }} showsVerticalScrollIndicator={false}>
 
         {/* Filter + Action Row */}
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>

@@ -51,7 +51,7 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 24, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 24, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
         
         {/* Intro Section */}
         <View style={{ alignItems: 'center', marginBottom: 28 }}>

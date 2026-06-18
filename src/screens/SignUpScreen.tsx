@@ -55,6 +55,7 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
         style={{ flex: 1 }}
       >
         <ScrollView
+          style={{ flex: 1 }}
           contentContainerStyle={{ flexGrow: 1, paddingBottom: 40 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}

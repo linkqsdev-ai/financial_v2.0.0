@@ -120,7 +120,7 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
         {/* Summary Card */}
         <View style={{
           backgroundColor: 'rgba(255, 255, 255, 0.5)',

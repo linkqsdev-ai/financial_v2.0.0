@@ -28,8 +28,8 @@ export default function AssetsPortfolioScreen({ navigation }: AssetsPortfolioScr
 
       {/* Top Header Bar */}
       <View style={{
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50,
-        backgroundColor: 'rgba(242, 242, 247, 0.85)',
+        zIndex: 50,
+        backgroundColor: SURFACE_GRAY,
         flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
         paddingHorizontal: 16, height: 64,
         borderBottomWidth: 0.5, borderBottomColor: 'rgba(197,198,207,0.3)',
@@ -52,7 +52,8 @@ export default function AssetsPortfolioScreen({ navigation }: AssetsPortfolioScr
       </View>
 
       <ScrollView
-        contentContainerStyle={{ paddingTop: 80, paddingBottom: 110 }}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 110 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Toggle Switch */}

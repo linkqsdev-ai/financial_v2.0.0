@@ -141,7 +141,7 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20, paddingBottom: 100 }} showsVerticalScrollIndicator={false}>
         <View style={{ gap: 12 }}>
           {categories.map(cat => {
             const isExpanded = expandedId === cat.id;

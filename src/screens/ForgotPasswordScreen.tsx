@@ -37,7 +37,7 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
 
       {/* Top Header Bar */}
       <View style={{
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50,
+        zIndex: 50,
         backgroundColor: 'rgba(252, 248, 251, 0.85)',
         flexDirection: 'row', alignItems: 'center',
         paddingHorizontal: 16, height: 64,
@@ -58,7 +58,8 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
         style={{ flex: 1 }}
       >
         <ScrollView
-          contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, paddingTop: 80, paddingBottom: 40 }}
+          style={{ flex: 1 }}
+          contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, paddingBottom: 40 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >

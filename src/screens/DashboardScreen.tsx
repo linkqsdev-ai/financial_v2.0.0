@@ -21,8 +21,8 @@ const RED = '#ba1a1a';
 function Header() {
   return (
     <View style={{
-      position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50,
-      backgroundColor: 'rgba(255,255,255,0.85)',
+      zIndex: 50,
+      backgroundColor: SURFACE_WHITE,
       flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
       paddingHorizontal: 16, height: 56,
       borderBottomWidth: 0.5, borderBottomColor: OUTLINE_VARIANT,
@@ -86,7 +86,8 @@ export default function DashboardScreen({ navigation }: { navigation?: any }) {
       <StatusBar barStyle="dark-content" backgroundColor="#F2F2F7" />
       <Header />
       <ScrollView
-        contentContainerStyle={{ paddingTop: 72, paddingBottom: 120, paddingHorizontal: 16 }}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 120, paddingHorizontal: 16 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Greeting */}

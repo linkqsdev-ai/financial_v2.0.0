@@ -154,7 +154,7 @@ export default function AccountsWalletsScreen({ navigation }: { navigation?: any
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={{ paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 32 }} showsVerticalScrollIndicator={false}>
 
         {/* Wallet Carousel */}
         <View style={{ paddingTop: 20, marginBottom: 20 }}>

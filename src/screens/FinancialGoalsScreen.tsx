@@ -25,7 +25,7 @@ export default function FinancialGoalsScreen({ navigation }: FinancialGoalsScree
 
       {/* Top Header Bar */}
       <View style={{
-        position: 'absolute', top: 0, left: 0, right: 0, zIndex: 50,
+        zIndex: 50,
         backgroundColor: 'rgba(242, 242, 247, 0.85)',
         flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
         paddingHorizontal: 16, height: 64,
@@ -47,7 +47,8 @@ export default function FinancialGoalsScreen({ navigation }: FinancialGoalsScree
       </View>
 
       <ScrollView
-        contentContainerStyle={{ paddingTop: 80, paddingBottom: 110, paddingHorizontal: 16 }}
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingBottom: 110, paddingHorizontal: 16 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Global Status Card */}

@@ -35,6 +35,7 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
         style={{ flex: 1 }}
       >
         <ScrollView
+          style={{ flex: 1 }}
           contentContainerStyle={{ flexGrow: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 40 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
