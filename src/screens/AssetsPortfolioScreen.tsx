@@ -48,12 +48,6 @@ export default function AssetsPortfolioScreen({ navigation }: AssetsPortfolioScr
           <TouchableOpacity style={{ padding: 4 }}>
             <MaterialIcons name="notifications" size={24} color={NAVY} />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation?.navigate('AddAssetSource')}
-            style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: NAVY, alignItems: 'center', justifyContent: 'center' }}
-          >
-            <MaterialIcons name="add" size={20} color="#fff" />
-          </TouchableOpacity>
         </View>
       </View>
 

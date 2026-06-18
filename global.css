@@ -18,14 +18,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset HTML/Body to prevent browser-level horizontal scrolling & margin offsets */
+/* Reset HTML/Body to prevent browser-level scrolling & margin offsets */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
-  background-color: #fcf8fb;
+  overflow: hidden;
+  background-color: #0d0d14;
+}
+
+/* Ensure the React root container and its immediate children are locked to the viewport height on Web */
+#root, #__next, div[data-reactroot], #root > div {
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: #0d0d14;
 }
 
 /* Set base premium typography for document body */
