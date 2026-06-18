@@ -1,6 +1,6 @@
 import "./global.css";
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { useFonts } from 'expo-font';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -21,7 +21,9 @@ export default function App() {
     <View style={styles.outerContainer}>
       <View style={styles.mobileFrame}>
         <SafeAreaProvider>
-          <AppNavigator />
+          <SafeAreaView style={{ flex: 1, backgroundColor: '#F2F2F7' }} edges={['top']}>
+            <AppNavigator />
+          </SafeAreaView>
           <StatusBar style="auto" />
         </SafeAreaProvider>
       </View>
