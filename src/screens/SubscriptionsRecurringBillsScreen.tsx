@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, StatusBar, Switch, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const SURFACE = '#f8f9fa';
-const WHITE = '#ffffff';
-const CHAMPAGNE = '#e9c176';
-const GOLD = '#D4AF37';
-const OUTLINE = '#757682';
-const ON_SURFACE_VARIANT = '#444650';
-const GREEN = '#10B981';
-const RED = '#ba1a1a';
 
 interface BillItem {
   id: string;
@@ -30,6 +22,9 @@ interface SubscriptionsRecurringBillsScreenProps {
 }
 
 export default function SubscriptionsRecurringBillsScreen({ navigation }: SubscriptionsRecurringBillsScreenProps) {
+  const { colors, typography } = useTheme();
+  const styles = getStyles(colors, typography);
+
   const [bills, setBills] = useState<BillItem[]>([
     {
       id: '1',
@@ -88,14 +83,14 @@ export default function SubscriptionsRecurringBillsScreen({ navigation }: Subscr
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE} />
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Header */}
       <View style={styles.header}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-            <MaterialIcons name="arrow-back" size={24} color={NAVY} />
+            <MaterialIcons name="arrow-back" size={24} color={colors.text} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Recurring Bills</Text>
         </View>
@@ -158,8 +153,8 @@ export default function SubscriptionsRecurringBillsScreen({ navigation }: Subscr
                 <Switch
                   value={bill.active}
                   onValueChange={() => toggleSwitch(bill.id)}
-                  trackColor={{ false: '#e9e9ea', true: NAVY }}
-                  thumbColor={WHITE}
+                  trackColor={{ false: '#e9e9ea', true: colors.primaryContainer }}
+                  thumbColor={colors.surfaceLowest}
                 />
               </View>
             </View>
@@ -187,15 +182,15 @@ export default function SubscriptionsRecurringBillsScreen({ navigation }: Subscr
         style={styles.fab}
         activeOpacity={0.85}
       >
-        <MaterialIcons name="add" size={28} color={NAVY} />
+        <MaterialIcons name="add" size={28} color={colors.text} />
       </TouchableOpacity>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any, typography: any) => StyleSheet.create({
   header: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.surfaceLowest,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -206,9 +201,9 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 20,
-    fontWeight: '700',
-    color: NAVY,
-    fontFamily: 'System',
+    fontFamily: typography.primaryBold,
+    color: colors.text,
+    fontFamily: typography.primary,
   },
   avatarContainer: {
     width: 40,
@@ -247,27 +242,27 @@ const styles = StyleSheet.create({
   },
   commitmentsLabel: {
     fontSize: 11,
-    fontWeight: '600',
-    color: ON_SURFACE_VARIANT,
+    fontFamily: typography.primaryBold,
+    color: colors.textSecondary,
     textTransform: 'uppercase',
     letterSpacing: 1,
     marginBottom: 4,
-    fontFamily: 'System',
+    fontFamily: typography.primary,
   },
   commitmentsValue: {
     fontSize: 28,
-    fontWeight: '700',
-    color: NAVY,
-    fontFamily: 'System',
+    fontFamily: typography.primaryBold,
+    color: colors.text,
+    fontFamily: typography.primary,
   },
   commitmentsSubValue: {
     fontSize: 14,
-    fontWeight: '600',
+    fontFamily: typography.primaryBold,
     color: '#ad8a46',
-    fontFamily: 'System',
+    fontFamily: typography.primary,
   },
   billCard: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.surfaceLowest,
     borderRadius: 16,
     padding: 16,
     flexDirection: 'row',
@@ -290,9 +285,9 @@ const styles = StyleSheet.create({
   },
   billName: {
     fontSize: 18,
-    fontWeight: '700',
-    color: NAVY,
-    fontFamily: 'System',
+    fontFamily: typography.primaryBold,
+    color: colors.text,
+    fontFamily: typography.primary,
   },
   categoryBadge: {
     backgroundColor: '#f3f4f5',
@@ -302,28 +297,28 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     fontSize: 10,
-    fontWeight: '700',
-    color: ON_SURFACE_VARIANT,
+    fontFamily: typography.primaryBold,
+    color: colors.textSecondary,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   billPeriod: {
     fontSize: 14,
-    color: ON_SURFACE_VARIANT,
+    color: colors.textSecondary,
     marginTop: 2,
-    fontFamily: 'System',
+    fontFamily: typography.primary,
   },
   billDueDate: {
     fontSize: 11,
-    color: OUTLINE,
+    color: colors.outline,
     marginTop: 4,
-    fontFamily: 'System',
+    fontFamily: typography.primary,
   },
   billAmount: {
     fontSize: 22,
-    fontWeight: '700',
-    color: NAVY,
-    fontFamily: 'System',
+    fontFamily: typography.primaryBold,
+    color: colors.text,
+    fontFamily: typography.primary,
   },
   bannerContainer: {
     marginTop: 40,
@@ -350,17 +345,17 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   bannerLabel: {
-    color: CHAMPAGNE,
-    fontWeight: '700',
+    color: colors.primary,
+    fontFamily: typography.primaryBold,
     fontSize: 10,
     textTransform: 'uppercase',
     letterSpacing: 1.5,
     marginBottom: 2,
   },
   bannerValue: {
-    color: WHITE,
+    color: colors.surfaceLowest,
     fontSize: 18,
-    fontWeight: '700',
+    fontFamily: typography.primaryBold,
   },
   fab: {
     position: 'absolute',
@@ -372,7 +367,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffdea5',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: GOLD,
+    shadowColor: colors.primary,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.35,
     shadowRadius: 10,

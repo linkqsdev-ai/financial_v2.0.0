@@ -1,9 +1,8 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const ON_SURFACE_VARIANT = '#444650';
 
 interface BottomNavProps {
   state?: any;
@@ -19,13 +18,15 @@ const TABS = [
 ];
 
 export function BottomNav({ state, navigation }: BottomNavProps) {
+  const { colors, typography } = useTheme();
+
   const activeIndex = state?.index ?? 0;
 
   return (
     <View style={{
       position: 'absolute',
       bottom: 0, left: 0, right: 0,
-      backgroundColor: 'rgba(255,255,255,0.96)',
+      backgroundColor: colors.surfaceLowest,
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignItems: 'center',
@@ -51,20 +52,20 @@ export function BottomNav({ state, navigation }: BottomNavProps) {
             <MaterialIcons 
               name={tab.iconName} 
               size={24} 
-              color={isActive ? NAVY : ON_SURFACE_VARIANT} 
+              color={isActive ? colors.primaryContainer : colors.textSecondary} 
               style={{ marginBottom: 4, opacity: isActive ? 1 : 0.6 }} 
             />
             <Text style={{
               fontSize: 11,
               fontWeight: isActive ? '700' : '500',
-              color: isActive ? NAVY : ON_SURFACE_VARIANT,
+              color: isActive ? colors.primaryContainer : colors.textSecondary,
               letterSpacing: 0.2,
-              fontFamily: 'System'
+              fontFamily: typography.primary
             }}>
               {tab.name}
             </Text>
             {isActive && (
-              <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: NAVY, marginTop: 2 }} />
+              <View style={{ width: 4, height: 4, borderRadius: 2, backgroundColor: colors.primaryContainer, marginTop: 2 }} />
             )}
           </TouchableOpacity>
         );

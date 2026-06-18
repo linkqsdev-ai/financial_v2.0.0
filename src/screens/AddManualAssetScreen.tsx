@@ -1,57 +1,56 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StatusBar, TextInput, ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const CHAMPAGNE = '#D4AF37';
-const SURFACE_GRAY = '#F2F2F7';
-const OUTLINE_VARIANT = '#c5c6cf';
 
 export default function AddManualAssetScreen({ route, navigation }: { route?: any, navigation?: any }) {
+  const { colors, typography } = useTheme();
+
   const [assetName, setAssetName] = useState('');
   const [assetValue, setAssetValue] = useState('');
   
   const assetType = route?.params?.type || 'Asset';
 
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE_GRAY }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE_GRAY} />
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Header */}
       <View style={{
         zIndex: 50,
-        backgroundColor: SURFACE_GRAY,
+        backgroundColor: colors.background,
         flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
         paddingHorizontal: 16, height: 64,
         borderBottomWidth: 0.5, borderBottomColor: 'rgba(197,198,207,0.3)',
       }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-            <MaterialIcons name="arrow-back-ios" size={18} color={NAVY} />
+            <MaterialIcons name="arrow-back-ios" size={18} color={colors.text} />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Add {assetType}</Text>
+          <Text style={{ fontSize: 20, color: colors.text, }}>Add {assetType}</Text>
         </View>
       </View>
 
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 100 }}>
-        <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, marginBottom: 8 }}>{assetType} Name</Text>
-        <View style={{ backgroundColor: '#fff', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, marginBottom: 20, borderWidth: 1, borderColor: OUTLINE_VARIANT }}>
+        <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.text, marginBottom: 8 }}>{assetType} Name</Text>
+        <View style={{ backgroundColor: '#fff', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, marginBottom: 20, borderWidth: 1, borderColor: colors.outlineVariant }}>
           <TextInput
             placeholder={`e.g. My ${assetType}`}
             placeholderTextColor="#999"
-            style={{ fontSize: 16, color: NAVY }}
+            style={{ fontSize: 16, color: colors.text }}
             value={assetName}
             onChangeText={setAssetName}
           />
         </View>
 
-        <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, marginBottom: 8 }}>Current Value</Text>
-        <View style={{ backgroundColor: '#fff', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, marginBottom: 20, borderWidth: 1, borderColor: OUTLINE_VARIANT }}>
+        <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.text, marginBottom: 8 }}>Current Value</Text>
+        <View style={{ backgroundColor: '#fff', borderRadius: 12, paddingHorizontal: 16, paddingVertical: 12, marginBottom: 20, borderWidth: 1, borderColor: colors.outlineVariant }}>
           <TextInput
             placeholder="₹0.00"
             placeholderTextColor="#999"
             keyboardType="numeric"
-            style={{ fontSize: 16, color: NAVY }}
+            style={{ fontSize: 16, color: colors.text }}
             value={assetValue}
             onChangeText={setAssetValue}
           />
@@ -59,7 +58,7 @@ export default function AddManualAssetScreen({ route, navigation }: { route?: an
 
         <TouchableOpacity 
           style={{
-            backgroundColor: NAVY,
+            backgroundColor: colors.primaryContainer,
             paddingVertical: 16,
             borderRadius: 16,
             alignItems: 'center',
@@ -67,7 +66,7 @@ export default function AddManualAssetScreen({ route, navigation }: { route?: an
           }}
           onPress={() => navigation?.goBack()}
         >
-          <Text style={{ color: '#fff', fontSize: 16, fontWeight: '700' }}>Add to Portfolio</Text>
+          <Text style={{ color: '#fff', fontSize: 16, fontFamily: typography.primaryBold }}>Add to Portfolio</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>

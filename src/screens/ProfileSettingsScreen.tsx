@@ -1,23 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Switch, StatusBar, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const CHAMPAGNE = '#D4AF37';
-const SURFACE_GRAY = '#F2F2F7';
-const WHITE = '#ffffff';
-const ON_SURFACE = '#1b1b1d';
-const ON_SURFACE_VARIANT = '#44464e';
-const OUTLINE = '#75777f';
-const OUTLINE_VARIANT = '#c5c6cf';
-const GREEN = '#34C759';
-const RED = '#FF3B30';
 
 interface ProfileSettingsScreenProps {
   navigation?: any;
 }
 
 export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScreenProps) {
+  const { colors, typography } = useTheme();
+  const styles = getStyles(colors, typography);
+
   const [biometricsEnabled, setBiometricsEnabled] = useState(true);
 
   const handleSignOut = () => {
@@ -26,8 +20,8 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE_GRAY }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE_GRAY} />
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Top Header Bar */}
       <View style={{
@@ -39,12 +33,12 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
       }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
           <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-            <MaterialIcons name="arrow-back-ios" size={18} color={NAVY} />
+            <MaterialIcons name="arrow-back-ios" size={18} color={colors.text} />
           </TouchableOpacity>
-          <Text style={{ fontSize: 22, fontWeight: '700', color: NAVY, letterSpacing: -0.5, fontFamily: 'System' }}>Finboom</Text>
+          <Text style={{ fontSize: 22, color: colors.text, letterSpacing: -0.5, }}>Finboom</Text>
         </View>
         <TouchableOpacity style={{ padding: 4 }}>
-          <MaterialIcons name="notifications" size={24} color={NAVY} />
+          <MaterialIcons name="notifications" size={24} color={colors.text} />
         </TouchableOpacity>
       </View>
 
@@ -58,7 +52,7 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
           <View style={{ position: 'relative' }}>
             <View style={{
               width: 96, height: 96, borderRadius: 48,
-              borderWidth: 2, borderColor: CHAMPAGNE,
+              borderWidth: 2, borderColor: colors.primary,
               overflow: 'hidden',
               shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8,
               elevation: 4,
@@ -71,46 +65,46 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
             </View>
             <View style={{
               position: 'absolute', bottom: 0, right: 0,
-              backgroundColor: CHAMPAGNE,
+              backgroundColor: colors.primary,
               width: 24, height: 24, borderRadius: 12,
               alignItems: 'center', justifyContent: 'center',
-              borderWidth: 2, borderColor: WHITE,
+              borderWidth: 2, borderColor: colors.surfaceLowest,
             }}>
               <MaterialIcons name="verified" size={14} color="#241a00" />
             </View>
           </View>
           <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 22, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Alexander Sterling</Text>
+            <Text style={{ fontSize: 22, color: colors.text, }}>Alexander Sterling</Text>
             <View style={{ backgroundColor: 'rgba(254, 214, 91, 0.2)', paddingHorizontal: 12, paddingVertical: 4, borderRadius: 99, marginTop: 6 }}>
-              <Text style={{ fontSize: 11, fontWeight: '700', color: '#745c00', textTransform: 'uppercase', letterSpacing: 0.5, fontFamily: 'System' }}>Private Wealth Tier</Text>
+              <Text style={{ fontSize: 11, color: '#745c00', textTransform: 'uppercase', letterSpacing: 0.5, }}>Private Wealth Tier</Text>
             </View>
           </View>
         </View>
 
         {/* Pro Badge Banner */}
         <View style={{
-          backgroundColor: NAVY,
+          backgroundColor: colors.primaryContainer,
           borderRadius: 20,
           padding: 1,
           marginBottom: 24,
           shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.05, shadowRadius: 10,
           elevation: 2,
         }}>
-          <View style={{ backgroundColor: WHITE, borderRadius: 19, padding: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+          <View style={{ backgroundColor: colors.surfaceLowest, borderRadius: 19, padding: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
               <View style={{ backgroundColor: 'rgba(254, 218, 165, 0.2)', padding: 10, borderRadius: 12 }}>
                 <MaterialIcons name="workspace-premium" size={24} color="#ad8a46" />
               </View>
               <View>
-                <Text style={{ fontSize: 17, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Finboom Pro</Text>
-                <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Active until Oct 2025</Text>
+                <Text style={{ fontSize: 17, color: colors.text, }}>Finboom Pro</Text>
+                <Text style={{ fontSize: 14, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Active until Oct 2025</Text>
               </View>
             </View>
             <TouchableOpacity 
               onPress={() => navigation?.navigate('PremiumSubscription')}
-              style={{ backgroundColor: CHAMPAGNE, paddingHorizontal: 16, paddingVertical: 8, borderRadius: 10 }}
+              style={{ backgroundColor: colors.primary, paddingHorizontal: 16, paddingVertical: 8, borderRadius: 10 }}
             >
-              <Text style={{ fontSize: 14, fontWeight: '600', color: '#241a00', fontFamily: 'System' }}>Manage</Text>
+              <Text style={{ fontSize: 14, color: '#241a00', }}>Manage</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -120,197 +114,197 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
 
           {/* Account Group */}
           <View style={{ gap: 8 }}>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, fontFamily: 'System' }}>
+            <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, }}>
               Account
             </Text>
-            <View style={{ backgroundColor: WHITE, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
+            <View style={{ backgroundColor: colors.surfaceLowest, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
               
               <TouchableOpacity style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="people-outline" size={22} color={NAVY} />
+                  <MaterialIcons name="people-outline" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Family & Business Profiles</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Manage separate wealth entities</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Family & Business Profiles</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Manage separate wealth entities</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="link" size={22} color={NAVY} />
+                  <MaterialIcons name="link" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Linked Accounts</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Manage linked broker holdings</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Linked Accounts</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Manage linked broker holdings</Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                  <Text style={{ fontSize: 12, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>4 Linked</Text>
-                  <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                  <Text style={{ fontSize: 12, color: colors.text, }}>4 Linked</Text>
+                  <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
                 </View>
               </TouchableOpacity>
 
               <TouchableOpacity style={[styles.row, { borderBottomWidth: 0 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="share" size={22} color={NAVY} />
+                  <MaterialIcons name="share" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Shared Access</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Invite CA or Spouse</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Shared Access</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Invite CA or Spouse</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
             </View>
           </View>
 
           {/* Data & Integrations Group */}
           <View style={{ gap: 8 }}>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, fontFamily: 'System' }}>
+            <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, }}>
               Data & Integrations
             </Text>
-            <View style={{ backgroundColor: WHITE, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
+            <View style={{ backgroundColor: colors.surfaceLowest, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
               
               <TouchableOpacity onPress={() => navigation?.navigate('AddAssetSource')} style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="file-upload" size={22} color={NAVY} />
+                  <MaterialIcons name="file-upload" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Import Portfolio</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Zerodha, Groww, or CSV</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Import Portfolio</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Zerodha, Groww, or CSV</Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <View style={{ backgroundColor: 'rgba(52,199,89,0.1)', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 99 }}>
-                    <Text style={{ fontSize: 9, fontWeight: '700', color: GREEN, textTransform: 'uppercase', letterSpacing: 0.5 }}>New</Text>
+                    <Text style={{ fontSize: 9, fontFamily: typography.primaryBold, color: colors.success, textTransform: 'uppercase', letterSpacing: 0.5 }}>New</Text>
                   </View>
-                  <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                  <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
                 </View>
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => navigation?.navigate('ManageCategories')} style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="category" size={22} color={NAVY} />
+                  <MaterialIcons name="category" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Manage Categories</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Create and edit budget categories</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Manage Categories</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Create and edit budget categories</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => navigation?.navigate('SubscriptionsRecurringBills')} style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="repeat" size={22} color={NAVY} />
+                  <MaterialIcons name="repeat" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Recurring Expenses</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Repeating bills & subscriptions</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Recurring Expenses</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Repeating bills & subscriptions</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
 
               <TouchableOpacity style={[styles.row, { borderBottomWidth: 0 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="file-download" size={22} color={NAVY} />
+                  <MaterialIcons name="file-download" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Data Export</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>CSV or JSON full backup</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Data Export</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>CSV or JSON full backup</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
             </View>
           </View>
 
           {/* Security & Privacy Group */}
           <View style={{ gap: 8 }}>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, fontFamily: 'System' }}>
+            <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, }}>
               Security & Privacy
             </Text>
-            <View style={{ backgroundColor: WHITE, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
+            <View style={{ backgroundColor: colors.surfaceLowest, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
               
               <View style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="fingerprint" size={22} color={NAVY} />
+                  <MaterialIcons name="fingerprint" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Biometrics</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Use fingerprint to unlock</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Biometrics</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Use fingerprint to unlock</Text>
                   </View>
                 </View>
                 <Switch
                   value={biometricsEnabled}
                   onValueChange={setBiometricsEnabled}
-                  trackColor={{ false: '#c5c6cf', true: NAVY }}
-                  thumbColor={WHITE}
+                  trackColor={{ false: '#c5c6cf', true: colors.primaryContainer }}
+                  thumbColor={colors.surfaceLowest}
                 />
               </View>
 
               <TouchableOpacity style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="security" size={22} color={NAVY} />
+                  <MaterialIcons name="security" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Two-Factor Auth</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Add security layer</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Two-Factor Auth</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Add security layer</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
 
               <TouchableOpacity style={[styles.row, { borderBottomWidth: 0 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="lock-outline" size={22} color={NAVY} />
+                  <MaterialIcons name="lock-outline" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Security Settings</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>2FA, Sessions & Encryption</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Security Settings</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>2FA, Sessions & Encryption</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
             </View>
           </View>
 
           {/* App Settings Group */}
           <View style={{ gap: 8 }}>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, fontFamily: 'System' }}>
+            <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, }}>
               App Settings
             </Text>
-            <View style={{ backgroundColor: WHITE, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
+            <View style={{ backgroundColor: colors.surfaceLowest, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
               
               <TouchableOpacity style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="attach-money" size={22} color={NAVY} />
+                  <MaterialIcons name="attach-money" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Default Currency</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Base currency for net worth</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Default Currency</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Base currency for net worth</Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                  <Text style={{ fontSize: 12, fontWeight: '700', color: OUTLINE, fontFamily: 'System' }}>USD ($)</Text>
-                  <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                  <Text style={{ fontSize: 12, color: colors.outline, }}>USD ($)</Text>
+                  <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
                 </View>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="notifications-none" size={22} color={NAVY} />
+                  <MaterialIcons name="notifications-none" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Notifications</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Configure alert channels</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Notifications</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Configure alert channels</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
 
               <TouchableOpacity style={[styles.row, { borderBottomWidth: 0 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="palette" size={22} color={NAVY} />
+                  <MaterialIcons name="palette" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Appearance</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Light, Dark, or System theme</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Appearance</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Light, Dark, or System theme</Text>
                   </View>
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                  <Text style={{ fontSize: 12, fontWeight: '700', color: OUTLINE, fontFamily: 'System' }}>System</Text>
-                  <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                  <Text style={{ fontSize: 12, color: colors.outline, }}>System</Text>
+                  <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
                 </View>
               </TouchableOpacity>
             </View>
@@ -318,39 +312,39 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
 
           {/* Support Group */}
           <View style={{ gap: 8 }}>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, fontFamily: 'System' }}>
+            <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginLeft: 12, }}>
               Support
             </Text>
-            <View style={{ backgroundColor: WHITE, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
+            <View style={{ backgroundColor: colors.surfaceLowest, borderRadius: 20, overflow: 'hidden', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.03, shadowRadius: 8, elevation: 1 }}>
               
               <TouchableOpacity style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="help-outline" size={22} color={NAVY} />
+                  <MaterialIcons name="help-outline" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Help Center</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>FAQs & support chat</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Help Center</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>FAQs & support chat</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.row}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="policy" size={22} color={NAVY} />
+                  <MaterialIcons name="policy" size={22} color={colors.text} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: NAVY, fontFamily: 'System' }}>Privacy Policy</Text>
-                    <Text style={{ fontSize: 12, color: OUTLINE, marginTop: 2, fontFamily: 'System' }}>Your data safety terms</Text>
+                    <Text style={{ fontSize: 16, color: colors.text, }}>Privacy Policy</Text>
+                    <Text style={{ fontSize: 12, color: colors.outline, marginTop: 2, fontFamily: typography.primary }}>Your data safety terms</Text>
                   </View>
                 </View>
-                <MaterialIcons name="chevron-right" size={20} color={OUTLINE} />
+                <MaterialIcons name="chevron-right" size={20} color={colors.outline} />
               </TouchableOpacity>
 
               <TouchableOpacity style={[styles.row, { borderBottomWidth: 0 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-                  <MaterialIcons name="delete-forever" size={22} color={RED} />
+                  <MaterialIcons name="delete-forever" size={22} color={colors.danger} />
                   <View>
-                    <Text style={{ fontSize: 16, fontWeight: '600', color: RED, fontFamily: 'System' }}>Delete Account</Text>
-                    <Text style={{ fontSize: 12, color: 'rgba(255,59,48,0.6)', marginTop: 2, fontFamily: 'System' }}>Permanently wipe all data</Text>
+                    <Text style={{ fontSize: 16, color: colors.danger, }}>Delete Account</Text>
+                    <Text style={{ fontSize: 12, color: 'rgba(255,59,48,0.6)', marginTop: 2, fontFamily: typography.primary }}>Permanently wipe all data</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -372,16 +366,16 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
               borderWidth: 1, borderColor: 'rgba(255,59,48,0.15)',
             }}
           >
-            <MaterialIcons name="logout" size={20} color={RED} />
-            <Text style={{ fontSize: 16, fontWeight: '700', color: RED, fontFamily: 'System' }}>Sign Out</Text>
+            <MaterialIcons name="logout" size={20} color={colors.danger} />
+            <Text style={{ fontSize: 16, color: colors.danger, }}>Sign Out</Text>
           </TouchableOpacity>
 
           {/* Version Footer */}
           <View style={{ alignItems: 'center', marginTop: 12, gap: 4 }}>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE_VARIANT, textTransform: 'uppercase', letterSpacing: 1 }}>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outlineVariant, textTransform: 'uppercase', letterSpacing: 1 }}>
               Finboom Version 4.2.1 (Platinum Build)
             </Text>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE_VARIANT, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outlineVariant, textTransform: 'uppercase', letterSpacing: 0.5 }}>
               © 2024 FINBOOM GLOBAL WEALTH INC.
             </Text>
           </View>
@@ -391,7 +385,7 @@ export default function ProfileSettingsScreen({ navigation }: ProfileSettingsScr
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any, typography: any) => StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',

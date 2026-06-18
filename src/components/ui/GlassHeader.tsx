@@ -2,8 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Bell } from 'lucide-react-native';
+import { useTheme } from '../../theme/ThemeContext';
 
 export function GlassHeader() {
+  const { colors, typography } = useTheme();
+
   return (
     <BlurView intensity={70} tint="light" className="absolute top-0 w-full z-50 flex-row justify-between items-center px-4 h-24 pt-10 bg-glass-bg">
       <View className="flex-row items-center gap-3">

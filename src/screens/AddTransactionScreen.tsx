@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, TextInput, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const WHITE = '#ffffff';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE = '#757682';
-const OUTLINE_VARIANT = '#c5c6d2';
-const GREEN = '#059669';
-const RED = '#DC2626';
-const CHAMPAGNE = '#D4AF37';
-const DARK_SLATE = '#0F172A';
 
 interface AddTransactionScreenProps {
   navigation?: any;
 }
 
 export default function AddTransactionScreen({ navigation }: AddTransactionScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [transactionType, setTransactionType] = useState<'expense' | 'income'>('expense');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('Food & Dining');
@@ -45,11 +39,11 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
         borderBottomColor: 'rgba(0,0,0,0.08)'
       }}>
         <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-          <MaterialIcons name="arrow-back" size={24} color={NAVY} />
+          <MaterialIcons name="arrow-back" size={24} color={colors.text} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Add Transaction</Text>
+        <Text style={{ fontSize: 18, color: colors.text, }}>Add Transaction</Text>
         <TouchableOpacity style={{ padding: 4 }}>
-          <MaterialIcons name="more-vert" size={24} color={NAVY} />
+          <MaterialIcons name="more-vert" size={24} color={colors.text} />
         </TouchableOpacity>
       </View>
 
@@ -73,12 +67,12 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 12,
-                backgroundColor: transactionType === 'expense' ? WHITE : 'transparent',
+                backgroundColor: transactionType === 'expense' ? colors.surfaceLowest : 'transparent',
                 borderWidth: transactionType === 'expense' ? 1 : 0,
-                borderColor: RED
+                borderColor: colors.danger
               }}
             >
-              <Text style={{ fontSize: 15, fontWeight: '700', color: transactionType === 'expense' ? RED : ON_SURFACE_VARIANT }}>Expense</Text>
+              <Text style={{ fontSize: 15, fontFamily: typography.primaryBold, color: transactionType === 'expense' ? colors.danger : colors.textSecondary }}>Expense</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -88,12 +82,12 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderRadius: 12,
-                backgroundColor: transactionType === 'income' ? WHITE : 'transparent',
+                backgroundColor: transactionType === 'income' ? colors.surfaceLowest : 'transparent',
                 borderWidth: transactionType === 'income' ? 1 : 0,
-                borderColor: GREEN
+                borderColor: colors.success
               }}
             >
-              <Text style={{ fontSize: 15, fontWeight: '700', color: transactionType === 'income' ? GREEN : ON_SURFACE_VARIANT }}>Income</Text>
+              <Text style={{ fontSize: 15, fontFamily: typography.primaryBold, color: transactionType === 'income' ? colors.success : colors.textSecondary }}>Income</Text>
             </TouchableOpacity>
           </View>
 
@@ -112,13 +106,13 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
             marginBottom: 28,
             position: 'relative'
           }}>
-            <Text style={{ fontSize: 11, fontWeight: '600', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1 }}>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1 }}>
               {transactionType === 'expense' ? 'You Spend' : 'You Receive'}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 8 }}>
-              <Text style={{ fontSize: 32, fontWeight: '700', color: NAVY }}>$</Text>
+              <Text style={{ fontSize: 32, fontFamily: typography.primaryBold, color: colors.text }}>$</Text>
               <TextInput
-                style={{ flex: 1, fontSize: 32, fontWeight: '700', color: NAVY, padding: 0 }}
+                style={{ flex: 1, fontSize: 32, fontFamily: typography.primaryBold, color: colors.text, padding: 0 }}
                 placeholder="0.00"
                 keyboardType="numeric"
                 value={amount}
@@ -138,7 +132,7 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
                 width: 40,
                 height: 40,
                 borderRadius: 20,
-                backgroundColor: NAVY,
+                backgroundColor: colors.primaryContainer,
                 alignItems: 'center',
                 justifyContent: 'center',
                 borderWidth: 4,
@@ -166,18 +160,18 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
             borderColor: 'rgba(212,175,55,0.3)',
             marginBottom: 20
           }}>
-            <View style={{ width: 40, height: 40, borderRadius: 8, backgroundColor: CHAMPAGNE, alignItems: 'center', justifyContent: 'center' }}>
-              <MaterialIcons name="content-cut" size={20} color={NAVY} />
+            <View style={{ width: 40, height: 40, borderRadius: 8, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center' }}>
+              <MaterialIcons name="content-cut" size={20} color={colors.text} />
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 13, fontWeight: '700', color: NAVY }}>Tax Optimization</Text>
-              <Text style={{ fontSize: 11, color: ON_SURFACE_VARIANT, marginTop: 1 }}>Strategic tracking helps maximize your deductions.</Text>
+              <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: colors.text }}>Tax Optimization</Text>
+              <Text style={{ fontSize: 11, color: colors.textSecondary, marginTop: 1 }}>Strategic tracking helps maximize your deductions.</Text>
             </View>
           </View>
 
           {/* Details Card */}
           <View style={{
-            backgroundColor: WHITE,
+            backgroundColor: colors.surfaceLowest,
             borderRadius: 20,
             padding: 16,
             gap: 16,
@@ -191,9 +185,9 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
             {/* Category Dropdown */}
             <View>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <Text style={{ fontSize: 10, fontWeight: '700', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1 }}>Category</Text>
+                <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1 }}>Category</Text>
                 <TouchableOpacity onPress={() => navigation?.navigate('ManageCategories')}>
-                  <Text style={{ fontSize: 11, color: NAVY, fontWeight: '600' }}>Manage Categories</Text>
+                  <Text style={{ fontSize: 11, color: colors.text, fontFamily: typography.primaryBold }}>Manage Categories</Text>
                 </TouchableOpacity>
               </View>
               <View style={{
@@ -206,18 +200,18 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
                 paddingHorizontal: 16
               }}>
                 <TextInput
-                  style={{ flex: 1, fontSize: 15, color: NAVY, fontWeight: '600' }}
+                  style={{ flex: 1, fontSize: 15, color: colors.text, fontFamily: typography.primaryBold }}
                   value={category}
                   onChangeText={setCategory}
                   placeholder="Category Name"
                 />
-                <MaterialIcons name="keyboard-arrow-down" size={20} color={ON_SURFACE_VARIANT} />
+                <MaterialIcons name="keyboard-arrow-down" size={20} color={colors.textSecondary} />
               </View>
             </View>
 
             {/* Subcategory */}
             <View>
-              <Text style={{ fontSize: 10, fontWeight: '700', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Subcategory</Text>
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Subcategory</Text>
               <View style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -228,18 +222,18 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
                 paddingHorizontal: 16
               }}>
                 <TextInput
-                  style={{ flex: 1, fontSize: 15, color: NAVY }}
+                  style={{ flex: 1, fontSize: 15, color: colors.text }}
                   value={subcategory}
                   onChangeText={setSubcategory}
                   placeholder="Subcategory Name"
                 />
-                <MaterialIcons name="keyboard-arrow-down" size={20} color={ON_SURFACE_VARIANT} />
+                <MaterialIcons name="keyboard-arrow-down" size={20} color={colors.textSecondary} />
               </View>
             </View>
 
             {/* Account Bucket */}
             <View>
-              <Text style={{ fontSize: 10, fontWeight: '700', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Account Bucket</Text>
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Account Bucket</Text>
               <View style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -250,28 +244,28 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
                 paddingHorizontal: 16
               }}>
                 <TextInput
-                  style={{ flex: 1, fontSize: 15, color: NAVY }}
+                  style={{ flex: 1, fontSize: 15, color: colors.text }}
                   value={bucket}
                   onChangeText={setBucket}
                   placeholder="Account"
                 />
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: CHAMPAGNE }} />
-                  <MaterialIcons name="keyboard-arrow-down" size={20} color={ON_SURFACE_VARIANT} />
+                  <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: colors.primary }} />
+                  <MaterialIcons name="keyboard-arrow-down" size={20} color={colors.textSecondary} />
                 </View>
               </View>
             </View>
 
             {/* Notes */}
             <View>
-              <Text style={{ fontSize: 10, fontWeight: '700', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Notes</Text>
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Notes</Text>
               <TextInput
                 style={{
                   backgroundColor: '#f3f4f5',
                   borderRadius: 12,
                   padding: 12,
                   fontSize: 14,
-                  color: NAVY,
+                  color: colors.text,
                   height: 80,
                   textAlignVertical: 'top'
                 }}
@@ -285,22 +279,22 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
 
           {/* Attachments */}
           <View style={{ marginBottom: 24 }}>
-            <Text style={{ fontSize: 10, fontWeight: '700', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10 }}>Attachments</Text>
+            <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10 }}>Attachments</Text>
             <View style={{ flexDirection: 'row', gap: 12 }}>
               <TouchableOpacity style={{
                 flex: 1,
                 height: 84,
                 borderRadius: 16,
                 borderWidth: 2,
-                borderColor: OUTLINE_VARIANT,
+                borderColor: colors.outlineVariant,
                 borderStyle: 'dashed',
                 backgroundColor: 'rgba(243,244,245,0.5)',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 6
               }}>
-                <MaterialIcons name="photo-camera" size={22} color={OUTLINE} />
-                <Text style={{ fontSize: 12, color: OUTLINE, fontWeight: '600' }}>Photo</Text>
+                <MaterialIcons name="photo-camera" size={22} color={colors.outline} />
+                <Text style={{ fontSize: 12, color: colors.outline, fontFamily: typography.primaryBold }}>Photo</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={{
@@ -308,15 +302,15 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
                 height: 84,
                 borderRadius: 16,
                 borderWidth: 2,
-                borderColor: OUTLINE_VARIANT,
+                borderColor: colors.outlineVariant,
                 borderStyle: 'dashed',
                 backgroundColor: 'rgba(243,244,245,0.5)',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 6
               }}>
-                <MaterialIcons name="videocam" size={22} color={OUTLINE} />
-                <Text style={{ fontSize: 12, color: OUTLINE, fontWeight: '600' }}>Video</Text>
+                <MaterialIcons name="videocam" size={22} color={colors.outline} />
+                <Text style={{ fontSize: 12, color: colors.outline, fontFamily: typography.primaryBold }}>Video</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -326,7 +320,7 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
             <TouchableOpacity
               onPress={handleSave}
               style={{
-                backgroundColor: DARK_SLATE,
+                backgroundColor: colors.primaryContainer,
                 height: 56,
                 borderRadius: 16,
                 flexDirection: 'row',
@@ -342,7 +336,7 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <MaterialIcons name="check-circle" size={20} color="#fff" />
-                <Text style={{ fontSize: 16, fontWeight: '700', color: '#fff' }}>
+                <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: '#fff' }}>
                   {transactionType === 'expense' ? 'Save Expense' : 'Save Income'}
                 </Text>
               </View>
@@ -353,7 +347,7 @@ export default function AddTransactionScreen({ navigation }: AddTransactionScree
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => navigation?.goBack()} style={{ paddingVertical: 12, alignItems: 'center' }}>
-              <Text style={{ fontSize: 15, fontWeight: '700', color: ON_SURFACE_VARIANT }}>Cancel</Text>
+              <Text style={{ fontSize: 15, fontFamily: typography.primaryBold, color: colors.textSecondary }}>Cancel</Text>
             </TouchableOpacity>
           </View>
           

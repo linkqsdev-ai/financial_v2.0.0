@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, ViewProps } from 'react-native';
+import { useTheme } from '../../theme/ThemeContext';
 
 export function SquircleCard({ className = '', children, ...props }: ViewProps) {
+  const { colors, typography } = useTheme();
+
   return (
     <View 
       className={`bg-surface-container-lowest rounded-squircle p-6 shadow-sm ${className}`} 

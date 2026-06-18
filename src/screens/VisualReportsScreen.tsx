@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const WHITE = '#ffffff';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE = '#757682';
-const RED = '#ba1a1a';
-const GREEN = '#2E7D32';
 
 interface CategoryReport {
   id: string;
@@ -21,55 +16,57 @@ interface CategoryReport {
   budgetProgress?: string;
 }
 
-const CATEGORIES_DATA: CategoryReport[] = [
-  {
-    id: '1',
-    name: 'Food & Dining',
-    icon: 'restaurant',
-    iconBg: 'rgba(233,193,118,0.2)',
-    iconColor: '#ad8a46',
-    amount: 858.00,
-    percentage: 40,
-    progressBarColor: '#ad8a46',
-    budgetProgress: '80%'
-  },
-  {
-    id: '2',
-    name: 'Transport',
-    icon: 'commute',
-    iconBg: 'rgba(0,17,58,0.08)',
-    iconColor: NAVY,
-    amount: 429.00,
-    percentage: 20,
-    progressBarColor: NAVY
-  },
-  {
-    id: '3',
-    name: 'Shopping',
-    icon: 'shopping-bag',
-    iconBg: 'rgba(186,26,26,0.1)',
-    iconColor: RED,
-    amount: 321.75,
-    percentage: 15,
-    progressBarColor: RED
-  },
-  {
-    id: '4',
-    name: 'Utilities',
-    icon: 'bolt',
-    iconBg: 'rgba(104,93,74,0.15)',
-    iconColor: '#685d4a',
-    amount: 214.50,
-    percentage: 10,
-    progressBarColor: '#4a685d'
-  }
-];
-
 interface VisualReportsScreenProps {
   navigation?: any;
 }
 
 export default function VisualReportsScreen({ navigation }: VisualReportsScreenProps) {
+  const { colors, typography } = useTheme();
+
+  const CATEGORIES_DATA: CategoryReport[] = [
+    {
+      id: '1',
+      name: 'Food & Dining',
+      icon: 'restaurant',
+      iconBg: 'rgba(233,193,118,0.2)',
+      iconColor: '#ad8a46',
+      amount: 858.00,
+      percentage: 40,
+      progressBarColor: '#ad8a46',
+      budgetProgress: '80%'
+    },
+    {
+      id: '2',
+      name: 'Transport',
+      icon: 'commute',
+      iconBg: 'rgba(0,17,58,0.08)',
+      iconColor: colors.primaryContainer,
+      amount: 429.00,
+      percentage: 20,
+      progressBarColor: colors.primaryContainer
+    },
+    {
+      id: '3',
+      name: 'Shopping',
+      icon: 'shopping-bag',
+      iconBg: 'rgba(186,26,26,0.1)',
+      iconColor: colors.danger,
+      amount: 321.75,
+      percentage: 15,
+      progressBarColor: colors.danger
+    },
+    {
+      id: '4',
+      name: 'Utilities',
+      icon: 'bolt',
+      iconBg: 'rgba(104,93,74,0.15)',
+      iconColor: '#685d4a',
+      amount: 214.50,
+      percentage: 10,
+      progressBarColor: '#4a685d'
+    }
+  ];
+
   const [selectedMonth, setSelectedMonth] = useState('August 2023');
 
   return (
@@ -89,9 +86,9 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 48 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
             <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-              <MaterialIcons name="arrow-back" size={24} color={NAVY} />
+              <MaterialIcons name="arrow-back" size={24} color={colors.text} />
             </TouchableOpacity>
-            <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Financial Insights</Text>
+            <Text style={{ fontSize: 20, color: colors.text, }}>Financial Insights</Text>
           </View>
 
           <View style={{ width: 36, height: 36, borderRadius: 18, overflow: 'hidden', borderWidth: 2, borderColor: '#b3c5ff' }}>
@@ -114,8 +111,8 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
             backgroundColor: '#f3f4f5',
             borderRadius: 20
           }}>
-            <Text style={{ fontSize: 15, fontWeight: '700', color: NAVY }}>{selectedMonth}</Text>
-            <MaterialIcons name="expand-more" size={18} color={ON_SURFACE_VARIANT} />
+            <Text style={{ fontSize: 15, fontFamily: typography.primaryBold, color: colors.text }}>{selectedMonth}</Text>
+            <MaterialIcons name="expand-more" size={18} color={colors.textSecondary} />
           </TouchableOpacity>
         </View>
       </View>
@@ -127,7 +124,7 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
           borderWidth: 1,
           borderColor: 'rgba(255, 255, 255, 0.3)',
           borderLeftWidth: 4,
-          borderLeftColor: NAVY,
+          borderLeftColor: colors.primaryContainer,
           borderRadius: 16,
           padding: 16,
           shadowColor: '#00113a',
@@ -140,23 +137,23 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
         }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <View>
-              <Text style={{ fontSize: 10, fontWeight: '600', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1 }}>Total Income</Text>
-              <Text style={{ fontSize: 20, fontWeight: '700', color: GREEN, marginTop: 4 }}>+₹4,500.00</Text>
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1 }}>Total Income</Text>
+              <Text style={{ fontSize: 20, fontFamily: typography.primaryBold, color: colors.success, marginTop: 4 }}>+₹4,500.00</Text>
             </View>
             <View style={{ alignItems: 'flex-end' }}>
-              <Text style={{ fontSize: 10, fontWeight: '600', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1 }}>Total Expenses</Text>
-              <Text style={{ fontSize: 20, fontWeight: '700', color: RED, marginTop: 4 }}>-₹2,145.00</Text>
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1 }}>Total Expenses</Text>
+              <Text style={{ fontSize: 20, fontFamily: typography.primaryBold, color: colors.danger, marginTop: 4 }}>-₹2,145.00</Text>
             </View>
           </View>
 
           <View style={{ height: 0.5, backgroundColor: 'rgba(0,0,0,0.06)' }} />
 
           <View>
-            <Text style={{ fontSize: 10, fontWeight: '600', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Net Savings</Text>
+            <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>Net Savings</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              <Text style={{ fontSize: 24, fontWeight: '800', color: NAVY }}>₹2,355.00</Text>
+              <Text style={{ fontSize: 24, fontFamily: typography.primaryExtraBold, color: colors.text }}>₹2,355.00</Text>
               <View style={{ backgroundColor: '#dbe1ff', paddingHorizontal: 8, paddingVertical: 2, borderRadius: 6 }}>
-                <Text style={{ fontSize: 11, color: NAVY, fontWeight: '700' }}>52% Rate</Text>
+                <Text style={{ fontSize: 11, color: colors.text, fontFamily: typography.primaryBold }}>52% Rate</Text>
               </View>
             </View>
           </View>
@@ -164,7 +161,7 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
 
         {/* Chart Card */}
         <View style={{
-          backgroundColor: WHITE,
+          backgroundColor: colors.surfaceLowest,
           borderRadius: 20,
           padding: 20,
           shadowColor: '#00113a',
@@ -174,7 +171,7 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
           elevation: 1,
           marginBottom: 24
         }}>
-          <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY, marginBottom: 16 }}>Spending Allocation</Text>
+          <Text style={{ fontSize: 18, fontFamily: typography.primaryBold, color: colors.text, marginBottom: 16 }}>Spending Allocation</Text>
 
           {/* Simulated Spending Chart */}
           <View style={{ height: 200, width: '100%', borderRadius: 12, overflow: 'hidden', borderWidth: 1, borderColor: 'rgba(0,0,0,0.1)', marginBottom: 16 }}>
@@ -189,26 +186,26 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12, justifyContent: 'center' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 80 }}>
               <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#ad8a46' }} />
-              <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, fontWeight: '600' }}>Dining</Text>
+              <Text style={{ fontSize: 12, color: colors.textSecondary, fontFamily: typography.primaryBold }}>Dining</Text>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 80 }}>
-              <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: NAVY }} />
-              <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, fontWeight: '600' }}>Transport</Text>
+              <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: colors.primaryContainer }} />
+              <Text style={{ fontSize: 12, color: colors.textSecondary, fontFamily: typography.primaryBold }}>Transport</Text>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 80 }}>
-              <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: RED }} />
-              <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, fontWeight: '600' }}>Shopping</Text>
+              <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: colors.danger }} />
+              <Text style={{ fontSize: 12, color: colors.textSecondary, fontFamily: typography.primaryBold }}>Shopping</Text>
             </View>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minWidth: 80 }}>
               <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#4a685d' }} />
-              <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, fontWeight: '600' }}>Utilities</Text>
+              <Text style={{ fontSize: 12, color: colors.textSecondary, fontFamily: typography.primaryBold }}>Utilities</Text>
             </View>
           </View>
         </View>
 
         {/* Top Categories */}
         <View style={{
-          backgroundColor: WHITE,
+          backgroundColor: colors.surfaceLowest,
           borderRadius: 20,
           padding: 20,
           shadowColor: '#00113a',
@@ -217,7 +214,7 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
           shadowRadius: 10,
           elevation: 1
         }}>
-          <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY, marginBottom: 16 }}>Top Categories</Text>
+          <Text style={{ fontSize: 18, fontFamily: typography.primaryBold, color: colors.text, marginBottom: 16 }}>Top Categories</Text>
 
           <View style={{ gap: 20 }}>
             {CATEGORIES_DATA.map(cat => (
@@ -227,9 +224,9 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
                     <View style={{ width: 40, height: 40, borderRadius: 8, backgroundColor: cat.iconBg, alignItems: 'center', justifyContent: 'center' }}>
                       <MaterialIcons name={cat.icon} size={20} color={cat.iconColor} />
                     </View>
-                    <Text style={{ fontSize: 15, fontWeight: '700', color: NAVY }}>{cat.name}</Text>
+                    <Text style={{ fontSize: 15, fontFamily: typography.primaryBold, color: colors.text }}>{cat.name}</Text>
                   </View>
-                  <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>₹{cat.amount.toFixed(2)}</Text>
+                  <Text style={{ fontSize: 16, color: colors.text, }}>₹{cat.amount.toFixed(2)}</Text>
                 </View>
 
                 {/* Progress Bar */}
@@ -238,9 +235,9 @@ export default function VisualReportsScreen({ navigation }: VisualReportsScreenP
                 </View>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={{ fontSize: 11, color: OUTLINE }}>{cat.percentage}% of expenses</Text>
+                  <Text style={{ fontSize: 11, color: colors.outline }}>{cat.percentage}% of expenses</Text>
                   {cat.budgetProgress && (
-                    <Text style={{ fontSize: 11, color: OUTLINE }}>Progress to budget: {cat.budgetProgress}</Text>
+                    <Text style={{ fontSize: 11, color: colors.outline }}>Progress to budget: {cat.budgetProgress}</Text>
                   )}
                 </View>
               </View>

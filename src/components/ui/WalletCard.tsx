@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Landmark, CreditCard, Wallet } from 'lucide-react-native';
+import { useTheme } from '../../theme/ThemeContext';
 
 export type WalletType = 'bank' | 'savings' | 'credit';
 
@@ -14,6 +15,8 @@ interface WalletCardProps {
 }
 
 export function WalletCard({ type, name, accountLabel, amount, colors }: WalletCardProps) {
+  const { colors, typography } = useTheme();
+
   const Icon = type === 'bank' ? Landmark : type === 'credit' ? CreditCard : Wallet;
   
   return (

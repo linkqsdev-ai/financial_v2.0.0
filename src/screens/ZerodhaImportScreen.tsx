@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, StatusBar, StyleSheet, ActivityIndicator } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const CHAMPAGNE = '#D4AF37';
-const SURFACE_GRAY = '#F2F2F7';
-const WHITE = '#ffffff';
-const ON_SURFACE = '#1b1b1d';
-const ON_SURFACE_VARIANT = '#44464e';
-const OUTLINE = '#75777f';
-const OUTLINE_VARIANT = '#c5c6cf';
-const ROYAL_NAVY = '#0A1F44';
 
 interface ZerodhaImportScreenProps {
   navigation?: any;
 }
 
 export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenProps) {
+  const { colors, typography } = useTheme();
+  const styles = getStyles(colors, typography);
+
   const [uploading, setUploading] = useState(false);
 
   const handleSelectFile = () => {
@@ -29,8 +24,8 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE_GRAY, overflow: 'hidden' }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE_GRAY} />
+    <View style={{ flex: 1, backgroundColor: colors.background, overflow: 'hidden' }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Top Header Bar */}
       <View style={{
@@ -41,10 +36,10 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
         borderBottomWidth: 0.5, borderBottomColor: 'rgba(197,198,207,0.3)',
       }}>
         <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-          <MaterialIcons name="arrow-back" size={24} color={ROYAL_NAVY} />
+          <MaterialIcons name="arrow-back" size={24} color={colors.text} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 20, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Import from Zerodha</Text>
-        <View style={{ width: 32, height: 32, borderRadius: 16, overflow: 'hidden', borderWidth: 1, borderColor: OUTLINE_VARIANT }}>
+        <Text style={{ fontSize: 20, color: colors.text, }}>Import from Zerodha</Text>
+        <View style={{ width: 32, height: 32, borderRadius: 16, overflow: 'hidden', borderWidth: 1, borderColor: colors.outlineVariant }}>
           <Image
             source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCb429qMm0QG7f5qDFLF-yloL6hAULGWF1EodEbbES54uEtij9eWngGznYGxcwtxmSJHjLTZWDBtARlQ-2KhUuNVUcZaaFIVi_Uj-57Y8-xARtSjaDWeM2y7yjtSq_Tj04h3WIbMPPdF0qLpjFVX5IsK_aNRbtBvOc4U-WxQCipmOIMxJWmPtEwJYYnqhagjbtfoVwxD-A2t8xnv3cONjd7Kt6c7so1oXaIUm_WdGp_LD2baI8pNDkgdmQzNM1CqgS6Z80FFpIizHGf' }}
             style={{ width: '100%', height: '100%' }}
@@ -60,8 +55,8 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
       >
         {/* Title Block */}
         <View style={{ marginBottom: 24 }}>
-          <Text style={{ fontSize: 26, fontWeight: '700', color: ROYAL_NAVY, marginBottom: 8, fontFamily: 'System' }}>Transfer your portfolio</Text>
-          <Text style={{ fontSize: 16, color: ON_SURFACE_VARIANT, fontFamily: 'System', lineHeight: 22 }}>
+          <Text style={{ fontSize: 26, color: colors.text, marginBottom: 8, }}>Transfer your portfolio</Text>
+          <Text style={{ fontSize: 16, color: colors.textSecondary, fontFamily: typography.primary, lineHeight: 22 }}>
             Follow these simple steps to sync your Zerodha holdings with Finboom's elite analytics engine.
           </Text>
         </View>
@@ -71,11 +66,11 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
           {/* Step 1 */}
           <View style={{ flexDirection: 'row', gap: 16 }}>
             <View style={styles.stepNum}>
-              <Text style={{ fontSize: 13, fontWeight: '700', color: WHITE }}>01</Text>
+              <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: colors.surfaceLowest }}>01</Text>
             </View>
             <View style={{ flex: 1, paddingTop: 4 }}>
-              <Text style={{ fontSize: 18, fontWeight: '700', color: ROYAL_NAVY, marginBottom: 6, fontFamily: 'System' }}>Log into Zerodha Console</Text>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT, lineHeight: 20, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 18, color: colors.text, marginBottom: 6, }}>Log into Zerodha Console</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary, lineHeight: 20, fontFamily: typography.primary }}>
                 Navigate to console.zerodha.com and sign in with your Kite credentials to access your secure holdings dashboard.
               </Text>
             </View>
@@ -84,24 +79,24 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
           {/* Step 2 */}
           <View style={{ flexDirection: 'row', gap: 16 }}>
             <View style={styles.stepNum}>
-              <Text style={{ fontSize: 13, fontWeight: '700', color: WHITE }}>02</Text>
+              <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: colors.surfaceLowest }}>02</Text>
             </View>
             <View style={{ flex: 1, paddingTop: 4 }}>
-              <Text style={{ fontSize: 18, fontWeight: '700', color: ROYAL_NAVY, marginBottom: 6, fontFamily: 'System' }}>Export Holdings as CSV</Text>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT, lineHeight: 20, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 18, color: colors.text, marginBottom: 6, }}>Export Holdings as CSV</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary, lineHeight: 20, fontFamily: typography.primary }}>
                 Go to the 'Portfolio' tab, select 'Holdings', and click the 'Download' icon to save your data in .csv format.
               </Text>
               {/* Pro Tip Callout */}
               <View style={{
                 backgroundColor: 'rgba(254, 218, 165, 0.15)',
-                borderWidth: 1, borderColor: CHAMPAGNE,
+                borderWidth: 1, borderColor: colors.primary,
                 borderRadius: 14,
                 padding: 14,
                 flexDirection: 'row', gap: 10,
                 marginTop: 12,
               }}>
-                <MaterialIcons name="lightbulb-outline" size={20} color={CHAMPAGNE} style={{ marginTop: 2 }} />
-                <Text style={{ flex: 1, fontSize: 13, color: ROYAL_NAVY, fontStyle: 'italic', lineHeight: 18, fontFamily: 'System' }}>
+                <MaterialIcons name="lightbulb-outline" size={20} color={colors.primary} style={{ marginTop: 2 }} />
+                <Text style={{ flex: 1, fontSize: 13, color: colors.text, fontStyle: 'italic', lineHeight: 18, fontFamily: typography.primary }}>
                   Pro tip: Ensure all filters are cleared to export your entire history.
                 </Text>
               </View>
@@ -111,11 +106,11 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
           {/* Step 3 */}
           <View style={{ flexDirection: 'row', gap: 16 }}>
             <View style={styles.stepNum}>
-              <Text style={{ fontSize: 13, fontWeight: '700', color: WHITE }}>03</Text>
+              <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: colors.surfaceLowest }}>03</Text>
             </View>
             <View style={{ flex: 1, paddingTop: 4 }}>
-              <Text style={{ fontSize: 18, fontWeight: '700', color: ROYAL_NAVY, marginBottom: 6, fontFamily: 'System' }}>Upload here</Text>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT, lineHeight: 20, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 18, color: colors.text, marginBottom: 6, }}>Upload here</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary, lineHeight: 20, fontFamily: typography.primary }}>
                 Tap the secure zone below to choose the holding statement CSV from your local storage.
               </Text>
             </View>
@@ -127,11 +122,11 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
           onPress={handleSelectFile}
           disabled={uploading}
           style={{
-            backgroundColor: WHITE,
+            backgroundColor: colors.surfaceLowest,
             borderRadius: 24,
             borderWidth: 2,
             borderStyle: 'dashed',
-            borderColor: OUTLINE_VARIANT,
+            borderColor: colors.outlineVariant,
             padding: 32,
             alignItems: 'center',
             shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.02, shadowRadius: 10,
@@ -142,8 +137,8 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
         >
           {/* Security Badge */}
           <View style={{ position: 'absolute', top: 12, right: 12, backgroundColor: 'rgba(212,175,55,0.1)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 99, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <MaterialIcons name="workspace-premium" size={12} color={ROYAL_NAVY} />
-            <Text style={{ fontSize: 9, fontWeight: '700', color: ROYAL_NAVY, letterSpacing: 0.8 }}>ELITE SECURITY</Text>
+            <MaterialIcons name="workspace-premium" size={12} color={colors.text} />
+            <Text style={{ fontSize: 9, fontFamily: typography.primaryBold, color: colors.text, letterSpacing: 0.8 }}>ELITE SECURITY</Text>
           </View>
 
           {/* Illustration Container */}
@@ -157,17 +152,17 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
 
           {uploading ? (
             <View style={{ alignItems: 'center', gap: 8 }}>
-              <ActivityIndicator size="large" color={ROYAL_NAVY} />
-              <Text style={{ fontSize: 16, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Analyzing statement CSV...</Text>
+              <ActivityIndicator size="large" color={colors.text} />
+              <Text style={{ fontSize: 16, color: colors.text, }}>Analyzing statement CSV...</Text>
             </View>
           ) : (
             <View style={{ alignItems: 'center' }}>
-              <Text style={{ fontSize: 18, fontWeight: '700', color: ROYAL_NAVY, marginBottom: 8, fontFamily: 'System' }}>Upload CSV</Text>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT, textAlign: 'center', marginBottom: 20, paddingHorizontal: 16, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 18, color: colors.text, marginBottom: 8, }}>Upload CSV</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary, textAlign: 'center', marginBottom: 20, paddingHorizontal: 16, fontFamily: typography.primary }}>
                 Tap here to select your Zerodha holding file from your computer.
               </Text>
-              <View style={{ backgroundColor: ROYAL_NAVY, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 99 }}>
-                <Text style={{ fontSize: 12, fontWeight: '700', color: WHITE, textTransform: 'uppercase', letterSpacing: 0.5, fontFamily: 'System' }}>Select File</Text>
+              <View style={{ backgroundColor: colors.primaryContainer, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 99 }}>
+                <Text style={{ fontSize: 12, color: colors.surfaceLowest, textTransform: 'uppercase', letterSpacing: 0.5, }}>Select File</Text>
               </View>
             </View>
           )}
@@ -175,13 +170,13 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
           {/* Security Features */}
           <View style={{ flexDirection: 'row', gap: 24, marginTop: 24, borderTopWidth: 0.5, borderTopColor: '#f2f2f7', paddingTop: 16, width: '100%', justifyContent: 'center' }}>
             <View style={{ alignItems: 'center', gap: 4 }}>
-              <MaterialIcons name="lock-outline" size={18} color={OUTLINE} />
-              <Text style={{ fontSize: 10, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 0.5 }}>Encrypted Sync</Text>
+              <MaterialIcons name="lock-outline" size={18} color={colors.outline} />
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 0.5 }}>Encrypted Sync</Text>
             </View>
-            <View style={{ width: 0.5, height: 24, backgroundColor: OUTLINE_VARIANT }} />
+            <View style={{ width: 0.5, height: 24, backgroundColor: colors.outlineVariant }} />
             <View style={{ alignItems: 'center', gap: 4 }}>
-              <MaterialIcons name="history" size={18} color={OUTLINE} />
-              <Text style={{ fontSize: 10, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 0.5 }}>Instant Processing</Text>
+              <MaterialIcons name="history" size={18} color={colors.outline} />
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 0.5 }}>Instant Processing</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -197,9 +192,9 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
           <View style={{ position: 'absolute', bottom: -16, right: -16, opacity: 0.1 }}>
             <MaterialIcons name="trending-up" size={100} color="#fff" />
           </View>
-          <Text style={{ fontSize: 11, fontWeight: '600', color: CHAMPAGNE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4 }}>DATA INTEGRITY</Text>
-          <Text style={{ fontSize: 18, fontWeight: '700', color: WHITE, marginBottom: 6, fontFamily: 'System' }}>Automated Insights</Text>
-          <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 20, fontFamily: 'System' }}>
+          <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.primary, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4 }}>DATA INTEGRITY</Text>
+          <Text style={{ fontSize: 18, color: colors.surfaceLowest, marginBottom: 6, }}>Automated Insights</Text>
+          <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 20, fontFamily: typography.primary }}>
             Our AI engine automatically parses, cleans, and categorizes your imported assets into risk-adjusted clusters.
           </Text>
         </View>
@@ -209,15 +204,15 @@ export default function ZerodhaImportScreen({ navigation }: ZerodhaImportScreenP
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any, typography: any) => StyleSheet.create({
   stepNum: {
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: ROYAL_NAVY,
+    backgroundColor: colors.primaryContainer,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: ROYAL_NAVY,
+    shadowColor: colors.primaryContainer,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 8,

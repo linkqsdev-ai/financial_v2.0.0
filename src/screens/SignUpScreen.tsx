@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StatusBar, KeyboardAvoidingView, Platform, StyleSheet } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const CHAMPAGNE = '#D4AF37';
-const SURFACE = '#fcf8fb';
-const SURFACE_CONTAINER = '#f0edef';
-const ON_SURFACE = '#1b1b1d';
-const ON_SURFACE_VARIANT = '#44464e';
-const OUTLINE = '#75777f';
-const OUTLINE_VARIANT = '#c5c6cf';
-const GREEN = '#34C759';
 
 interface SignUpScreenProps {
   navigation?: any;
 }
 
 export default function SignUpScreen({ navigation }: SignUpScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,8 +27,8 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE, overflow: 'hidden' }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE} />
+    <View style={{ flex: 1, backgroundColor: colors.background, overflow: 'hidden' }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Atmospheric background blur elements */}
       <View style={{
@@ -66,17 +60,17 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
               onPress={() => navigation?.goBack()}
               style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.02)' }}
             >
-              <MaterialIcons name="arrow-back-ios-new" size={18} color={NAVY} style={{ marginRight: 2 }} />
+              <MaterialIcons name="arrow-back-ios-new" size={18} color={colors.text} style={{ marginRight: 2 }} />
             </TouchableOpacity>
-            <Text style={{ fontSize: 18, fontWeight: '800', color: NAVY, letterSpacing: -0.3, fontFamily: 'System' }}>Finboom</Text>
+            <Text style={{ fontSize: 18, color: colors.text, letterSpacing: -0.3, }}>Finboom</Text>
             <View style={{ width: 40 }} />
           </View>
 
           {/* Hero Content */}
           <View style={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 20, marginTop: 16 }}>
-            <Text style={{ fontSize: 32, fontWeight: '700', color: NAVY, letterSpacing: -0.8, marginBottom: 8, fontFamily: 'System' }}>Create Account</Text>
-            <Text style={{ fontSize: 16, color: ON_SURFACE_VARIANT, fontFamily: 'System' }}>
-              Join <Text style={{ color: NAVY, fontWeight: '700' }}>10,000+ users</Text> tracking their path to FIRE.
+            <Text style={{ fontSize: 32, color: colors.text, letterSpacing: -0.8, marginBottom: 8, }}>Create Account</Text>
+            <Text style={{ fontSize: 16, color: colors.textSecondary, fontFamily: typography.primary }}>
+              Join <Text style={{ color: colors.text, fontFamily: typography.primaryBold }}>10,000+ users</Text> tracking their path to FIRE.
             </Text>
           </View>
 
@@ -84,17 +78,17 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
           <View style={{ paddingHorizontal: 20, gap: 20 }}>
             {/* Full Name */}
             <View>
-              <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4, marginLeft: 2, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4, marginLeft: 2, }}>
                 Full Name
               </Text>
               <TextInput
                 style={{
                   borderBottomWidth: 1,
-                  borderBottomColor: OUTLINE_VARIANT,
+                  borderBottomColor: colors.outlineVariant,
                   paddingVertical: 10,
                   fontSize: 17,
-                  color: ON_SURFACE,
-                  fontFamily: 'System'
+                  color: colors.text,
+                  fontFamily: typography.primary
                 }}
                 placeholder="Alexander Hamilton"
                 placeholderTextColor="rgba(117,119,127,0.4)"
@@ -105,17 +99,17 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
 
             {/* Email Address */}
             <View>
-              <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4, marginLeft: 2, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4, marginLeft: 2, }}>
                 Email Address
               </Text>
               <TextInput
                 style={{
                   borderBottomWidth: 1,
-                  borderBottomColor: OUTLINE_VARIANT,
+                  borderBottomColor: colors.outlineVariant,
                   paddingVertical: 10,
                   fontSize: 17,
-                  color: ON_SURFACE,
-                  fontFamily: 'System'
+                  color: colors.text,
+                  fontFamily: typography.primary
                 }}
                 placeholder="alex@privatewealth.com"
                 placeholderTextColor="rgba(117,119,127,0.4)"
@@ -128,17 +122,17 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
 
             {/* Password */}
             <View>
-              <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4, marginLeft: 2, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 4, marginLeft: 2, }}>
                 Password
               </Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: OUTLINE_VARIANT }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: colors.outlineVariant }}>
                 <TextInput
                   style={{
                     flex: 1,
                     paddingVertical: 10,
                     fontSize: 17,
-                    color: ON_SURFACE,
-                    fontFamily: 'System'
+                    color: colors.text,
+                    fontFamily: typography.primary
                   }}
                   placeholder="••••••••••••"
                   placeholderTextColor="rgba(117,119,127,0.4)"
@@ -147,18 +141,18 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
                   onChangeText={setPassword}
                 />
                 <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={{ padding: 8 }}>
-                  <MaterialIcons name={showPassword ? "visibility-off" : "visibility"} size={20} color={OUTLINE} />
+                  <MaterialIcons name={showPassword ? "visibility-off" : "visibility"} size={20} color={colors.outline} />
                 </TouchableOpacity>
               </View>
             </View>
 
             {/* Terms of Service */}
             <View style={{ marginTop: 4 }}>
-              <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, lineHeight: 18, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 12, color: colors.textSecondary, lineHeight: 18, fontFamily: typography.primary }}>
                 By signing up, you agree to our{' '}
-                <Text style={{ color: NAVY, fontWeight: '600', textDecorationLine: 'underline' }}>Terms of Service</Text>
+                <Text style={{ color: colors.text, fontFamily: typography.primaryBold, textDecorationLine: 'underline' }}>Terms of Service</Text>
                 {' '}and{' '}
-                <Text style={{ color: NAVY, fontWeight: '600', textDecorationLine: 'underline' }}>Privacy Policy</Text>.
+                <Text style={{ color: colors.text, fontFamily: typography.primaryBold, textDecorationLine: 'underline' }}>Privacy Policy</Text>.
               </Text>
             </View>
 
@@ -166,7 +160,7 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
             <TouchableOpacity
               onPress={handleSignUp}
               style={{
-                backgroundColor: NAVY,
+                backgroundColor: colors.primaryContainer,
                 borderRadius: 14,
                 height: 56,
                 flexDirection: 'row',
@@ -174,21 +168,21 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
                 justifyContent: 'center',
                 gap: 8,
                 marginTop: 12,
-                shadowColor: NAVY,
+                shadowColor: colors.primaryContainer,
                 shadowOffset: { width: 0, height: 6 },
                 shadowOpacity: 0.15,
                 shadowRadius: 12,
                 elevation: 4,
               }}
             >
-              <Text style={{ fontSize: 18, fontWeight: '700', color: '#fff', fontFamily: 'System' }}>Continue</Text>
+              <Text style={{ fontSize: 18, color: '#fff', }}>Continue</Text>
               <MaterialIcons name="arrow-forward" size={20} color="#fff" />
             </TouchableOpacity>
 
             {/* Divider */}
             <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 16 }}>
               <View style={{ flex: 1, height: 1, backgroundColor: 'rgba(197,198,207,0.3)' }} />
-              <Text style={{ marginHorizontal: 16, fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1 }}>Or join with</Text>
+              <Text style={{ marginHorizontal: 16, fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1 }}>Or join with</Text>
               <View style={{ flex: 1, height: 1, backgroundColor: 'rgba(197,198,207,0.3)' }} />
             </View>
 
@@ -212,7 +206,7 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
                 elevation: 2,
               }}>
                 <MaterialCommunityIcons name="google" size={20} color="#4285F4" />
-                <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Google</Text>
+                <Text style={{ fontSize: 16, color: colors.text, }}>Google</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={{
@@ -232,16 +226,16 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
                 shadowRadius: 4,
                 elevation: 2,
               }}>
-                <MaterialCommunityIcons name="apple" size={20} color={NAVY} />
-                <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Apple</Text>
+                <MaterialCommunityIcons name="apple" size={20} color={colors.text} />
+                <Text style={{ fontSize: 16, color: colors.text, }}>Apple</Text>
               </TouchableOpacity>
             </View>
 
             {/* Footer link to Sign In */}
             <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 12 }}>
-              <Text style={{ fontSize: 15, color: ON_SURFACE_VARIANT, fontFamily: 'System' }}>Already have an account? </Text>
+              <Text style={{ fontSize: 15, color: colors.textSecondary, fontFamily: typography.primary }}>Already have an account? </Text>
               <TouchableOpacity onPress={() => navigation?.navigate('Login')}>
-                <Text style={{ fontSize: 15, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Sign In</Text>
+                <Text style={{ fontSize: 15, color: colors.text, }}>Sign In</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -251,11 +245,11 @@ export default function SignUpScreen({ navigation }: SignUpScreenProps) {
       {/* Success Feedback Overlay */}
       {showSuccess && (
         <View style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,8,30,0.95)', zIndex: 100, alignItems: 'center', justifyContent: 'center' }]}>
-          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: CHAMPAGNE, alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
-            <MaterialIcons name="check" size={40} color={NAVY} />
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: colors.primary, alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
+            <MaterialIcons name="check" size={40} color={colors.text} />
           </View>
-          <Text style={{ fontSize: 24, fontWeight: '700', color: '#fff', marginBottom: 8, fontFamily: 'System' }}>Welcome Aboard</Text>
-          <Text style={{ fontSize: 16, color: 'rgba(219,225,255,0.8)', fontFamily: 'System' }}>Securing your financial future...</Text>
+          <Text style={{ fontSize: 24, color: '#fff', marginBottom: 8, }}>Welcome Aboard</Text>
+          <Text style={{ fontSize: 16, color: 'rgba(219,225,255,0.8)', fontFamily: typography.primary }}>Securing your financial future...</Text>
         </View>
       )}
     </View>

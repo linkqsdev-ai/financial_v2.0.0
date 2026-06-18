@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const WHITE = '#ffffff';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE = '#757682';
-const RED = '#ba1a1a';
-const CHAMPAGNE = '#e9c176';
 
 interface Category {
   id: string;
@@ -60,6 +55,8 @@ interface ManageCategoriesScreenProps {
 }
 
 export default function ManageCategoriesScreen({ navigation }: ManageCategoriesScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [categories, setCategories] = useState<Category[]>(INITIAL_CATEGORIES);
   const [expandedId, setExpandedId] = useState<string | null>('1');
   const [newSubcatText, setNewSubcatText] = useState<{ [key: string]: string }>({});
@@ -122,14 +119,14 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
       }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-            <MaterialIcons name="arrow-back" size={24} color={NAVY} />
+            <MaterialIcons name="arrow-back" size={24} color={colors.text} />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Categories</Text>
+          <Text style={{ fontSize: 20, color: colors.text, }}>Categories</Text>
         </View>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TouchableOpacity style={{ padding: 4 }}>
-            <MaterialIcons name="notifications" size={24} color={NAVY} />
+            <MaterialIcons name="notifications" size={24} color={colors.text} />
           </TouchableOpacity>
           <View style={{ width: 32, height: 32, borderRadius: 16, overflow: 'hidden', borderWidth: 1, borderColor: 'rgba(0,0,0,0.1)' }}>
             <Image 
@@ -149,7 +146,7 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
               <View
                 key={cat.id}
                 style={{
-                  backgroundColor: WHITE,
+                  backgroundColor: colors.surfaceLowest,
                   borderRadius: 16,
                   borderLeftWidth: cat.borderAccent ? 4 : 0,
                   borderLeftColor: cat.borderAccent || 'transparent',
@@ -177,8 +174,8 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
                       <MaterialIcons name={cat.icon} size={20} color={cat.iconColor} />
                     </View>
                     <View>
-                      <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY }}>{cat.name}</Text>
-                      <Text style={{ fontSize: 11, color: OUTLINE, textTransform: 'uppercase', fontWeight: '600', marginTop: 2 }}>
+                      <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.text }}>{cat.name}</Text>
+                      <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', fontFamily: typography.primaryBold, marginTop: 2 }}>
                         {cat.subcategories.length} Subcategories
                       </Text>
                     </View>
@@ -186,15 +183,15 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
 
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <TouchableOpacity style={{ padding: 6 }}>
-                      <MaterialIcons name="edit" size={18} color={OUTLINE} />
+                      <MaterialIcons name="edit" size={18} color={colors.outline} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => handleDeleteCategory(cat.id)} style={{ padding: 6 }}>
-                      <MaterialIcons name="delete" size={18} color={OUTLINE} />
+                      <MaterialIcons name="delete" size={18} color={colors.outline} />
                     </TouchableOpacity>
                     <MaterialIcons
                       name={isExpanded ? 'expand-less' : 'expand-more'}
                       size={20}
-                      color={OUTLINE}
+                      color={colors.outline}
                       style={{ marginLeft: 6 }}
                     />
                   </View>
@@ -217,9 +214,9 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
                             backgroundColor: 'transparent'
                           }}
                         >
-                          <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT }}>{sub}</Text>
+                          <Text style={{ fontSize: 14, color: colors.textSecondary }}>{sub}</Text>
                           <TouchableOpacity onPress={() => handleDeleteSubcategory(cat.id, sub)} style={{ padding: 2 }}>
-                            <MaterialIcons name="close" size={16} color={OUTLINE} />
+                            <MaterialIcons name="close" size={16} color={colors.outline} />
                           </TouchableOpacity>
                         </View>
                       ))}
@@ -228,16 +225,16 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
                     {/* Quick Add */}
                     <View style={{ marginTop: 12, paddingTop: 12, borderTopWidth: 1, borderStyle: 'dashed', borderTopColor: 'rgba(0,0,0,0.1)', flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                       <TextInput
-                        style={{ flex: 1, fontSize: 14, color: NAVY, paddingVertical: 6 }}
+                        style={{ flex: 1, fontSize: 14, color: colors.text, paddingVertical: 6 }}
                         placeholder="Add subcategory..."
                         value={newSubcatText[cat.id] || ''}
                         onChangeText={text => setNewSubcatText({ ...newSubcatText, [cat.id]: text })}
                       />
                       <TouchableOpacity
                         onPress={() => handleAddSubcategory(cat.id)}
-                        style={{ backgroundColor: NAVY, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8 }}
+                        style={{ backgroundColor: colors.primaryContainer, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8 }}
                       >
-                        <Text style={{ fontSize: 11, fontWeight: '700', color: '#fff' }}>ADD</Text>
+                        <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: '#fff' }}>ADD</Text>
                       </TouchableOpacity>
                     </View>
                   </View>
@@ -261,7 +258,7 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
         <TouchableOpacity
           onPress={() => navigation?.navigate('CreateNewCategory')}
           style={{
-            backgroundColor: CHAMPAGNE,
+            backgroundColor: colors.primary,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
@@ -278,8 +275,8 @@ export default function ManageCategoriesScreen({ navigation }: ManageCategoriesS
             maxWidth: 320
           }}
         >
-          <MaterialIcons name="add-circle" size={20} color={NAVY} />
-          <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY }}>Create New Category</Text>
+          <MaterialIcons name="add-circle" size={20} color={colors.text} />
+          <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.text }}>Create New Category</Text>
         </TouchableOpacity>
       </View>
     </View>

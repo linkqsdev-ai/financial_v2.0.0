@@ -1,25 +1,20 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, StatusBar, TextInput, StyleSheet } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const CHAMPAGNE = '#D4AF37';
-const SURFACE_GRAY = '#F2F2F7';
-const WHITE = '#ffffff';
-const ON_SURFACE = '#1b1b1d';
-const ON_SURFACE_VARIANT = '#44464e';
-const OUTLINE = '#75777f';
-const OUTLINE_VARIANT = '#c5c6cf';
-const ROYAL_NAVY = '#0A1F44';
 
 interface AddAssetSourceScreenProps {
   navigation?: any;
 }
 
 export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScreenProps) {
+  const { colors, typography } = useTheme();
+  const styles = getStyles(colors, typography);
+
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE_GRAY, overflow: 'hidden' }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE_GRAY} />
+    <View style={{ flex: 1, backgroundColor: colors.background, overflow: 'hidden' }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Top Header Bar */}
       <View style={{
@@ -30,9 +25,9 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
         borderBottomWidth: 0.5, borderBottomColor: 'rgba(197,198,207,0.3)',
       }}>
         <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-          <MaterialIcons name="close" size={24} color={ROYAL_NAVY} />
+          <MaterialIcons name="close" size={24} color={colors.text} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 20, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Add Asset</Text>
+        <Text style={{ fontSize: 20, color: colors.text, }}>Add Asset</Text>
         <View style={{ width: 32 }} />
       </View>
 
@@ -44,7 +39,7 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
         {/* Search Bar */}
         <View style={{
           flexDirection: 'row', alignItems: 'center',
-          backgroundColor: WHITE,
+          backgroundColor: colors.surfaceLowest,
           borderRadius: 14,
           paddingHorizontal: 14,
           height: 56,
@@ -52,9 +47,9 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
           shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.02, shadowRadius: 6,
           elevation: 1,
         }}>
-          <MaterialIcons name="search" size={22} color={ON_SURFACE_VARIANT} style={{ marginRight: 10 }} />
+          <MaterialIcons name="search" size={22} color={colors.textSecondary} style={{ marginRight: 10 }} />
           <TextInput
-            style={{ flex: 1, fontSize: 16, color: ON_SURFACE, fontFamily: 'System' }}
+            style={{ flex: 1, fontSize: 16, color: colors.text, fontFamily: typography.primary }}
             placeholder="Search brokers or asset types"
             placeholderTextColor="rgba(117,119,127,0.5)"
           />
@@ -63,8 +58,8 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
         {/* Fast Import Section */}
         <View style={{ marginBottom: 24 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-            <Text style={{ fontSize: 20, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Fast Import</Text>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: CHAMPAGNE, textTransform: 'uppercase', letterSpacing: 0.5 }}>Recommended</Text>
+            <Text style={{ fontSize: 20, color: colors.text, }}>Fast Import</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.primary, textTransform: 'uppercase', letterSpacing: 0.5 }}>Recommended</Text>
           </View>
 
           <View style={{ gap: 12 }}>
@@ -81,10 +76,10 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 18, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Zerodha</Text>
-                <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Sync Kite portfolio automatically</Text>
+                <Text style={{ fontSize: 18, color: colors.text, }}>Zerodha</Text>
+                <Text style={{ fontSize: 13, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Sync Kite portfolio automatically</Text>
               </View>
-              <MaterialIcons name="chevron-right" size={24} color={ON_SURFACE_VARIANT} />
+              <MaterialIcons name="chevron-right" size={24} color={colors.textSecondary} />
             </TouchableOpacity>
 
             {/* Groww */}
@@ -97,17 +92,17 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 18, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Groww</Text>
-                <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Import mutual funds and stocks</Text>
+                <Text style={{ fontSize: 18, color: colors.text, }}>Groww</Text>
+                <Text style={{ fontSize: 13, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Import mutual funds and stocks</Text>
               </View>
-              <MaterialIcons name="chevron-right" size={24} color={ON_SURFACE_VARIANT} />
+              <MaterialIcons name="chevron-right" size={24} color={colors.textSecondary} />
             </TouchableOpacity>
           </View>
         </View>
 
         {/* Manual Entry Section - Bento Grid */}
         <View style={{ marginBottom: 24 }}>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: ROYAL_NAVY, marginBottom: 12, fontFamily: 'System' }}>Manual Entry</Text>
+          <Text style={{ fontSize: 20, color: colors.text, marginBottom: 12, }}>Manual Entry</Text>
           
           <View style={{ gap: 12 }}>
             {/* Real Estate (double column) */}
@@ -123,8 +118,8 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
                 />
               </View>
               <View style={{ flex: 1 }}>
-                <Text style={{ fontSize: 18, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Real Estate</Text>
-                <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Property, Land, Commercial</Text>
+                <Text style={{ fontSize: 18, color: colors.text, }}>Real Estate</Text>
+                <Text style={{ fontSize: 13, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Property, Land, Commercial</Text>
               </View>
             </TouchableOpacity>
 
@@ -141,8 +136,8 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
                     resizeMode="contain"
                   />
                 </View>
-                <Text style={{ fontSize: 16, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Gold</Text>
-                <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Physical, Digital</Text>
+                <Text style={{ fontSize: 16, color: colors.text, }}>Gold</Text>
+                <Text style={{ fontSize: 12, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Physical, Digital</Text>
               </TouchableOpacity>
 
               {/* Crypto */}
@@ -157,8 +152,8 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
                     resizeMode="contain"
                   />
                 </View>
-                <Text style={{ fontSize: 16, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Crypto</Text>
-                <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Wallets, CEX</Text>
+                <Text style={{ fontSize: 16, color: colors.text, }}>Crypto</Text>
+                <Text style={{ fontSize: 12, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Wallets, CEX</Text>
               </TouchableOpacity>
             </View>
 
@@ -172,30 +167,30 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
                     resizeMode="contain"
                   />
                 </View>
-                <Text style={{ fontSize: 16, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Savings</Text>
-                <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Bank accounts</Text>
+                <Text style={{ fontSize: 16, color: colors.text, }}>Savings</Text>
+                <Text style={{ fontSize: 12, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Bank accounts</Text>
               </TouchableOpacity>
 
               {/* Alternative */}
               <TouchableOpacity style={[styles.bentoCardSquare, { flex: 1, justifyContent: 'space-between' }]}>
                 <View style={{ backgroundColor: 'rgba(0,8,30,0.04)', width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-                  <MaterialIcons name="pending" size={24} color={ROYAL_NAVY} />
+                  <MaterialIcons name="pending" size={24} color={colors.text} />
                 </View>
                 <View>
-                  <Text style={{ fontSize: 16, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Alternative</Text>
-                  <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>Art, Watches</Text>
+                  <Text style={{ fontSize: 16, color: colors.text, }}>Alternative</Text>
+                  <Text style={{ fontSize: 12, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>Art, Watches</Text>
                 </View>
               </TouchableOpacity>
             </View>
 
             {/* Retirement Funds (double column) */}
-            <TouchableOpacity style={[styles.bentoCard, { backgroundColor: ROYAL_NAVY, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
+            <TouchableOpacity style={[styles.bentoCard, { backgroundColor: colors.primaryContainer, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }]}>
               <View>
-                <Text style={{ fontSize: 18, fontWeight: '700', color: WHITE, fontFamily: 'System' }}>Retirement Funds</Text>
-                <Text style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 2, fontFamily: 'System' }}>EPF, PPF, NPS sync</Text>
+                <Text style={{ fontSize: 18, color: colors.surfaceLowest, }}>Retirement Funds</Text>
+                <Text style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 2, fontFamily: typography.primary }}>EPF, PPF, NPS sync</Text>
               </View>
               <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' }}>
-                <MaterialIcons name="verified-user" size={22} color={CHAMPAGNE} />
+                <MaterialIcons name="verified-user" size={22} color={colors.primary} />
               </View>
             </TouchableOpacity>
 
@@ -204,7 +199,7 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
 
         {/* Premium Upgrade Banner */}
         <View style={{
-          backgroundColor: ROYAL_NAVY,
+          backgroundColor: colors.primaryContainer,
           borderRadius: 24,
           padding: 24,
           position: 'relative',
@@ -212,15 +207,15 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
         }}>
           <View style={{ position: 'absolute', top: -30, right: -30, width: 140, height: 140, backgroundColor: 'rgba(212,175,55,0.06)', borderRadius: 70 }} />
           <View style={{ alignSelf: 'flex-start', backgroundColor: 'rgba(212,175,55,0.2)', paddingHorizontal: 12, paddingVertical: 4, borderRadius: 99, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <MaterialIcons name="stars" size={14} color={CHAMPAGNE} />
-            <Text style={{ fontSize: 9, fontWeight: '700', color: CHAMPAGNE, textTransform: 'uppercase', letterSpacing: 1 }}>Premium</Text>
+            <MaterialIcons name="stars" size={14} color={colors.primary} />
+            <Text style={{ fontSize: 9, fontFamily: typography.primaryBold, color: colors.primary, textTransform: 'uppercase', letterSpacing: 1 }}>Premium</Text>
           </View>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: WHITE, marginBottom: 8, fontFamily: 'System' }}>Automated Multi-Broker Sync</Text>
-          <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: 20, marginBottom: 20, fontFamily: 'System' }}>
+          <Text style={{ fontSize: 20, color: colors.surfaceLowest, marginBottom: 8, }}>Automated Multi-Broker Sync</Text>
+          <Text style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: 20, marginBottom: 20, fontFamily: typography.primary }}>
             Connect over 40+ Indian brokers and 10+ Global exchanges to track your net worth in real-time with zero manual entry.
           </Text>
-          <TouchableOpacity style={{ backgroundColor: CHAMPAGNE, paddingVertical: 14, borderRadius: 12, alignItems: 'center' }}>
-            <Text style={{ fontSize: 15, fontWeight: '700', color: ROYAL_NAVY, fontFamily: 'System' }}>Upgrade Now</Text>
+          <TouchableOpacity style={{ backgroundColor: colors.primary, paddingVertical: 14, borderRadius: 12, alignItems: 'center' }}>
+            <Text style={{ fontSize: 15, color: colors.text, }}>Upgrade Now</Text>
           </TouchableOpacity>
         </View>
 
@@ -229,9 +224,9 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
   );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (colors: any, typography: any) => StyleSheet.create({
   importCard: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.surfaceLowest,
     borderRadius: 20,
     padding: 16,
     flexDirection: 'row',
@@ -241,14 +236,14 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   bentoCard: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.surfaceLowest,
     borderRadius: 20,
     padding: 20,
     shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.04, shadowRadius: 10,
     elevation: 2,
   },
   bentoCardSquare: {
-    backgroundColor: WHITE,
+    backgroundColor: colors.surfaceLowest,
     borderRadius: 20,
     padding: 18,
     shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.04, shadowRadius: 10,

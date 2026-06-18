@@ -1,8 +1,11 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Plus } from 'lucide-react-native';
+import { useTheme } from '../../theme/ThemeContext';
 
 export function FAB() {
+  const { colors, typography } = useTheme();
+
   return (
     <TouchableOpacity 
       className="absolute bottom-28 right-6 w-14 h-14 bg-royal-navy rounded-full items-center justify-center z-40 active:scale-90 transition-transform"

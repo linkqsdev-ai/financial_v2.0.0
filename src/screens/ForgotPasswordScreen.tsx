@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StatusBar, KeyboardAvoidingView, Platform, StyleSheet, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const CHAMPAGNE = '#e9c176';
-const SURFACE = '#fcf8fb';
-const SURFACE_GRAY = '#F2F2F7';
-const SURFACE_CONTAINER_LOWEST = '#ffffff';
-const ON_SURFACE = '#1b1b1d';
-const ON_SURFACE_VARIANT = '#44464e';
-const OUTLINE = '#75777f';
-const OUTLINE_VARIANT = '#c5c6cf';
-const GREEN = '#34C759';
 
 interface ForgotPasswordScreenProps {
   navigation?: any;
 }
 
 export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [email, setEmail] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -32,8 +25,8 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE, overflow: 'hidden' }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE} />
+    <View style={{ flex: 1, backgroundColor: colors.background, overflow: 'hidden' }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Top Header Bar */}
       <View style={{
@@ -48,8 +41,8 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
           style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}
           activeOpacity={0.7}
         >
-          <MaterialIcons name="arrow-back-ios" size={16} color={NAVY} />
-          <Text style={{ fontSize: 17, color: NAVY, fontWeight: '600', fontFamily: 'System' }}>Back</Text>
+          <MaterialIcons name="arrow-back-ios" size={16} color={colors.text} />
+          <Text style={{ fontSize: 17, color: colors.text, fontFamily: typography.primary }}>Back</Text>
         </TouchableOpacity>
       </View>
 
@@ -75,10 +68,10 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
                 shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.04, shadowRadius: 6,
                 elevation: 1,
               }}>
-                <MaterialIcons name="lock-reset" size={40} color={NAVY} />
+                <MaterialIcons name="lock-reset" size={40} color={colors.text} />
               </View>
-              <Text style={{ fontSize: 32, fontWeight: '700', color: NAVY, letterSpacing: -0.8, marginBottom: 8, fontFamily: 'System' }}>Reset Password</Text>
-              <Text style={{ fontSize: 16, color: ON_SURFACE_VARIANT, textAlign: 'center', maxWidth: 280, fontFamily: 'System', lineHeight: 22 }}>
+              <Text style={{ fontSize: 32, color: colors.text, letterSpacing: -0.8, marginBottom: 8, }}>Reset Password</Text>
+              <Text style={{ fontSize: 16, color: colors.textSecondary, textAlign: 'center', maxWidth: 280, fontFamily: typography.primary, lineHeight: 22 }}>
                 Enter your email to receive a recovery link
               </Text>
             </View>
@@ -86,7 +79,7 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
             {/* Form Card */}
             <View style={{
               width: '100%',
-              backgroundColor: SURFACE_CONTAINER_LOWEST,
+              backgroundColor: colors.background_CONTAINER_LOWEST,
               borderRadius: 20,
               padding: 24,
               shadowColor: '#00113a',
@@ -98,16 +91,16 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
             }}>
               {/* Email Input */}
               <View style={{ marginBottom: 24 }}>
-                <Text style={{ fontSize: 11, fontWeight: '600', color: NAVY, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 6, marginLeft: 2, fontFamily: 'System' }}>
+                <Text style={{ fontSize: 11, color: colors.text, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 6, marginLeft: 2, }}>
                   Email Address
                 </Text>
                 <View style={{
                   flexDirection: 'row', alignItems: 'center',
-                  borderBottomWidth: 1, borderBottomColor: OUTLINE_VARIANT,
+                  borderBottomWidth: 1, borderBottomColor: colors.outlineVariant,
                   paddingVertical: 4,
                 }}>
                   <TextInput
-                    style={{ flex: 1, fontSize: 17, color: ON_SURFACE, paddingVertical: 8, fontFamily: 'System' }}
+                    style={{ flex: 1, fontSize: 17, color: colors.text, paddingVertical: 8, fontFamily: typography.primary }}
                     placeholder="e.g. elite.investor@finboom.com"
                     placeholderTextColor="rgba(117,119,127,0.4)"
                     keyboardType="email-address"
@@ -123,19 +116,19 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
               <TouchableOpacity
                 onPress={handleReset}
                 style={{
-                  backgroundColor: NAVY,
+                  backgroundColor: colors.primaryContainer,
                   borderRadius: 14,
                   height: 56,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  shadowColor: NAVY,
+                  shadowColor: colors.primaryContainer,
                   shadowOffset: { width: 0, height: 6 },
                   shadowOpacity: 0.12,
                   shadowRadius: 10,
                   elevation: 4,
                 }}
               >
-                <Text style={{ fontSize: 17, fontWeight: '600', color: '#fff', fontFamily: 'System' }}>Send Reset Link</Text>
+                <Text style={{ fontSize: 17, color: '#fff', }}>Send Reset Link</Text>
               </TouchableOpacity>
 
               {/* Back to Login Link */}
@@ -143,7 +136,7 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
                 onPress={() => navigation?.navigate('Login')}
                 style={{ marginTop: 24, alignItems: 'center' }}
               >
-                <Text style={{ fontSize: 15, fontWeight: '600', color: NAVY, textDecorationLine: 'underline', textDecorationColor: CHAMPAGNE, fontFamily: 'System' }}>
+                <Text style={{ fontSize: 15, color: colors.text, textDecorationLine: 'underline', textDecorationColor: colors.primary, }}>
                   Back to Login
                 </Text>
               </TouchableOpacity>
@@ -151,9 +144,9 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
 
             {/* Decorative Accents */}
             <View style={{ flexDirection: 'row', gap: 6, marginTop: 24, opacity: 0.3 }}>
-              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: CHAMPAGNE }} />
-              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: CHAMPAGNE }} />
-              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: CHAMPAGNE }} />
+              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: colors.primary }} />
+              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: colors.primary }} />
+              <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: colors.primary }} />
             </View>
           </View>
         </ScrollView>
@@ -171,8 +164,8 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
           borderRadius: 20,
           borderWidth: 1, borderColor: 'rgba(197,198,207,0.2)',
         }}>
-          <MaterialIcons name="verified-user" size={14} color={OUTLINE} />
-          <Text style={{ fontSize: 11, fontWeight: '600', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1, fontFamily: 'System' }}>
+          <MaterialIcons name="verified-user" size={14} color={colors.outline} />
+          <Text style={{ fontSize: 11, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1, }}>
             Secured by Finboom Systems
           </Text>
         </View>
@@ -192,7 +185,7 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
           padding: 20,
         }}>
           <View style={{
-            backgroundColor: SURFACE_CONTAINER_LOWEST,
+            backgroundColor: colors.background_CONTAINER_LOWEST,
             borderRadius: 20,
             padding: 24,
             width: '100%',
@@ -207,23 +200,23 @@ export default function ForgotPasswordScreen({ navigation }: ForgotPasswordScree
               alignItems: 'center', justifyContent: 'center',
               marginBottom: 20,
             }}>
-              <MaterialIcons name="mark-email-read" size={40} color={GREEN} />
+              <MaterialIcons name="mark-email-read" size={40} color={colors.success} />
             </View>
-            <Text style={{ fontSize: 22, fontWeight: '700', color: NAVY, marginBottom: 8, fontFamily: 'System' }}>Link Sent</Text>
-            <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT, textAlign: 'center', marginBottom: 24, lineHeight: 20, fontFamily: 'System' }}>
+            <Text style={{ fontSize: 22, color: colors.text, marginBottom: 8, }}>Link Sent</Text>
+            <Text style={{ fontSize: 14, color: colors.textSecondary, textAlign: 'center', marginBottom: 24, lineHeight: 20, fontFamily: typography.primary }}>
               Please check your inbox. We've sent a secure password recovery link to your registered email.
             </Text>
             <TouchableOpacity
               onPress={handleModalClose}
               style={{
                 width: '100%',
-                backgroundColor: NAVY,
+                backgroundColor: colors.primaryContainer,
                 borderRadius: 12,
                 height: 48,
                 alignItems: 'center', justifyContent: 'center',
               }}
             >
-              <Text style={{ fontSize: 16, fontWeight: '600', color: '#fff', fontFamily: 'System' }}>Done</Text>
+              <Text style={{ fontSize: 16, color: '#fff', }}>Done</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -1,17 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StatusBar, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const SURFACE = '#f8f9fa';
-const SURFACE_WHITE = '#ffffff';
-const SURFACE_LOW = '#f3f4f5';
-const SURFACE_HIGH = '#e7e8e9';
-const ON_SURFACE = '#191c1d';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE_VARIANT = '#c5c6d2';
-const GREEN = '#16a34a';
-const RED = '#ba1a1a';
 const SECONDARY_CONTAINER = '#eddec5';
 
 interface KPICardProps {
@@ -26,10 +17,12 @@ interface KPICardProps {
 }
 
 function KPICard({ label, value, change, changeColor, iconName, accentColor, isInvestment, isSavings }: KPICardProps) {
+  const { colors, typography } = useTheme();
+
   return (
     <View style={{
       flex: 1,
-      backgroundColor: SURFACE_WHITE,
+      backgroundColor: colors.surfaceLowest,
       borderRadius: 16,
       padding: 14,
       borderLeftWidth: 4,
@@ -45,17 +38,17 @@ function KPICard({ label, value, change, changeColor, iconName, accentColor, isI
       <View style={{ position: 'absolute', top: 12, right: 12, opacity: 0.15 }}>
         <MaterialIcons name={iconName} size={28} color={accentColor} />
       </View>
-      <Text style={{ fontSize: 10, fontWeight: '600', color: ON_SURFACE_VARIANT, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4, fontFamily: 'System' }}>{label}</Text>
-      <Text style={{ fontSize: 22, fontWeight: '700', color: NAVY, letterSpacing: -0.5, marginBottom: 8, fontFamily: 'System' }}>{value}</Text>
+      <Text style={{ fontSize: 10, color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4, }}>{label}</Text>
+      <Text style={{ fontSize: 22, color: colors.text, letterSpacing: -0.5, marginBottom: 8, }}>{value}</Text>
       
       {isInvestment && (
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Text style={{ fontSize: 11, fontWeight: '700', color: accentColor, fontFamily: 'System' }}>52%</Text>
+          <Text style={{ fontSize: 11, color: accentColor, }}>52%</Text>
         </View>
       )}
 
       {isSavings && (
-        <View style={{ width: '100%', height: 4, backgroundColor: SURFACE_HIGH, borderRadius: 2, overflow: 'hidden', marginTop: 4 }}>
+        <View style={{ width: '100%', height: 4, backgroundColor: colors.background_HIGH, borderRadius: 2, overflow: 'hidden', marginTop: 4 }}>
           <View style={{ width: '65%', height: '100%', backgroundColor: accentColor, borderRadius: 2 }} />
         </View>
       )}
@@ -63,7 +56,7 @@ function KPICard({ label, value, change, changeColor, iconName, accentColor, isI
       {change && !isInvestment && !isSavings && (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
           <MaterialIcons name={change.startsWith('+') ? 'trending-up' : 'trending-down'} size={14} color={changeColor} />
-          <Text style={{ fontSize: 10, fontWeight: '700', color: changeColor, fontFamily: 'System' }}>{change}</Text>
+          <Text style={{ fontSize: 10, color: changeColor, }}>{change}</Text>
         </View>
       )}
     </View>
@@ -81,6 +74,8 @@ interface TransactionItemProps {
 }
 
 function TransactionItem({ iconName, iconBg, iconColor, title, subtitle, amount, amountColor }: TransactionItemProps) {
+  const { colors, typography } = useTheme();
+
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 12, paddingHorizontal: 16 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
@@ -88,11 +83,11 @@ function TransactionItem({ iconName, iconBg, iconColor, title, subtitle, amount,
           <MaterialIcons name={iconName} size={20} color={iconColor} />
         </View>
         <View>
-          <Text style={{ fontSize: 15, fontWeight: '700', color: ON_SURFACE, fontFamily: 'System' }}>{title}</Text>
-          <Text style={{ fontSize: 11, color: ON_SURFACE_VARIANT, marginTop: 2, fontFamily: 'System' }}>{subtitle}</Text>
+          <Text style={{ fontSize: 15, color: colors.text, }}>{title}</Text>
+          <Text style={{ fontSize: 11, color: colors.textSecondary, marginTop: 2, fontFamily: typography.primary }}>{subtitle}</Text>
         </View>
       </View>
-      <Text style={{ fontSize: 15, fontWeight: '700', color: amountColor, fontFamily: 'System' }}>{amount}</Text>
+      <Text style={{ fontSize: 15, color: amountColor, }}>{amount}</Text>
     </View>
   );
 }
@@ -111,25 +106,27 @@ interface BudgetRowProps {
 }
 
 function BudgetRow({ iconName, label, spent, budget, progress, progressColor, statusLeft, statusRight, statusLeftColor, statusRightColor }: BudgetRowProps) {
+  const { colors, typography } = useTheme();
+
   return (
     <View style={{ marginBottom: 20 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 8 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <MaterialIcons name={iconName} size={20} color={progressColor === RED ? RED : ON_SURFACE_VARIANT} />
-          <Text style={{ fontSize: 15, fontWeight: '700', color: ON_SURFACE, fontFamily: 'System' }}>{label}</Text>
+          <MaterialIcons name={iconName} size={20} color={progressColor === colors.danger ? colors.danger : colors.textSecondary} />
+          <Text style={{ fontSize: 15, color: colors.text, }}>{label}</Text>
         </View>
         <View style={{ flexDirection: 'row', gap: 2 }}>
-          <Text style={{ fontSize: 13, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>{spent}</Text>
-          <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, fontFamily: 'System' }}> / {budget}</Text>
+          <Text style={{ fontSize: 13, color: colors.text, }}>{spent}</Text>
+          <Text style={{ fontSize: 13, color: colors.textSecondary, fontFamily: typography.primary }}> / {budget}</Text>
         </View>
       </View>
-      <View style={{ backgroundColor: SURFACE_HIGH, height: 8, borderRadius: 99, overflow: 'hidden' }}>
+      <View style={{ backgroundColor: colors.background_HIGH, height: 8, borderRadius: 99, overflow: 'hidden' }}>
         <View style={{ width: `${Math.min(progress, 100)}%` as any, height: '100%', backgroundColor: progressColor, borderRadius: 99 }} />
       </View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 6 }}>
-        <Text style={{ fontSize: 11, color: statusLeftColor, fontWeight: '700', fontFamily: 'System' }}>{statusLeft}</Text>
+        <Text style={{ fontSize: 11, color: statusLeftColor, fontFamily: typography.primaryBold }}>{statusLeft}</Text>
         <TouchableOpacity>
-          <Text style={{ fontSize: 11, color: statusRightColor, fontWeight: '700', fontFamily: 'System' }}>{statusRight}</Text>
+          <Text style={{ fontSize: 11, color: statusRightColor, fontFamily: typography.primaryBold }}>{statusRight}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -137,18 +134,20 @@ function BudgetRow({ iconName, label, spent, budget, progress, progressColor, st
 }
 
 export default function CashFlowScreen({ navigation }: { navigation?: any }) {
+  const { colors, typography } = useTheme();
+
   const [activeTab, setActiveTab] = useState<'Monthly' | 'Quarterly' | 'Yearly'>('Monthly');
 
   return (
-    <View style={{ flex: 1, backgroundColor: SURFACE }}>
-      <StatusBar barStyle="dark-content" backgroundColor={SURFACE} />
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} />
 
       {/* Header */}
       <View style={{
         backgroundColor: 'rgba(255,255,255,0.85)',
         flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
         paddingHorizontal: 20, paddingTop: 12, paddingBottom: 12,
-        borderBottomWidth: 0.5, borderBottomColor: OUTLINE_VARIANT,
+        borderBottomWidth: 0.5, borderBottomColor: colors.outlineVariant,
       }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <View style={{ width: 32, height: 32, borderRadius: 16, overflow: 'hidden', backgroundColor: '#e1e3e4' }}>
@@ -158,10 +157,10 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
               resizeMode="cover"
             />
           </View>
-          <Text style={{ fontSize: 22, fontWeight: '800', color: NAVY, fontFamily: 'System', letterSpacing: -0.5 }}>FIRE Navigator</Text>
+          <Text style={{ fontSize: 22, color: colors.text, letterSpacing: -0.5 }}>FIRE Navigator</Text>
         </View>
         <TouchableOpacity activeOpacity={0.7}>
-          <MaterialIcons name="notifications" size={24} color={NAVY} />
+          <MaterialIcons name="notifications" size={24} color={colors.text} />
         </TouchableOpacity>
       </View>
 
@@ -170,7 +169,7 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
         {/* Filter + Action Row */}
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           {/* Segmented control */}
-          <View style={{ flexDirection: 'row', backgroundColor: SURFACE_LOW, padding: 4, borderRadius: 12, gap: 2 }}>
+          <View style={{ flexDirection: 'row', backgroundColor: colors.background_LOW, padding: 4, borderRadius: 12, gap: 2 }}>
             {(['Monthly', 'Quarterly', 'Yearly'] as const).map(tab => (
               <TouchableOpacity
                 key={tab}
@@ -179,7 +178,7 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
                   paddingHorizontal: 16,
                   paddingVertical: 8,
                   borderRadius: 8,
-                  backgroundColor: activeTab === tab ? SURFACE_WHITE : 'transparent',
+                  backgroundColor: activeTab === tab ? colors.surfaceLowest : 'transparent',
                   shadowColor: activeTab === tab ? '#000' : 'transparent',
                   shadowOffset: { width: 0, height: 1 },
                   shadowOpacity: activeTab === tab ? 0.08 : 0,
@@ -187,7 +186,7 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
                   elevation: activeTab === tab ? 2 : 0,
                 }}
               >
-                <Text style={{ fontSize: 13, fontWeight: activeTab === tab ? '700' : '500', color: activeTab === tab ? NAVY : ON_SURFACE_VARIANT, fontFamily: 'System' }}>
+                <Text style={{ fontSize: 13, fontWeight: activeTab === tab ? '700' : '500', color: activeTab === tab ? colors.primaryContainer : colors.textSecondary, fontFamily: typography.primary }}>
                   {tab}
                 </Text>
               </TouchableOpacity>
@@ -198,7 +197,7 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
           <TouchableOpacity 
             onPress={() => navigation?.navigate('VisualReports')}
             style={{
-              backgroundColor: NAVY,
+              backgroundColor: colors.primaryContainer,
               paddingHorizontal: 16,
               paddingVertical: 10,
               borderRadius: 99,
@@ -208,14 +207,14 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
             }}
           >
             <MaterialIcons name="auto-fix-high" size={16} color="#fff" />
-            <Text style={{ fontSize: 13, fontWeight: '700', color: '#fff', fontFamily: 'System' }}>Generate</Text>
+            <Text style={{ fontSize: 13, color: '#fff', }}>Generate</Text>
           </TouchableOpacity>
         </View>
 
         {/* KPI Grid 2x2 */}
         <View style={{ flexDirection: 'row', gap: 12, marginBottom: 12 }}>
-          <KPICard label="Total Income" value="$12,450" change="+12% vs LY" changeColor={GREEN} iconName="payments" accentColor="#435b9f" />
-          <KPICard label="Total Expense" value="$4,120" change="-5% vs Plan" changeColor={RED} iconName="shopping-cart" accentColor={RED} />
+          <KPICard label="Total Income" value="$12,450" change="+12% vs LY" changeColor={colors.success} iconName="payments" accentColor="#435b9f" />
+          <KPICard label="Total Expense" value="$4,120" change="-5% vs Plan" changeColor={colors.danger} iconName="shopping-cart" accentColor={colors.danger} />
         </View>
         <View style={{ flexDirection: 'row', gap: 12, marginBottom: 24 }}>
           <KPICard label="Total Investment" value="$6,500" iconName="monitoring" accentColor="#e9c176" isInvestment={true} />
@@ -225,14 +224,14 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
         {/* Recent Transactions */}
         <View style={{ marginBottom: 24 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-            <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Recent Transactions</Text>
+            <Text style={{ fontSize: 20, color: colors.text, }}>Recent Transactions</Text>
             <TouchableOpacity onPress={() => navigation?.navigate('ActivityList')}>
-              <Text style={{ fontSize: 13, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>View All</Text>
+              <Text style={{ fontSize: 13, color: colors.text, }}>View All</Text>
             </TouchableOpacity>
           </View>
 
           <View style={{
-            backgroundColor: SURFACE_WHITE,
+            backgroundColor: colors.surfaceLowest,
             borderRadius: 20,
             overflow: 'hidden',
             shadowColor: '#000',
@@ -244,23 +243,23 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
             <TransactionItem
               iconName="work"
               iconBg="#dcfce7"
-              iconColor={GREEN}
+              iconColor={colors.success}
               title="Tech Global Corp"
               subtitle="Salary • Oct 01"
               amount="+$8,500.00"
-              amountColor={GREEN}
+              amountColor={colors.success}
             />
-            <View style={{ height: 0.5, backgroundColor: OUTLINE_VARIANT, opacity: 0.3, marginHorizontal: 16 }} />
+            <View style={{ height: 0.5, backgroundColor: colors.outlineVariant, opacity: 0.3, marginHorizontal: 16 }} />
             <TransactionItem
               iconName="home"
               iconBg="#fee2e2"
-              iconColor={RED}
+              iconColor={colors.danger}
               title="Skyline Rentals"
               subtitle="Rent • Oct 02"
               amount="-$2,800.00"
-              amountColor={ON_SURFACE}
+              amountColor={colors.text}
             />
-            <View style={{ height: 0.5, backgroundColor: OUTLINE_VARIANT, opacity: 0.3, marginHorizontal: 16 }} />
+            <View style={{ height: 0.5, backgroundColor: colors.outlineVariant, opacity: 0.3, marginHorizontal: 16 }} />
             <TransactionItem
               iconName="account-balance"
               iconBg="#dbeafe"
@@ -268,27 +267,27 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
               title="Vanguard VTI"
               subtitle="Dividends • Oct 05"
               amount="+$124.50"
-              amountColor={GREEN}
+              amountColor={colors.success}
             />
-            <View style={{ height: 0.5, backgroundColor: OUTLINE_VARIANT, opacity: 0.3, marginHorizontal: 16 }} />
+            <View style={{ height: 0.5, backgroundColor: colors.outlineVariant, opacity: 0.3, marginHorizontal: 16 }} />
             <TransactionItem
               iconName="shopping-bag"
-              iconBg={SURFACE_HIGH}
-              iconColor={ON_SURFACE_VARIANT}
+              iconBg={colors.surfaceLow}
+              iconColor={colors.textSecondary}
               title="Apple Store"
               subtitle="Tech • Oct 08"
               amount="-$1,299.00"
-              amountColor={ON_SURFACE}
+              amountColor={colors.text}
             />
           </View>
         </View>
 
         {/* Budget Planner */}
         <View style={{ marginBottom: 16 }}>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, marginBottom: 14, fontFamily: 'System' }}>Budget Planner</Text>
+          <Text style={{ fontSize: 20, color: colors.text, marginBottom: 14, }}>Budget Planner</Text>
 
           <View style={{
-            backgroundColor: SURFACE_LOW,
+            backgroundColor: colors.background_LOW,
             borderRadius: 20,
             padding: 20,
             shadowColor: '#000',
@@ -303,10 +302,10 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
               spent="$650"
               budget="$800"
               progress={81}
-              progressColor={NAVY}
+              progressColor={colors.primaryContainer}
               statusLeft="81% Used"
               statusRight="Safe limit"
-              statusLeftColor={ON_SURFACE_VARIANT}
+              statusLeftColor={colors.textSecondary}
               statusRightColor="#ad8a46"
             />
             <BudgetRow
@@ -315,11 +314,11 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
               spent="$1,200"
               budget="$1,000"
               progress={120}
-              progressColor={RED}
+              progressColor={colors.danger}
               statusLeft="OVERSPENT 20%"
               statusRight="Adjust Plan"
-              statusLeftColor={RED}
-              statusRightColor={NAVY}
+              statusLeftColor={colors.danger}
+              statusRightColor={colors.primaryContainer}
             />
 
             {/* FIRE Milestone premium card */}
@@ -331,14 +330,14 @@ export default function CashFlowScreen({ navigation }: { navigation?: any }) {
               borderColor: '#d3c5ad',
             }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                <Text style={{ fontSize: 11, fontWeight: '700', color: '#221b0b', textTransform: 'uppercase', letterSpacing: 1, fontFamily: 'System' }}>FIRE Milestone</Text>
+                <Text style={{ fontSize: 11, color: '#221b0b', textTransform: 'uppercase', letterSpacing: 1, }}>FIRE Milestone</Text>
                 <MaterialIcons name="auto-awesome" size={18} color="#221b0b" />
               </View>
-              <Text style={{ fontSize: 14, fontWeight: '700', color: '#221b0b', marginBottom: 10, fontFamily: 'System' }}>Luxury Travel Fund</Text>
+              <Text style={{ fontSize: 14, color: '#221b0b', marginBottom: 10, }}>Luxury Travel Fund</Text>
               <View style={{ backgroundColor: 'rgba(255,255,255,0.4)', borderRadius: 99, height: 10, overflow: 'hidden', marginBottom: 8 }}>
-                <View style={{ width: '45%', height: '100%', backgroundColor: NAVY, borderRadius: 99 }} />
+                <View style={{ width: '45%', height: '100%', backgroundColor: colors.primaryContainer, borderRadius: 99 }} />
               </View>
-              <Text style={{ fontSize: 11, color: '#4f4533', fontFamily: 'System' }}>$4,500 of $10,000 saved</Text>
+              <Text style={{ fontSize: 11, color: '#4f4533', fontFamily: typography.primary }}>$4,500 of $10,000 saved</Text>
             </View>
           </View>
         </View>

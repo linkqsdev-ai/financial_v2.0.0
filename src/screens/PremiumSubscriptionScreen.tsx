@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const WHITE = '#ffffff';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE = '#757682';
-const CHAMPAGNE = '#ffdea5';
-const GOLD_GRADIENT_START = '#FFD700';
-const GOLD_GRADIENT_END = '#B8860B';
 
 interface PremiumSubscriptionScreenProps {
   navigation?: any;
 }
 
 export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscriptionScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [couponCode, setCouponCode] = useState('');
   const [applied, setApplied] = useState(false);
 
@@ -40,14 +36,14 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
       }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-            <MaterialIcons name="close" size={24} color={ON_SURFACE_VARIANT} />
+            <MaterialIcons name="close" size={24} color={colors.textSecondary} />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>FIRE Navigator</Text>
+          <Text style={{ fontSize: 20, color: colors.text, }}>FIRE Navigator</Text>
         </View>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: CHAMPAGNE, paddingHorizontal: 12, paddingVertical: 4, borderRadius: 20 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.primary, paddingHorizontal: 12, paddingVertical: 4, borderRadius: 20 }}>
           <MaterialIcons name="workspace-premium" size={16} color="#261900" />
-          <Text style={{ fontSize: 10, fontWeight: '700', color: '#261900' }}>GO PRO</Text>
+          <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: '#261900' }}>GO PRO</Text>
         </View>
       </View>
 
@@ -55,10 +51,10 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
         
         {/* Intro Section */}
         <View style={{ alignItems: 'center', marginBottom: 28 }}>
-          <Text style={{ fontSize: 26, fontWeight: '800', color: NAVY, textAlign: 'center', marginBottom: 8, fontFamily: 'System', letterSpacing: -0.5 }}>
+          <Text style={{ fontSize: 26, color: colors.text, textAlign: 'center', marginBottom: 8, letterSpacing: -0.5 }}>
             Accelerate Your Independence
           </Text>
-          <Text style={{ fontSize: 15, color: ON_SURFACE_VARIANT, textAlign: 'center', lineHeight: 22, maxWidth: 320 }}>
+          <Text style={{ fontSize: 15, color: colors.textSecondary, textAlign: 'center', lineHeight: 22, maxWidth: 320 }}>
             Join 15,000+ investors using FIRE Navigator Pro to track net worth, automate cash flow, and forecast early retirement with precision.
           </Text>
         </View>
@@ -74,13 +70,13 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
             borderColor: 'rgba(0,0,0,0.05)',
             alignItems: 'center'
           }}>
-            <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY }}>Monthly</Text>
+            <Text style={{ fontSize: 18, fontFamily: typography.primaryBold, color: colors.text }}>Monthly</Text>
             <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 8, marginBottom: 8 }}>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT }}>$</Text>
-              <Text style={{ fontSize: 28, fontWeight: '800', color: NAVY }}>19</Text>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT }}>/mo</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary }}>$</Text>
+              <Text style={{ fontSize: 28, fontFamily: typography.primaryExtraBold, color: colors.text }}>19</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary }}>/mo</Text>
             </View>
-            <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginBottom: 16 }}>Flexibility for evolving portfolios</Text>
+            <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 16 }}>Flexibility for evolving portfolios</Text>
             <TouchableOpacity
               onPress={() => handleSelectPackage('Monthly')}
               style={{
@@ -88,17 +84,17 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
                 paddingVertical: 12,
                 borderRadius: 10,
                 borderWidth: 1.5,
-                borderColor: NAVY,
+                borderColor: colors.primaryContainer,
                 alignItems: 'center'
               }}
             >
-              <Text style={{ fontSize: 14, fontWeight: '700', color: NAVY }}>Select Monthly</Text>
+              <Text style={{ fontSize: 14, fontFamily: typography.primaryBold, color: colors.text }}>Select Monthly</Text>
             </TouchableOpacity>
           </View>
 
           {/* Annual - Popular */}
           <View style={{
-            backgroundColor: WHITE,
+            backgroundColor: colors.surfaceLowest,
             borderRadius: 20,
             padding: 20,
             borderWidth: 2,
@@ -121,32 +117,32 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
               paddingVertical: 4,
               borderBottomLeftRadius: 10
             }}>
-              <Text style={{ fontSize: 9, fontWeight: '800', color: '#fff', letterSpacing: 1 }}>POPULAR</Text>
+              <Text style={{ fontSize: 9, fontFamily: typography.primaryExtraBold, color: '#fff', letterSpacing: 1 }}>POPULAR</Text>
             </View>
 
-            <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY, marginTop: 4 }}>Annual</Text>
+            <Text style={{ fontSize: 18, fontFamily: typography.primaryBold, color: colors.text, marginTop: 4 }}>Annual</Text>
             <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 8, marginBottom: 4 }}>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT }}>$</Text>
-              <Text style={{ fontSize: 28, fontWeight: '800', color: NAVY }}>149</Text>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT }}>/yr</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary }}>$</Text>
+              <Text style={{ fontSize: 28, fontFamily: typography.primaryExtraBold, color: colors.text }}>149</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary }}>/yr</Text>
             </View>
 
             <View style={{ backgroundColor: 'rgba(5,150,105,0.1)', paddingHorizontal: 10, paddingVertical: 2, borderRadius: 12, marginBottom: 8 }}>
-              <Text style={{ fontSize: 11, fontWeight: '700', color: '#059669' }}>SAVE 37%</Text>
+              <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: '#059669' }}>SAVE 37%</Text>
             </View>
 
-            <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginBottom: 16 }}>Optimized for long-term FIRE goals</Text>
+            <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 16 }}>Optimized for long-term FIRE goals</Text>
             <TouchableOpacity
               onPress={() => handleSelectPackage('Annual')}
               style={{
                 width: '100%',
                 paddingVertical: 12,
                 borderRadius: 10,
-                backgroundColor: NAVY,
+                backgroundColor: colors.primaryContainer,
                 alignItems: 'center'
               }}
             >
-              <Text style={{ fontSize: 14, fontWeight: '700', color: WHITE }}>Get Pro Now</Text>
+              <Text style={{ fontSize: 14, fontFamily: typography.primaryBold, color: colors.surfaceLowest }}>Get Pro Now</Text>
             </TouchableOpacity>
           </View>
 
@@ -159,12 +155,12 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
             borderColor: 'rgba(0,0,0,0.05)',
             alignItems: 'center'
           }}>
-            <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY }}>Lifetime</Text>
+            <Text style={{ fontSize: 18, fontFamily: typography.primaryBold, color: colors.text }}>Lifetime</Text>
             <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 8, marginBottom: 8 }}>
-              <Text style={{ fontSize: 14, color: ON_SURFACE_VARIANT }}>$</Text>
-              <Text style={{ fontSize: 28, fontWeight: '800', color: NAVY }}>499</Text>
+              <Text style={{ fontSize: 14, color: colors.textSecondary }}>$</Text>
+              <Text style={{ fontSize: 28, fontFamily: typography.primaryExtraBold, color: colors.text }}>499</Text>
             </View>
-            <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginBottom: 16 }}>One payment. Permanent access.</Text>
+            <Text style={{ fontSize: 13, color: colors.textSecondary, marginBottom: 16 }}>One payment. Permanent access.</Text>
             <TouchableOpacity
               onPress={() => handleSelectPackage('Lifetime')}
               style={{
@@ -172,11 +168,11 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
                 paddingVertical: 12,
                 borderRadius: 10,
                 borderWidth: 1.5,
-                borderColor: NAVY,
+                borderColor: colors.primaryContainer,
                 alignItems: 'center'
               }}
             >
-              <Text style={{ fontSize: 14, fontWeight: '700', color: NAVY }}>Claim Lifetime</Text>
+              <Text style={{ fontSize: 14, fontFamily: typography.primaryBold, color: colors.text }}>Claim Lifetime</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -202,10 +198,10 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
           <View>
             <View style={{ alignSelf: 'flex-start', backgroundColor: '#ffdea5', paddingHorizontal: 10, paddingVertical: 2, borderRadius: 12, marginBottom: 8, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
               <MaterialIcons name="notifications-active" size={12} color="#261900" />
-              <Text style={{ fontSize: 9, fontWeight: '700', color: '#261900', textTransform: 'uppercase' }}>Pro Exclusive</Text>
+              <Text style={{ fontSize: 9, fontFamily: typography.primaryBold, color: '#261900', textTransform: 'uppercase' }}>Pro Exclusive</Text>
             </View>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY, marginBottom: 6 }}>Smart Alerts & Real-time Monitoring</Text>
-            <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, lineHeight: 20 }}>
+            <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.text, marginBottom: 6 }}>Smart Alerts & Real-time Monitoring</Text>
+            <Text style={{ fontSize: 13, color: colors.textSecondary, lineHeight: 20 }}>
               Never miss a market shift. Pro members receive glassmorphic pulse notifications for portfolio rebalancing opportunities and net worth milestones.
             </Text>
           </View>
@@ -213,7 +209,7 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
 
         {/* Feature Comparison Table */}
         <View style={{
-          backgroundColor: WHITE,
+          backgroundColor: colors.surfaceLowest,
           borderRadius: 20,
           borderWidth: 1,
           borderColor: 'rgba(0,0,0,0.05)',
@@ -222,9 +218,9 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
         }}>
           {/* Table Header */}
           <View style={{ flexDirection: 'row', backgroundColor: '#f3f4f5', padding: 12, borderBottomWidth: 0.5, borderBottomColor: 'rgba(0,0,0,0.08)' }}>
-            <Text style={{ flex: 2, fontSize: 13, fontWeight: '700', color: NAVY }}>Features</Text>
-            <Text style={{ flex: 1, fontSize: 12, fontWeight: '600', color: ON_SURFACE_VARIANT, textAlign: 'center' }}>Free</Text>
-            <Text style={{ flex: 1, fontSize: 13, fontWeight: '700', color: '#ad8a46', textAlign: 'center' }}>Pro</Text>
+            <Text style={{ flex: 2, fontSize: 13, fontFamily: typography.primaryBold, color: colors.text }}>Features</Text>
+            <Text style={{ flex: 1, fontSize: 12, fontFamily: typography.primaryBold, color: colors.textSecondary, textAlign: 'center' }}>Free</Text>
+            <Text style={{ flex: 1, fontSize: 13, fontFamily: typography.primaryBold, color: '#ad8a46', textAlign: 'center' }}>Pro</Text>
           </View>
 
           {/* Rows */}
@@ -236,23 +232,23 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
           ].map(row => (
             <View key={row.name} style={{ flexDirection: 'row', padding: 12, borderBottomWidth: 0.5, borderBottomColor: 'rgba(0,0,0,0.05)', alignItems: 'center' }}>
               <View style={{ flex: 2 }}>
-                <Text style={{ fontSize: 13, fontWeight: '700', color: NAVY }}>{row.name}</Text>
-                <Text style={{ fontSize: 11, color: ON_SURFACE_VARIANT }}>{row.sub}</Text>
+                <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: colors.text }}>{row.name}</Text>
+                <Text style={{ fontSize: 11, color: colors.textSecondary }}>{row.sub}</Text>
               </View>
 
               <View style={{ flex: 1, alignItems: 'center' }}>
                 {row.free === 'close' ? (
-                  <MaterialIcons name="close" size={18} color={OUTLINE} />
+                  <MaterialIcons name="close" size={18} color={colors.outline} />
                 ) : (
-                  <Text style={{ fontSize: 12, color: ON_SURFACE_VARIANT }}>{row.free}</Text>
+                  <Text style={{ fontSize: 12, color: colors.textSecondary }}>{row.free}</Text>
                 )}
               </View>
 
               <View style={{ flex: 1, alignItems: 'center' }}>
                 {row.pro === 'check-circle' ? (
-                  <MaterialIcons name="check-circle" size={18} color={NAVY} />
+                  <MaterialIcons name="check-circle" size={18} color={colors.text} />
                 ) : (
-                  <Text style={{ fontSize: 12, color: NAVY, fontWeight: '700' }}>{row.pro}</Text>
+                  <Text style={{ fontSize: 12, color: colors.text, fontFamily: typography.primaryBold }}>{row.pro}</Text>
                 )}
               </View>
             </View>
@@ -268,7 +264,7 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
           marginBottom: 36
         }}>
           <View>
-            <Text style={{ fontSize: 16, fontWeight: '700', color: WHITE, marginBottom: 2 }}>Have a discount code?</Text>
+            <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.surfaceLowest, marginBottom: 2 }}>Have a discount code?</Text>
             <Text style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Apply your coupon here to redeem special offers.</Text>
           </View>
           <View style={{ flexDirection: 'row', gap: 10 }}>
@@ -280,10 +276,10 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
                 borderColor: 'rgba(255,255,255,0.2)',
                 borderRadius: 10,
                 paddingHorizontal: 12,
-                color: WHITE,
+                color: colors.surfaceLowest,
                 fontSize: 14
               }}
-              placeholder="GOLDFIRE20"
+              placeholder="colors.primaryFIRE20"
               placeholderTextColor="rgba(255,255,255,0.4)"
               value={couponCode}
               onChangeText={setCouponCode}
@@ -291,14 +287,14 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
             <TouchableOpacity
               onPress={() => setApplied(true)}
               style={{
-                backgroundColor: CHAMPAGNE,
+                backgroundColor: colors.primary,
                 paddingHorizontal: 16,
                 paddingVertical: 10,
                 borderRadius: 10,
                 justifyContent: 'center'
               }}
             >
-              <Text style={{ fontSize: 13, fontWeight: '700', color: '#261900' }}>
+              <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: '#261900' }}>
                 {applied ? 'Applied' : 'Apply'}
               </Text>
             </TouchableOpacity>
@@ -308,9 +304,9 @@ export default function PremiumSubscriptionScreen({ navigation }: PremiumSubscri
         {/* Restore purchase button & terms disclaimer */}
         <View style={{ alignItems: 'center', gap: 12 }}>
           <TouchableOpacity>
-            <Text style={{ fontSize: 12, fontWeight: '700', color: NAVY, textTransform: 'uppercase', letterSpacing: 1 }}>Restore Purchase</Text>
+            <Text style={{ fontSize: 12, fontFamily: typography.primaryBold, color: colors.text, textTransform: 'uppercase', letterSpacing: 1 }}>Restore Purchase</Text>
           </TouchableOpacity>
-          <Text style={{ fontSize: 10, color: ON_SURFACE_VARIANT, textAlign: 'center', lineHeight: 15 }}>
+          <Text style={{ fontSize: 10, color: colors.textSecondary, textAlign: 'center', lineHeight: 15 }}>
             Subscriptions will automatically renew unless canceled within 24-hours before the end of the current period. You can cancel anytime with your account settings. By continuing, you agree to our Terms of Service and Privacy Policy.
           </Text>
         </View>

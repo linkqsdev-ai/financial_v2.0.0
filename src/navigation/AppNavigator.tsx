@@ -29,11 +29,14 @@ import AccountsWalletsScreen from '../screens/AccountsWalletsScreen';
 import SubscriptionsRecurringBillsScreen from '../screens/SubscriptionsRecurringBillsScreen';
 
 import { BottomNav } from '../components/ui/BottomNav';
+import { useTheme } from '../theme/ThemeContext';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function TabNavigator() {
+  const { colors, typography } = useTheme();
+
   return (
     <Tab.Navigator
       {...{
@@ -52,6 +55,8 @@ function TabNavigator() {
 }
 
 export function AppNavigator() {
+  const { colors, typography } = useTheme();
+
   return (
     <NavigationContainer>
       <Stack.Navigator

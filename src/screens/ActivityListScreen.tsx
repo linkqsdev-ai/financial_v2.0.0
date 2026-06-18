@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const WHITE = '#ffffff';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE = '#757682';
-const GREEN = '#10B981';
-const RED = '#EF4444';
 
 interface Transaction {
   id: string;
@@ -61,6 +56,8 @@ interface ActivityListScreenProps {
 }
 
 export default function ActivityListScreen({ navigation }: ActivityListScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [filter, setFilter] = useState<'all' | 'expense' | 'income'>('all');
   const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
 
@@ -91,16 +88,16 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
       }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-            <MaterialIcons name="arrow-back" size={24} color={NAVY} />
+            <MaterialIcons name="arrow-back" size={24} color={colors.text} />
           </TouchableOpacity>
           <View>
-            <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>Activity</Text>
-            <Text style={{ fontSize: 11, color: ON_SURFACE_VARIANT, marginTop: 1 }}>{transactions.length} Transactions</Text>
+            <Text style={{ fontSize: 20, color: colors.text, }}>Activity</Text>
+            <Text style={{ fontSize: 11, color: colors.textSecondary, marginTop: 1 }}>{transactions.length} Transactions</Text>
           </View>
         </View>
 
         <TouchableOpacity style={{ padding: 4 }}>
-          <MaterialIcons name="search" size={24} color={NAVY} />
+          <MaterialIcons name="search" size={24} color={colors.text} />
         </TouchableOpacity>
       </View>
 
@@ -115,10 +112,10 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
               borderRadius: 20,
               backgroundColor: filter === 'all' ? 'rgba(0, 17, 90, 0.08)' : '#f3f4f5',
               borderWidth: filter === 'all' ? 1 : 0,
-              borderColor: NAVY
+              borderColor: colors.primaryContainer
             }}
           >
-            <Text style={{ fontSize: 13, fontWeight: '700', color: filter === 'all' ? NAVY : ON_SURFACE_VARIANT }}>All</Text>
+            <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: filter === 'all' ? colors.primaryContainer : colors.textSecondary }}>All</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -129,10 +126,10 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
               borderRadius: 20,
               backgroundColor: filter === 'expense' ? 'rgba(239, 68, 68, 0.1)' : '#f3f4f5',
               borderWidth: filter === 'expense' ? 1 : 0,
-              borderColor: RED
+              borderColor: colors.danger
             }}
           >
-            <Text style={{ fontSize: 13, fontWeight: '700', color: filter === 'expense' ? RED : ON_SURFACE_VARIANT }}>Expenses</Text>
+            <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: filter === 'expense' ? colors.danger : colors.textSecondary }}>Expenses</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -143,10 +140,10 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
               borderRadius: 20,
               backgroundColor: filter === 'income' ? 'rgba(16, 185, 129, 0.1)' : '#f3f4f5',
               borderWidth: filter === 'income' ? 1 : 0,
-              borderColor: GREEN
+              borderColor: colors.success
             }}
           >
-            <Text style={{ fontSize: 13, fontWeight: '700', color: filter === 'income' ? GREEN : ON_SURFACE_VARIANT }}>Income</Text>
+            <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: filter === 'income' ? colors.success : colors.textSecondary }}>Income</Text>
           </TouchableOpacity>
         </ScrollView>
       </View>
@@ -155,11 +152,11 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 96 }} showsVerticalScrollIndicator={false}>
         {filteredTransactions.length === 0 ? (
           <View style={{ alignItems: 'center', justifyContent: 'center', paddingVertical: 60, opacity: 0.5, marginTop: 40 }}>
-            <View style={{ width: 80, height: 80, borderRadius: 40, borderWidth: 2, borderStyle: 'dashed', borderColor: OUTLINE, alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
-              <MaterialIcons name="receipt-long" size={40} color={OUTLINE} />
+            <View style={{ width: 80, height: 80, borderRadius: 40, borderWidth: 2, borderStyle: 'dashed', borderColor: colors.outline, alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+              <MaterialIcons name="receipt-long" size={40} color={colors.outline} />
             </View>
-            <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY }}>No transactions yet</Text>
-            <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginTop: 4 }}>Your transactions will appear here</Text>
+            <Text style={{ fontSize: 18, fontFamily: typography.primaryBold, color: colors.text }}>No transactions yet</Text>
+            <Text style={{ fontSize: 13, color: colors.textSecondary, marginTop: 4 }}>Your transactions will appear here</Text>
           </View>
         ) : (
           <View style={{ gap: 14 }}>
@@ -167,11 +164,11 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
               <View
                 key={item.id}
                 style={{
-                  backgroundColor: WHITE,
+                  backgroundColor: colors.surfaceLowest,
                   borderRadius: 16,
                   padding: 16,
                   borderLeftWidth: 4,
-                  borderLeftColor: item.type === 'income' ? GREEN : RED,
+                  borderLeftColor: item.type === 'income' ? colors.success : colors.danger,
                   shadowColor: '#00113a',
                   shadowOffset: { width: 0, height: 2 },
                   shadowOpacity: 0.04,
@@ -189,19 +186,19 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
                     borderRadius: 4,
                     backgroundColor: item.type === 'income' ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)'
                   }}>
-                    <MaterialIcons name={item.type === 'income' ? 'arrow-upward' : 'arrow-downward'} size={12} color={item.type === 'income' ? GREEN : RED} />
-                    <Text style={{ fontSize: 10, fontWeight: '700', color: item.type === 'income' ? GREEN : RED, textTransform: 'uppercase' }}>
+                    <MaterialIcons name={item.type === 'income' ? 'arrow-upward' : 'arrow-downward'} size={12} color={item.type === 'income' ? colors.success : colors.danger} />
+                    <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: item.type === 'income' ? colors.success : colors.danger, textTransform: 'uppercase' }}>
                       {item.type}
                     </Text>
                   </View>
-                  <Text style={{ fontSize: 16, fontWeight: '700', color: item.type === 'income' ? GREEN : RED, fontFamily: 'System' }}>
+                  <Text style={{ fontSize: 16, color: item.type === 'income' ? colors.success : colors.danger, }}>
                     {item.type === 'income' ? '+' : '-'}${item.amount.toLocaleString('en-US', { minimumFractionDigits: 2 })}
                   </Text>
                 </View>
 
                 <View style={{ marginBottom: 12 }}>
-                  <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>{item.title}</Text>
-                  <Text style={{ fontSize: 13, color: ON_SURFACE_VARIANT, marginTop: 2 }}>{item.subtitle}</Text>
+                  <Text style={{ fontSize: 16, color: colors.text, }}>{item.title}</Text>
+                  <Text style={{ fontSize: 13, color: colors.textSecondary, marginTop: 2 }}>{item.subtitle}</Text>
                 </View>
 
                 <View style={{ height: 0.5, backgroundColor: 'rgba(0,0,0,0.06)', marginBottom: 12 }} />
@@ -209,18 +206,18 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                   <View style={{ flexDirection: 'row', gap: 6 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 8, paddingVertical: 4, backgroundColor: '#f3f4f5', borderRadius: 8 }}>
-                      <MaterialIcons name="calendar-today" size={12} color={ON_SURFACE_VARIANT} />
-                      <Text style={{ fontSize: 11, color: ON_SURFACE_VARIANT }}>{item.date}</Text>
+                      <MaterialIcons name="calendar-today" size={12} color={colors.textSecondary} />
+                      <Text style={{ fontSize: 11, color: colors.textSecondary }}>{item.date}</Text>
                     </View>
                     {item.tag && (
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 8, paddingVertical: 4, backgroundColor: 'rgba(0, 35, 102, 0.06)', borderRadius: 8 }}>
-                        <MaterialIcons name="notes" size={12} color={NAVY} />
-                        <Text style={{ fontSize: 11, color: NAVY }}>{item.tag}</Text>
+                        <MaterialIcons name="notes" size={12} color={colors.text} />
+                        <Text style={{ fontSize: 11, color: colors.text }}>{item.tag}</Text>
                       </View>
                     )}
                   </View>
                   <TouchableOpacity onPress={() => handleDelete(item.id)} style={{ padding: 4 }}>
-                    <MaterialIcons name="delete" size={18} color={OUTLINE} />
+                    <MaterialIcons name="delete" size={18} color={colors.outline} />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -239,7 +236,7 @@ export default function ActivityListScreen({ navigation }: ActivityListScreenPro
           width: 56,
           height: 56,
           borderRadius: 28,
-          backgroundColor: NAVY,
+          backgroundColor: colors.primaryContainer,
           alignItems: 'center',
           justifyContent: 'center',
           shadowColor: '#000',

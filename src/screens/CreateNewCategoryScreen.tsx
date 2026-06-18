@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const WHITE = '#ffffff';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE = '#757682';
-const CHAMPAGNE = '#D4AF37';
 
 const ICONS = [
   'account-balance-wallet',
@@ -34,6 +30,8 @@ interface CreateNewCategoryScreenProps {
 }
 
 export default function CreateNewCategoryScreen({ navigation }: CreateNewCategoryScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [selectedIcon, setSelectedIcon] = useState('account-balance-wallet');
   const [selectedColor, setSelectedColor] = useState('#00113a');
   const [categoryName, setCategoryName] = useState('');
@@ -79,9 +77,9 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
       }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
           <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-            <MaterialIcons name="close" size={24} color={ON_SURFACE_VARIANT} />
+            <MaterialIcons name="close" size={24} color={colors.textSecondary} />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>New Category</Text>
+          <Text style={{ fontSize: 20, color: colors.text, }}>New Category</Text>
         </View>
         <View style={{ width: 32 }} />
       </View>
@@ -91,7 +89,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
           
           {/* Icon Selection */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 12 }}>Icon Selection</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 12 }}>Icon Selection</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 12, paddingVertical: 4 }}>
               {ICONS.map(ico => {
                 const isActive = selectedIcon === ico;
@@ -103,11 +101,11 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
                       width: 56,
                       height: 56,
                       borderRadius: 12,
-                      backgroundColor: isActive ? 'rgba(0,17,58,0.08)' : WHITE,
+                      backgroundColor: isActive ? 'rgba(0,17,58,0.08)' : colors.surfaceLowest,
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderWidth: isActive ? 2 : 1,
-                      borderColor: isActive ? CHAMPAGNE : 'rgba(0,0,0,0.05)',
+                      borderColor: isActive ? colors.primary : 'rgba(0,0,0,0.05)',
                       shadowColor: '#00113a',
                       shadowOffset: { width: 0, height: 2 },
                       shadowOpacity: isActive ? 0.05 : 0.01,
@@ -115,7 +113,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
                       elevation: isActive ? 2 : 0
                     }}
                   >
-                    <MaterialIcons name={ico as any} size={24} color={isActive ? NAVY : OUTLINE} />
+                    <MaterialIcons name={ico as any} size={24} color={isActive ? colors.primaryContainer : colors.outline} />
                   </TouchableOpacity>
                 );
               })}
@@ -124,17 +122,17 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
 
           {/* Category Name Input */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8 }}>Category Name</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8 }}>Category Name</Text>
             <TextInput
               style={{
-                backgroundColor: WHITE,
+                backgroundColor: colors.surfaceLowest,
                 borderWidth: 1,
                 borderColor: 'rgba(0,0,0,0.08)',
                 borderRadius: 12,
                 paddingHorizontal: 16,
                 height: 52,
                 fontSize: 16,
-                color: NAVY
+                color: colors.text
               }}
               placeholder="e.g., Luxury Travel"
               placeholderTextColor="rgba(0,17,58,0.3)"
@@ -145,7 +143,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
 
           {/* Color Theme Selection */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 12 }}>Color Theme</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 12 }}>Color Theme</Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 12 }}>
               {COLORS.map(col => {
                 const isActive = selectedColor === col;
@@ -174,7 +172,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
 
           {/* Visual Context Banner */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 12 }}>Visual Context</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 12 }}>Visual Context</Text>
             <View style={{ height: 160, width: '100%', borderRadius: 20, overflow: 'hidden', position: 'relative' }}>
               <Image 
                 source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCANnKFqLgPBCqhlsNKNHxav2S4iRnNagyfuq78RvuqemvPtbgtVID68b3s7plu-MQmUEoMdgE7rjH83cglxHGmOCDKr5RrIN58pLXWkJocwx2GNJVxIC1pkomXjdOFfQnoDiV0HUE0XYmtN7C21oK-WGz6da38sme_rzrmpemnvrcyxol1o52W-ktoUnSpWGB55Eu04z8d1I_9qBIOObb0pAtP7jzlCLSPTI7xTn6FpZjwtf2QfTTgmQOQ5SKlAIy_3Pbd671M753t' }}
@@ -192,10 +190,10 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
           {/* Subcategories */}
           <View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-              <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5 }}>Subcategories</Text>
+              <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5 }}>Subcategories</Text>
               <TouchableOpacity onPress={() => setShowAddSub(!showAddSub)} style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                <MaterialIcons name="add" size={16} color={NAVY} />
-                <Text style={{ fontSize: 13, fontWeight: '700', color: NAVY }}>Add New</Text>
+                <MaterialIcons name="add" size={16} color={colors.text} />
+                <Text style={{ fontSize: 13, fontFamily: typography.primaryBold, color: colors.text }}>Add New</Text>
               </TouchableOpacity>
             </View>
 
@@ -204,7 +202,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap: 10,
-                backgroundColor: WHITE,
+                backgroundColor: colors.surfaceLowest,
                 borderRadius: 12,
                 paddingHorizontal: 12,
                 paddingVertical: 8,
@@ -213,14 +211,14 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
                 marginBottom: 12
               }}>
                 <TextInput
-                  style={{ flex: 1, fontSize: 14, color: NAVY }}
+                  style={{ flex: 1, fontSize: 14, color: colors.text }}
                   placeholder="New subcategory name..."
                   value={newSubName}
                   onChangeText={setNewSubName}
                   autoFocus={true}
                 />
-                <TouchableOpacity onPress={handleAddSub} style={{ backgroundColor: NAVY, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8 }}>
-                  <Text style={{ fontSize: 12, fontWeight: '700', color: '#fff' }}>Add</Text>
+                <TouchableOpacity onPress={handleAddSub} style={{ backgroundColor: colors.primaryContainer, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8 }}>
+                  <Text style={{ fontSize: 12, fontFamily: typography.primaryBold, color: '#fff' }}>Add</Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -230,7 +228,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
                 <View
                   key={sub}
                   style={{
-                    backgroundColor: WHITE,
+                    backgroundColor: colors.surfaceLowest,
                     borderWidth: 1,
                     borderColor: 'rgba(0,0,0,0.05)',
                     borderRadius: 14,
@@ -240,9 +238,9 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
                     alignItems: 'center'
                   }}
                 >
-                  <Text style={{ fontSize: 14, fontWeight: '600', color: NAVY }}>{sub}</Text>
+                  <Text style={{ fontSize: 14, fontFamily: typography.primaryBold, color: colors.text }}>{sub}</Text>
                   <TouchableOpacity onPress={() => handleDeleteSub(sub)}>
-                    <MaterialIcons name="delete" size={18} color={OUTLINE} />
+                    <MaterialIcons name="delete" size={18} color={colors.outline} />
                   </TouchableOpacity>
                 </View>
               ))}
@@ -284,7 +282,7 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
         <TouchableOpacity
           onPress={handleCreate}
           style={{
-            backgroundColor: NAVY,
+            backgroundColor: colors.primaryContainer,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
@@ -295,8 +293,8 @@ export default function CreateNewCategoryScreen({ navigation }: CreateNewCategor
             borderColor: 'rgba(212,175,55,0.2)'
           }}
         >
-          <MaterialIcons name="add-circle" size={20} color={CHAMPAGNE} />
-          <Text style={{ fontSize: 16, fontWeight: '700', color: CHAMPAGNE }}>Create Category</Text>
+          <MaterialIcons name="add-circle" size={20} color={colors.primary} />
+          <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.primary }}>Create Category</Text>
         </TouchableOpacity>
       </View>
     </View>

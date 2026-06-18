@@ -3,6 +3,12 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { useFonts } from 'expo-font';
+import { 
+  PlusJakartaSans_400Regular, 
+  PlusJakartaSans_700Bold, 
+  PlusJakartaSans_800ExtraBold 
+} from '@expo-google-fonts/plus-jakarta-sans';
+import { ThemeProvider } from './src/theme/ThemeContext';
 import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { View, Platform, StyleSheet } from 'react-native';
@@ -11,6 +17,9 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     ...MaterialIcons.font,
     ...MaterialCommunityIcons.font,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_800ExtraBold,
   });
 
   if (!fontsLoaded) {
@@ -20,12 +29,14 @@ export default function App() {
   return (
     <View style={styles.outerContainer}>
       <View style={styles.mobileFrame}>
-        <SafeAreaProvider>
-          <SafeAreaView style={{ flex: 1, backgroundColor: '#F2F2F7' }} edges={['top']}>
-            <AppNavigator />
-          </SafeAreaView>
-          <StatusBar style="auto" />
-        </SafeAreaProvider>
+        <ThemeProvider>
+          <SafeAreaProvider>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#F2F2F7' }} edges={['top']}>
+              <AppNavigator />
+            </SafeAreaView>
+            <StatusBar style="auto" />
+          </SafeAreaProvider>
+        </ThemeProvider>
       </View>
     </View>
   );

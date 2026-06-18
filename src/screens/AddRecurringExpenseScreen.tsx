@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, TextInput, Image, StatusBar, Switch } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const WHITE = '#ffffff';
-const ON_SURFACE_VARIANT = '#444650';
-const OUTLINE = '#757682';
-const CHAMPAGNE = '#e9c176';
-const GOLD = '#D4AF37';
 
 interface AddRecurringExpenseScreenProps {
   navigation?: any;
 }
 
 export default function AddRecurringExpenseScreen({ navigation }: AddRecurringExpenseScreenProps) {
+  const { colors, typography } = useTheme();
+
   const [expenseName, setExpenseName] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Other');
   const [amount, setAmount] = useState('');
@@ -41,11 +38,11 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
         borderBottomColor: 'rgba(0,0,0,0.08)'
       }}>
         <TouchableOpacity onPress={() => navigation?.goBack()} style={{ padding: 4 }}>
-          <MaterialIcons name="arrow-back" size={24} color={NAVY} />
+          <MaterialIcons name="arrow-back" size={24} color={colors.text} />
         </TouchableOpacity>
-        <Text style={{ fontSize: 18, fontWeight: '700', color: NAVY, fontFamily: 'System' }}>New Recurring Bill</Text>
+        <Text style={{ fontSize: 18, color: colors.text, }}>New Recurring Bill</Text>
         <TouchableOpacity style={{ padding: 4 }}>
-          <MaterialIcons name="more-vert" size={24} color={NAVY} />
+          <MaterialIcons name="more-vert" size={24} color={colors.text} />
         </TouchableOpacity>
       </View>
 
@@ -54,7 +51,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
           
           {/* Section 1: Expense Details */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Expense Details</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Expense Details</Text>
             <View style={{
               backgroundColor: 'rgba(255, 255, 255, 0.7)',
               borderRadius: 20,
@@ -80,13 +77,13 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
               </View>
 
               <View>
-                <Text style={{ fontSize: 10, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Expense Name</Text>
+                <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>Expense Name</Text>
                 <TextInput
                   style={{
                     borderBottomWidth: 1,
                     borderBottomColor: 'rgba(0,0,0,0.1)',
                     fontSize: 16,
-                    color: NAVY,
+                    color: colors.text,
                     paddingVertical: 6
                   }}
                   placeholder="e.g. Netflix, Rent"
@@ -97,7 +94,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
 
               {/* Categories grid */}
               <View>
-                <Text style={{ fontSize: 10, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10 }}>Category</Text>
+                <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 10 }}>Category</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                   {[
                     { name: 'Media', icon: 'movie' },
@@ -118,13 +115,13 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
                           borderRadius: 24,
                           backgroundColor: isSelected ? 'rgba(0,17,58,0.08)' : '#f3f4f5',
                           borderWidth: isSelected ? 2 : 0,
-                          borderColor: NAVY,
+                          borderColor: colors.primaryContainer,
                           alignItems: 'center',
                           justifyContent: 'center'
                         }}>
-                          <MaterialIcons name={cat.icon as any} size={20} color={NAVY} />
+                          <MaterialIcons name={cat.icon as any} size={20} color={colors.text} />
                         </View>
-                        <Text style={{ fontSize: 10, fontWeight: isSelected ? '700' : '500', color: isSelected ? NAVY : OUTLINE }}>
+                        <Text style={{ fontSize: 10, fontWeight: isSelected ? '700' : '500', color: isSelected ? colors.primaryContainer : colors.outline }}>
                           {cat.name}
                         </Text>
                       </TouchableOpacity>
@@ -137,7 +134,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
 
           {/* Section 2: Financial Details */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Financial Details</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Financial Details</Text>
             <View style={{
               backgroundColor: 'rgba(255, 255, 255, 0.7)',
               borderRadius: 20,
@@ -152,11 +149,11 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
               alignItems: 'center',
               gap: 8
             }}>
-              <Text style={{ fontSize: 10, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1 }}>Amount</Text>
+              <Text style={{ fontSize: 10, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1 }}>Amount</Text>
               <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 4 }}>
-                <Text style={{ fontSize: 24, color: 'rgba(0,17,58,0.4)', fontWeight: '700' }}>$</Text>
+                <Text style={{ fontSize: 24, color: 'rgba(0,17,58,0.4)', fontFamily: typography.primaryBold }}>$</Text>
                 <TextInput
-                  style={{ fontSize: 36, fontWeight: '800', color: NAVY, textAlign: 'center', minWidth: 120 }}
+                  style={{ fontSize: 36, fontFamily: typography.primaryExtraBold, color: colors.text, textAlign: 'center', minWidth: 120 }}
                   placeholder="0.00"
                   keyboardType="numeric"
                   value={amount}
@@ -166,7 +163,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
 
               <View style={{ flexDirection: 'row', gap: 8, marginTop: 12 }}>
                 <View style={{ backgroundColor: '#eddec5', paddingHorizontal: 12, paddingVertical: 4, borderRadius: 12 }}>
-                  <Text style={{ fontSize: 11, fontWeight: '700', color: '#6c614e' }}>USD</Text>
+                  <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: '#6c614e' }}>USD</Text>
                 </View>
                 <TouchableOpacity style={{
                   backgroundColor: '#f3f4f5',
@@ -177,8 +174,8 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
                   alignItems: 'center',
                   gap: 4
                 }}>
-                  <Text style={{ fontSize: 11, color: OUTLINE, fontWeight: '600' }}>From: Checking</Text>
-                  <MaterialIcons name="expand-more" size={14} color={OUTLINE} />
+                  <Text style={{ fontSize: 11, color: colors.outline, fontFamily: typography.primaryBold }}>From: Checking</Text>
+                  <MaterialIcons name="expand-more" size={14} color={colors.outline} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -186,7 +183,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
 
           {/* Section 3: Frequency */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Frequency</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Frequency</Text>
             <View style={{
               borderRadius: 20,
               padding: 6,
@@ -212,7 +209,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
                       justifyContent: 'center',
                       paddingVertical: 8,
                       borderRadius: 14,
-                      backgroundColor: isSelected ? WHITE : 'transparent',
+                      backgroundColor: isSelected ? colors.surfaceLowest : 'transparent',
                       shadowColor: '#000',
                       shadowOffset: { width: 0, height: isSelected ? 2 : 0 },
                       shadowOpacity: isSelected ? 0.08 : 0,
@@ -220,7 +217,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
                       elevation: isSelected ? 2 : 0
                     }}
                   >
-                    <Text style={{ fontSize: 13, fontWeight: isSelected ? '700' : '500', color: isSelected ? NAVY : OUTLINE }}>
+                    <Text style={{ fontSize: 13, fontWeight: isSelected ? '700' : '500', color: isSelected ? colors.primaryContainer : colors.outline }}>
                       {freq}
                     </Text>
                   </TouchableOpacity>
@@ -231,7 +228,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
 
           {/* Section 4: Timeline */}
           <View>
-            <Text style={{ fontSize: 11, fontWeight: '700', color: OUTLINE, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Timeline</Text>
+            <Text style={{ fontSize: 11, fontFamily: typography.primaryBold, color: colors.outline, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8, paddingHorizontal: 4 }}>Timeline</Text>
             <View style={{
               backgroundColor: 'rgba(255, 255, 255, 0.7)',
               borderRadius: 20,
@@ -254,11 +251,11 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
                 borderBottomColor: 'rgba(0,0,0,0.06)'
               }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                  <MaterialIcons name="calendar-today" size={20} color={NAVY} />
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: NAVY }}>Start Date</Text>
+                  <MaterialIcons name="calendar-today" size={20} color={colors.text} />
+                  <Text style={{ fontSize: 15, fontFamily: typography.primaryBold, color: colors.text }}>Start Date</Text>
                 </View>
                 <TextInput
-                  style={{ fontSize: 15, fontWeight: '700', color: NAVY, textAlign: 'right', padding: 0 }}
+                  style={{ fontSize: 15, fontFamily: typography.primaryBold, color: colors.text, textAlign: 'right', padding: 0 }}
                   value={startDate}
                   onChangeText={setStartDate}
                   placeholder="YYYY-MM-DD"
@@ -273,13 +270,13 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
                 padding: 16
               }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                  <MaterialIcons name="notifications-active" size={20} color={NAVY} />
-                  <Text style={{ fontSize: 15, fontWeight: '600', color: NAVY }}>Remind me</Text>
+                  <MaterialIcons name="notifications-active" size={20} color={colors.text} />
+                  <Text style={{ fontSize: 15, fontFamily: typography.primaryBold, color: colors.text }}>Remind me</Text>
                 </View>
                 <Switch
                   value={remindMe}
                   onValueChange={setRemindMe}
-                  trackColor={{ false: '#c5c6d2', true: NAVY }}
+                  trackColor={{ false: '#c5c6d2', true: colors.primaryContainer }}
                   thumbColor="#ffffff"
                 />
               </View>
@@ -303,7 +300,7 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
         <TouchableOpacity
           onPress={handleCreate}
           style={{
-            backgroundColor: GOLD,
+            backgroundColor: colors.primary,
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
@@ -317,8 +314,8 @@ export default function AddRecurringExpenseScreen({ navigation }: AddRecurringEx
             elevation: 4
           }}
         >
-          <Text style={{ fontSize: 16, fontWeight: '700', color: NAVY }}>Create Recurring Bill</Text>
-          <MaterialIcons name="arrow-forward" size={18} color={NAVY} />
+          <Text style={{ fontSize: 16, fontFamily: typography.primaryBold, color: colors.text }}>Create Recurring Bill</Text>
+          <MaterialIcons name="arrow-forward" size={18} color={colors.text} />
         </TouchableOpacity>
       </View>
     </View>

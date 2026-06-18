@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StatusBar, KeyboardAvoidingView, Platform, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useTheme } from '../theme/ThemeContext';
 
-const NAVY = '#00113a';
-const CHAMPAGNE = '#e9c176';
 
 export default function LoginScreen({ navigation }: { navigation?: any }) {
+  const { colors, typography } = useTheme();
+
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <View style={{ flex: 1, backgroundColor: NAVY, overflow: 'hidden' }}>
-      <StatusBar barStyle="light-content" backgroundColor={NAVY} />
+    <View style={{ flex: 1, backgroundColor: colors.primaryContainer, overflow: 'hidden' }}>
+      <StatusBar barStyle="light-content" backgroundColor={colors.primaryContainer} />
 
       {/* Atmospheric background blobs */}
       <View style={{
@@ -58,8 +59,8 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
 
             {/* Headline */}
             <View style={{ alignItems: 'center', marginBottom: 36 }}>
-              <Text style={{ fontSize: 32, fontWeight: '700', color: '#fff', letterSpacing: -0.5, marginBottom: 6, fontFamily: 'System' }}>Welcome Back</Text>
-              <Text style={{ fontSize: 16, color: 'rgba(219,225,255,0.65)', textAlign: 'center', fontFamily: 'System' }}>
+              <Text style={{ fontSize: 32, color: '#fff', letterSpacing: -0.5, marginBottom: 6, }}>Welcome Back</Text>
+              <Text style={{ fontSize: 16, color: 'rgba(219,225,255,0.65)', textAlign: 'center', fontFamily: typography.primary }}>
                 Enter your credentials to manage your wealth
               </Text>
             </View>
@@ -69,7 +70,7 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
 
               {/* Email */}
               <View>
-                <Text style={{ fontSize: 11, fontWeight: '600', color: `${CHAMPAGNE}CC`, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 6, marginLeft: 4, fontFamily: 'System' }}>
+                <Text style={{ fontSize: 11, color: `${colors.primary}CC`, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 6, marginLeft: 4, }}>
                   Email Address
                 </Text>
                 <View style={{
@@ -81,7 +82,7 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
                 }}>
                   <MaterialIcons name="mail-outline" size={20} color="rgba(219,225,255,0.6)" style={{ marginRight: 12 }} />
                   <TextInput
-                    style={{ flex: 1, fontSize: 16, color: '#fff', fontWeight: '400', fontFamily: 'System' }}
+                    style={{ flex: 1, fontSize: 16, color: '#fff', fontWeight: '400', fontFamily: typography.primary }}
                     placeholder="name@premium.com"
                     placeholderTextColor="rgba(219,225,255,0.28)"
                     keyboardType="email-address"
@@ -95,11 +96,11 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
               {/* Password */}
               <View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 6, paddingHorizontal: 4 }}>
-                  <Text style={{ fontSize: 11, fontWeight: '600', color: `${CHAMPAGNE}CC`, textTransform: 'uppercase', letterSpacing: 1.5, fontFamily: 'System' }}>
+                  <Text style={{ fontSize: 11, color: `${colors.primary}CC`, textTransform: 'uppercase', letterSpacing: 1.5, }}>
                     Password
                   </Text>
                   <TouchableOpacity onPress={() => navigation?.navigate('ForgotPassword')}>
-                    <Text style={{ fontSize: 13, color: CHAMPAGNE, fontFamily: 'System' }}>Forgot Password?</Text>
+                    <Text style={{ fontSize: 13, color: colors.primary, fontFamily: typography.primary }}>Forgot Password?</Text>
                   </TouchableOpacity>
                 </View>
                 <View style={{
@@ -111,7 +112,7 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
                 }}>
                   <MaterialIcons name="lock-outline" size={20} color="rgba(219,225,255,0.6)" style={{ marginRight: 12 }} />
                   <TextInput
-                    style={{ flex: 1, fontSize: 16, color: '#fff', fontFamily: 'System' }}
+                    style={{ flex: 1, fontSize: 16, color: '#fff', fontFamily: typography.primary }}
                     placeholder="••••••••"
                     placeholderTextColor="rgba(219,225,255,0.28)"
                     secureTextEntry={!showPassword}
@@ -128,7 +129,7 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
               <TouchableOpacity
                 onPress={() => navigation?.replace('TabNavigator')}
                 style={{
-                  backgroundColor: CHAMPAGNE,
+                  backgroundColor: colors.primary,
                   borderRadius: 14,
                   height: 56,
                   flexDirection: 'row',
@@ -143,16 +144,16 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
                   elevation: 8,
                 }}
               >
-                <Text style={{ fontSize: 18, fontWeight: '700', color: '#261900', fontFamily: 'System' }}>Sign In</Text>
+                <Text style={{ fontSize: 18, color: '#261900', }}>Sign In</Text>
                 <MaterialIcons name="arrow-forward" size={20} color="#261900" />
               </TouchableOpacity>
             </View>
 
             {/* Sign Up link */}
             <View style={{ marginTop: 36, flexDirection: 'row', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 15, color: 'rgba(219,225,255,0.55)', fontFamily: 'System' }}>Don't have an account? </Text>
+              <Text style={{ fontSize: 15, color: 'rgba(219,225,255,0.55)', fontFamily: typography.primary }}>Don't have an account? </Text>
               <TouchableOpacity onPress={() => navigation?.navigate('SignUp')}>
-                <Text style={{ fontSize: 15, fontWeight: '700', color: CHAMPAGNE, fontFamily: 'System' }}>Sign Up</Text>
+                <Text style={{ fontSize: 15, color: colors.primary, }}>Sign Up</Text>
               </TouchableOpacity>
             </View>
 
@@ -162,7 +163,7 @@ export default function LoginScreen({ navigation }: { navigation?: any }) {
               style={{ marginTop: 48, alignItems: 'center', opacity: 0.35 }}
             >
               <MaterialIcons name="fingerprint" size={44} color="#fff" style={{ marginBottom: 6 }} />
-              <Text style={{ fontSize: 10, fontWeight: '600', color: '#fff', textTransform: 'uppercase', letterSpacing: 2, fontFamily: 'System' }}>
+              <Text style={{ fontSize: 10, color: '#fff', textTransform: 'uppercase', letterSpacing: 2, }}>
                 Biometric Secure Access
               </Text>
             </TouchableOpacity>

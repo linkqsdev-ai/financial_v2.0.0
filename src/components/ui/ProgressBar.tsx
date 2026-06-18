@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { useTheme } from '../../theme/ThemeContext';
 
 interface ProgressBarProps {
   progress: number; // 0 to 1
@@ -12,6 +13,8 @@ export function ProgressBar({
   colorClass = "bg-primary", 
   trackColorClass = "bg-surface-container-highest" 
 }: ProgressBarProps) {
+  const { colors, typography } = useTheme();
+
   return (
     <View className={`w-full h-2.5 rounded-full overflow-hidden ${trackColorClass}`}>
       <View 
