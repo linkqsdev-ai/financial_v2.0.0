@@ -199,7 +199,9 @@ export default function FinancialGoalsScreen({ navigation }: FinancialGoalsScree
           </View>
 
           {/* Add Goal Placeholder */}
-          <TouchableOpacity style={{
+          <TouchableOpacity 
+            onPress={() => navigation?.navigate('CreateGoal')}
+            style={{
             height: 96,
             borderWidth: 2,
             borderStyle: 'dashed',

@@ -14,6 +14,8 @@ import FinancialGoalsScreen from '../screens/FinancialGoalsScreen';
 import AddAssetSourceScreen from '../screens/AddAssetSourceScreen';
 import ZerodhaImportScreen from '../screens/ZerodhaImportScreen';
 import ReviewConfirmAssetsScreen from '../screens/ReviewConfirmAssetsScreen';
+import AddManualAssetScreen from '../screens/AddManualAssetScreen';
+import CreateGoalScreen from '../screens/CreateGoalScreen';
 
 import ExpenseDashboardScreen from '../screens/ExpenseDashboardScreen';
 import ActivityListScreen from '../screens/ActivityListScreen';
@@ -66,6 +68,8 @@ export function AppNavigator() {
         <Stack.Screen name="AddAssetSource" component={AddAssetSourceScreen} />
         <Stack.Screen name="ZerodhaImport" component={ZerodhaImportScreen} />
         <Stack.Screen name="ReviewConfirmAssets" component={ReviewConfirmAssetsScreen} />
+        <Stack.Screen name="AddManualAsset" component={AddManualAssetScreen} />
+        <Stack.Screen name="CreateGoal" component={CreateGoalScreen} />
         
         <Stack.Screen name="ExpenseDashboard" component={ExpenseDashboardScreen} />
         <Stack.Screen name="ActivityList" component={ActivityListScreen} />

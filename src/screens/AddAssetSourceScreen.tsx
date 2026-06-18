@@ -111,7 +111,10 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
           
           <View style={{ gap: 12 }}>
             {/* Real Estate (double column) */}
-            <TouchableOpacity style={[styles.bentoCard, { flexDirection: 'row', alignItems: 'center', gap: 16 }]}>
+            <TouchableOpacity 
+              onPress={() => navigation?.navigate('AddManualAsset', { type: 'Real Estate' })}
+              style={[styles.bentoCard, { flexDirection: 'row', alignItems: 'center', gap: 16 }]}
+            >
               <View style={{ width: 72, height: 72, borderRadius: 12, overflow: 'hidden', flexShrink: 0 }}>
                 <Image
                   source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCF2X-inL03UWqg1J2BOpUcnHOENq-Nq67Sxla7FETYp5RGihEproeB8gGW60c-or01J9dKjsa519G5zOn-WouA1LRTloAfw2828NRuL4Fm6i-nj5yGXqh-F6UrTCcnCtRjLKQ1Ih_jl3vGB1YmBH2llBnVLwrMvy5hJH9tH13pTAk0c-GbT6PuAk1Sc5IzeTR1oFgH01b2XH1n535frkjAa0b_RGEvLjCOHa6qCIy01zd-veutgN1vkbZnOs9jRjmL6bmBAwheZQc3' }}
@@ -127,7 +130,10 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
 
             <View style={{ flexDirection: 'row', gap: 12 }}>
               {/* Gold */}
-              <TouchableOpacity style={[styles.bentoCardSquare, { flex: 1 }]}>
+              <TouchableOpacity 
+                onPress={() => navigation?.navigate('AddManualAsset', { type: 'Gold' })}
+                style={[styles.bentoCardSquare, { flex: 1 }]}
+              >
                 <View style={{ width: 48, height: 48, overflow: 'hidden', marginBottom: 12 }}>
                   <Image
                     source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBKSinpyAAyYLRsDgi8EWGKrKUsc9Kpg9c8MuvkoGCnjP3-QtntAr5xgvKvcwNlWuoh5I2QH_hB8UGGhgV_cWKeOhQKNt3gN4JNwNrVa5C02i4gna_rFw9hO21gHAge0S1rPNtrwA6hleVpGO0E0XQSQTM7qhUYTKvhScupmbvGy1Rui-hDx1a0fhmDXheVs0-3Ik2D4qW1wJs6zqydA6PnclzSXUUpiiwbOTn3hJBwvJNyyqdHXpOXko2icu9hgQpY9KsMxaX_kMs0' }}
@@ -140,7 +146,10 @@ export default function AddAssetSourceScreen({ navigation }: AddAssetSourceScree
               </TouchableOpacity>
 
               {/* Crypto */}
-              <TouchableOpacity style={[styles.bentoCardSquare, { flex: 1 }]}>
+              <TouchableOpacity 
+                onPress={() => navigation?.navigate('AddManualAsset', { type: 'Crypto' })}
+                style={[styles.bentoCardSquare, { flex: 1 }]}
+              >
                 <View style={{ width: 48, height: 48, overflow: 'hidden', marginBottom: 12 }}>
                   <Image
                     source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCF2X-inL03UWqg1J2BOpUcnHOENq-Nq67Sxla7FETYp5RGihEproeB8gGW60c-or01J9dKjsa519G5zOn-WouA1LRTloAfw2828NRuL4Fm6i-nj5yGXqh-F6UrTCcnCtRjLKQ1Ih_jl3vGB1YmBH2llBnVLwrMvy5hJH9tH13pTAk0c-GbT6PuAk1Sc5IzeTR1oFgH01b2XH1n535frkjAa0b_RGEvLjCOHa6qCIy01zd-veutgN1vkbZnOs9jRjmL6bmBAwheZQc3' }}

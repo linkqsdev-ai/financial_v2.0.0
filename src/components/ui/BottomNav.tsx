@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const NAVY = '#00113a';
@@ -29,7 +29,7 @@ export function BottomNav({ state, navigation }: BottomNavProps) {
       flexDirection: 'row',
       justifyContent: 'space-around',
       alignItems: 'center',
-      paddingBottom: 20,
+      paddingBottom: Platform.OS === 'ios' ? 24 : 10,
       paddingTop: 8,
       borderTopWidth: 0.5,
       borderTopColor: '#e5e5ea',
